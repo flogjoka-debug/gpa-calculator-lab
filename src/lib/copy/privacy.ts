@@ -43,7 +43,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "We don't put grades in page addresses, so they don't end up in browser history, server logs or analytics."
+    "text": "We don't put grades in page addresses, so they don't end up in browser history, server logs or analytics. The one exception is a share link, and only when you click \"Copy share link\": it holds your classes after the # sign, a part of the address that browsers don't send to our server. When someone opens the link, the calculator fills in the classes and removes them from the address bar right away. Anyone you send a share link to can see the grades in it."
   },
   {
     "t": "h2",

@@ -1,5 +1,8 @@
 import copyHomeDefinition from "@/lib/copy/homeDefinition";
 import copyHomeGood from "@/lib/copy/homeGood";
+import copyHomeHowto from "@/lib/copy/homeHowto";
+import copyHomeOfficial from "@/lib/copy/homeOfficial";
+import copyHomeWeighted from "@/lib/copy/homeWeighted";
 import copyHomeTarget from "@/lib/copy/homeTarget";
 import copyHomeTerms from "@/lib/copy/homeTerms";
 import copyHomeTranscript from "@/lib/copy/homeTranscript";
@@ -13,7 +16,8 @@ import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CalculatorFooter, Eyebrow, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import { CalculatorFooter, ContentTable, Eyebrow, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import type { GuideBlock } from "@/lib/guides-content";
 import { iconFor } from "@/lib/icons";
 import { HOME_FAQ } from "@/lib/seo-content";
 import { PAGES, TOOL_GROUPS, pageHead } from "@/lib/site";
@@ -24,6 +28,25 @@ export const Route = createFileRoute("/")({
   head: () => pageHead(page),
   component: Home,
 });
+
+const fig = (name: string, alt: string, caption: string): GuideBlock[] => [
+  { t: "img", src: `/guides/${name}.webp`, alt, caption, width: 1200, height: 675 },
+];
+
+const TOC: [string, string][] = [
+  ["what-gpa-means", "What GPA means"],
+  ["how-to-use-the-gpa-calculator", "How to use the calculator"],
+  ["example", "Example: an A and a B"],
+  ["by-hand", "Calculate your GPA by hand"],
+  ["semester-vs-cumulative-gpa", "Semester vs. cumulative GPA"],
+  ["how-the-target-gpa-planner-works", "The target GPA planner"],
+  ["weighted-vs-unweighted-gpa", "Weighted vs. unweighted GPA"],
+  ["gpa-scale", "The grade scale"],
+  ["counts", "What counts and what doesn't"],
+  ["why-your-result-might-not-match-your-transcript", "If your transcript differs"],
+  ["how-to-find-your-official-gpa", "Find your official GPA"],
+  ["faq", "FAQ"],
+];
 
 function Home() {
   const [live, setLive] = useState<GpaResult | null>(null);
@@ -41,10 +64,20 @@ function Home() {
 
       <HomeCalculator onResult={onResult} />
       <EducatorsBanner />
+      <nav aria-labelledby="toc-title" className="mt-8 card p-4 sm:p-5">
+        <h2 id="toc-title" className="text-sm tracking-wide text-text-muted uppercase">On this page</h2>
+        <ol className="mt-2 grid gap-x-6 gap-y-1 sm:grid-cols-2">
+          {TOC.map(([id, label]) => (
+            <li key={id}><a href={`#${id}`} className="picker-link">{label}</a></li>
+          ))}
+        </ol>
+      </nav>
       <section className="mt-10" aria-labelledby="what-gpa-means">
         <h2 id="what-gpa-means" className="text-2xl">What GPA means</h2>
         <p className="mt-2">{PAGE_META.homeDefinition.lead}</p>
       </section>
+
+      <CopyBlocks blocks={copyHomeHowto} />
 
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
@@ -67,6 +100,7 @@ function Home() {
         <p className="mt-2">
           The answer isn't 3.5. The B carries more credits, so it pulls the GPA down more than the A lifts it.
         </p>
+        <CopyBlocks blocks={fig("home-credits-weight", "Diagram of seven credit squares, three for an A worth 4.0 and four for a B worth 3.0, showing a plain average of 3.50 but a credit-weighted GPA of 3.43", "Each credit counts once, so the 4-credit B outweighs the 3-credit A.")} />
         <Button variant="outline"
           type="button"
           className="btn mt-4"
@@ -92,7 +126,9 @@ function Home() {
       </section>
 
       <CopyBlocks blocks={copyHomeTerms} />
+      <CopyBlocks blocks={fig("home-cumulative-weight", "Bar chart comparing 45 earlier credits at a 2.80 GPA with two new terms of 6 and 4 credits at 3.00, which give a cumulative GPA of 2.84", "Earlier credits are most of the total, so new terms move a cumulative GPA slowly.")} />
       <CopyBlocks blocks={copyHomeTarget} />
+      <CopyBlocks blocks={copyHomeWeighted} />
 
       <section className="mt-12" aria-labelledby="gpa-scale">
         <h2 id="gpa-scale" className="text-2xl">The grade scale this calculator uses</h2>
@@ -115,9 +151,12 @@ function Home() {
           <p><strong>The scale here is an example.</strong> Many schools use A− = 3.7 and B+ = 3.3. Others use 3.67 and 3.33, and some give an A+ more than 4.0. Edit the scale so it matches your transcript.</p>
           <p>If your report card has no credits, turn on "All classes count equally" and each class gets the same weight.</p>
         </div>
+        <ContentTable caption="Example: what counts toward GPA" columns={["Grade", "Credits", "Counts toward GPA?", "Quality points"]} rows={[["A", "3", "Yes", "4.0 × 3 = 12"], ["F", "3", "Yes", "0 × 3 = 0"], ["P", "3", "No", "—"], ["W", "3", "No", "—"], ["GPA", "6 counted", "", "12 ÷ 6 = 2.00"]]} />
+        <CopyBlocks blocks={fig("home-what-counts", "Four 3-credit classes: an A and an F counted toward GPA, a Pass and a Withdrawal not counted, giving 12 quality points over 6 credits for a 2.00 GPA", "The F counts and pulls the GPA down; P and W stay out of both totals.")} />
       </section>
 
       <CopyBlocks blocks={copyHomeTranscript} />
+      <CopyBlocks blocks={copyHomeOfficial} />
       <CopyBlocks blocks={copyHomeGood} />
 
       <FaqSection items={HOME_FAQ} />

@@ -163,3 +163,88 @@ export function planTarget(current: { numerator: number; denominator: number }, 
     termsAtTop,
   };
 }
+
+/** A counted class, as the what-if tools see it. `base` is the letter's own points (no bonus). */
+export interface WhatIfRow { semester: number; index: number; grade: string; base: number; credits: number }
+
+export function whatIfRows(r: HomeResult): WhatIfRow[] {
+  return r.terms.flatMap((t) => t.unweighted.included.map((inc) => ({ semester: t.term, index: inc.index, grade: inc.grade, base: inc.points, credits: inc.credits })));
+}
+
+/** The main GPA (weighted in high school mode) and the cumulative one after changing one class's letter. */
+export function whatIf(r: HomeResult, row: WhatIfRow, newBase: number): { main: number; cumulative: number | null } {
+  const main = r.mode === "highschool" ? r.weighted : r.unweighted;
+  const delta = (newBase - row.base) * row.credits;
+  return {
+    main: (main.numerator + delta) / main.denominator,
+    cumulative: r.cumulative ? (r.cumulative.numerator + delta) / r.cumulative.denominator : null,
+  };
+}
+
+/** The class whose move to the top grade would raise the GPA the most (credits × points missing). Null when every class already has the top grade. */
+export function biggestBoost(r: HomeResult, top: number): { row: WhatIfRow; main: number; gain: number } | null {
+  let best: WhatIfRow | null = null;
+  let bestDelta = 0;
+  for (const row of whatIfRows(r)) {
+    const d = (top - row.base) * row.credits;
+    if (d > bestDelta + 1e-9) { best = row; bestDelta = d; }
+  }
+  if (!best) return null;
+  const main = r.mode === "highschool" ? r.weighted : r.unweighted;
+  const after = (main.numerator + bestDelta) / main.denominator;
+  return { row: best, main: after, gain: after - main.value };
+}
+
+/** Share links: the whole calculator state in the address after #share=, so it never reaches a server. */
+export interface ShareState {
+  mode: HomeMode;
+  terms: { name: string; rows: { name: string; grade: string; credits: string; level: string }[] }[];
+  prior: { gpa: string; credits: string };
+  equal: boolean;
+  scale?: Record<string, number>;
+  bonuses?: Record<string, number>;
+}
+
+const toB64Url = (s: string) => {
+  const bytes = new TextEncoder().encode(s);
+  let bin = "";
+  bytes.forEach((b) => { bin += String.fromCharCode(b); });
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+};
+const fromB64Url = (s: string) => {
+  const bin = atob(s.replace(/-/g, "+").replace(/_/g, "/"));
+  return new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)));
+};
+
+export function encodeShare(state: ShareState): string {
+  const compact = {
+    m: state.mode === "highschool" ? 1 : 0,
+    t: state.terms.map((t) => [t.name, t.rows.filter((r) => r.grade !== "" || r.credits.trim() !== "" || r.name.trim() !== "").map((r) => [r.name, r.grade, r.credits, r.level === "Regular" ? "" : r.level])]),
+    p: [state.prior.gpa, state.prior.credits],
+    e: state.equal ? 1 : 0,
+    ...(state.scale ? { s: state.scale } : {}),
+    ...(state.bonuses ? { b: state.bonuses } : {}),
+  };
+  return toB64Url(JSON.stringify(compact));
+}
+
+export function decodeShare(token: string): ShareState | null {
+  try {
+    const c = JSON.parse(fromB64Url(token)) as { m?: number; t?: [string, string[][]][]; p?: string[]; e?: number; s?: Record<string, number>; b?: Record<string, number> };
+    if (!Array.isArray(c.t) || c.t.length === 0 || c.t.length > 20) return null;
+    const str = (v: unknown, max = 60) => (typeof v === "string" ? v.slice(0, max) : "");
+    return {
+      mode: c.m === 1 ? "highschool" : "college",
+      terms: c.t.map(([name, rows]) => ({
+        name: str(name),
+        rows: (Array.isArray(rows) ? rows : []).slice(0, 40).map((r) => ({ name: str(r[0]), grade: str(r[1], 3), credits: str(r[2], 8), level: str(r[3], 20) || "Regular" })),
+      })),
+      prior: { gpa: str(c.p?.[0], 8), credits: str(c.p?.[1], 8) },
+      equal: c.e === 1,
+      ...(c.s && typeof c.s === "object" ? { scale: c.s } : {}),
+      ...(c.b && typeof c.b === "object" ? { bonuses: c.b } : {}),
+    };
+  } catch {
+    return null;
+  }
+}

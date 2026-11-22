@@ -304,3 +304,6 @@ main:focus { outline: none; }
 .consent-banner p { flex: 1 1 18rem; margin: 0; }
 .consent-actions { display: flex; gap: 0.5rem; margin-left: auto; }
 .footer-link-button { color: var(--primary-brand); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-size: inherit; }
+
+/* In-page links (table of contents) land below the sticky header. */
+main h2[id], main [id].scroll-target { scroll-margin-top: 88px; }

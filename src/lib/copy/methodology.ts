@@ -322,6 +322,12 @@ const blocks: GuideBlock[] = [
     ],
     "rows": [
       [
+        "November 23, 2026",
+        "GPA Calculator (home)",
+        "Added several terms, a GPA so far, high school levels, a target GPA planner, what-if, biggest boost and share links. Added the GPA converter",
+        "Same formulas as the college, high school and cumulative calculators"
+      ],
+      [
         "November 22, 2026",
         "All",
         "Added district, registrar and scholarship policy examples to the calculator pages and guides",

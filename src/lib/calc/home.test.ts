@@ -87,3 +87,33 @@ describe("planTarget", () => {
     expect(planTarget({ numerator: 0, denominator: 0 }, "3", "0")).toMatchObject({ kind: "error", field: "nextCredits" });
   });
 });
+
+import { biggestBoost, decodeShare, encodeShare, whatIf, whatIfRows } from "./home";
+
+describe("what-if tools", () => {
+  const r = calculateHome([{ name: "", rows: [{ grade: "A", credits: "3" }, { grade: "C", credits: "4" }] }], { gpa: "3.0", credits: "30" }, { mode: "college" });
+  if (r.kind !== "result") throw new Error(r.kind);
+  it("changes one class and recomputes term and cumulative GPA", () => {
+    const rows = whatIfRows(r);
+    const c = rows[1]!;
+    // C (2.0) → B (3.0) on 4 credits: (12 + 12) ÷ 7
+    const w = whatIf(r, c, 3);
+    expect(w.main).toBeCloseTo(24 / 7, 10);
+    // cumulative: (90 + 20 + 4) ÷ 37
+    expect(w.cumulative).toBeCloseTo(114 / 37, 10);
+  });
+  it("finds the biggest boost by credits × missing points", () => {
+    const b = biggestBoost(r, 4);
+    expect(b?.row.grade).toBe("C");
+    expect(b?.main).toBeCloseTo(28 / 7, 10);
+  });
+  it("round-trips a share link, including names with non-ASCII text", () => {
+    const token = encodeShare({ mode: "highschool", terms: [{ name: "Fall ✓", rows: [{ name: "Física", grade: "A", credits: "1", level: "AP" }, { name: "", grade: "", credits: "", level: "Regular" }] }], prior: { gpa: "3.2", credits: "12" }, equal: false });
+    const s = decodeShare(token);
+    expect(s?.mode).toBe("highschool");
+    expect(s?.terms[0]?.name).toBe("Fall ✓");
+    expect(s?.terms[0]?.rows).toEqual([{ name: "Física", grade: "A", credits: "1", level: "AP" }]);
+    expect(s?.prior).toEqual({ gpa: "3.2", credits: "12" });
+    expect(decodeShare("not-a-token")).toBeNull();
+  });
+});

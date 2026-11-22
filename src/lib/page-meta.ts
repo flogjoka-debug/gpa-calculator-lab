@@ -28,7 +28,7 @@ export const PAGE_META = {
   "privacy": {
     "title": "Privacy Policy – GPA Calculator Lab",
     "meta": "How GPA Calculator Lab handles your data: calculators run in your browser, grades are never sent, and Google Analytics loads only if you accept.",
-    "lead": "Effective November 22, 2026. This policy explains what GPA Calculator Lab collects, what it doesn't, and the choices you have."
+    "lead": "Effective November 23, 2026. This policy explains what GPA Calculator Lab collects, what it doesn't, and the choices you have."
   },
   "contact": {
     "title": "Contact GPA Calculator Lab – Report an Error or Ask a Question",
@@ -56,5 +56,8 @@ export const PAGE_META = {
     "title": "Terms of Use – GPA Calculator Lab",
     "meta": "The terms for using GPA Calculator Lab: free calculators that give estimates, how you may embed or link to them, and the limits of our responsibility.",
     "lead": "Effective November 22, 2026. By using gpacalculatorlab.com you agree to these terms. If you don't agree, please don't use the site."
-  }
+  },
+  "homeHowto": {},
+  "homeWeighted": {},
+  "homeOfficial": {}
 } satisfies Record<string, PageMeta>;

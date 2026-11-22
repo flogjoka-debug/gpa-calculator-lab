@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { Plus, Target, X } from "lucide-react";
+import { Link2, Plus, Sparkles, Target, X } from "lucide-react";
 import {
-  EXAMPLE_SCALE,
-  GRADE_OPTIONS,
-  LETTER_GRADES,
+  PLUS_EXAMPLE_SCALE as EXAMPLE_SCALE,
+  PLUS_LETTER_GRADES as LETTER_GRADES,
   formatCredits,
   formatGpa,
   formatQp,
@@ -13,7 +12,7 @@ import {
   type RowError,
 } from "@/lib/calc/gpa";
 import { EXAMPLE_BONUSES, LEVELS, type BonusProfile, type Level } from "@/lib/calc/highschool";
-import { calculateHome, planTarget, type HomeMode, type HomeResult, type PriorFieldError, type TargetOutcome } from "@/lib/calc/home";
+import { biggestBoost, calculateHome, decodeShare, encodeShare, planTarget, whatIf, whatIfRows, type HomeMode, type HomeResult, type PriorFieldError, type TargetOutcome, type WhatIfRow } from "@/lib/calc/home";
 import { CountedStrip, FormulaLine } from "./Ledger";
 import { FieldError, ResultBox, SaveBar, ScalePanel, gradeLabel, scrollIntoViewSoon, useDeviceStorage, useLoadExampleEvent, usePendingFocus, useReplaceConfirm } from "./shared";
 
@@ -26,6 +25,7 @@ const newRow = (): Row => ({ id: `r${seq++}`, name: "", grade: "", credits: "", 
 const newTerm = (n = 3): Term => ({ id: `t${seq++}`, name: "", rows: Array.from({ length: n }, newRow) });
 const rowHasData = (r: Row) => r.name.trim() !== "" || r.grade !== "" || r.credits.trim() !== "" || r.level !== "Regular";
 const BONUS_LEVELS = ["Honors", "AP", "IB", "Dual enrollment"] as const;
+const GRADE_OPTIONS: GradeOption[] = [...LETTER_GRADES, "P", "NP", "W"];
 const STORAGE_KEY = "gpacl:home:v2";
 const OLD_KEY = "gpacl:home:v1";
 
@@ -48,6 +48,10 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
   const [priorErrors, setPriorErrors] = useState<PriorFieldError[]>([]);
   const [target, setTarget] = useState({ gpa: "", credits: "15" });
   const [plan, setPlan] = useState<TargetOutcome | null>(null);
+  const [shared, setShared] = useState(false);
+  const [shareNote, setShareNote] = useState("");
+  const [wiKey, setWiKey] = useState("");
+  const [wiGrade, setWiGrade] = useState("");
   const resultRef = useRef<HTMLDivElement>(null);
   const focusSoon = usePendingFocus();
   const confirm = useReplaceConfirm();
@@ -77,6 +81,33 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
     }
   }, []);
 
+  // Open a share link: read #share=…, fill the calculator, then drop the grades from the address bar
+  // before analytics (which loads after this) could see the URL.
+  useEffect(() => {
+    const m = window.location.hash.match(/^#share=([A-Za-z0-9_-]+)$/);
+    if (!m?.[1]) return;
+    window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    const st = decodeShare(m[1]);
+    if (!st) return;
+    const ts: Term[] = st.terms.map((t) => ({
+      id: `t${seq++}`,
+      name: t.name,
+      rows: (t.rows.length ? t.rows : [{ name: "", grade: "", credits: "", level: "Regular" }]).map((r) => ({
+        ...newRow(),
+        name: r.name,
+        grade: (GRADE_OPTIONS as string[]).includes(r.grade) ? (r.grade as GradeOption) : "",
+        credits: r.credits,
+        level: (LEVELS as string[]).includes(r.level) ? (r.level as Level) : "Regular",
+      })),
+    }));
+    const sc = { ...EXAMPLE_SCALE, ...(st.scale ?? {}) } as GradeScale;
+    const bo = { ...EXAMPLE_BONUSES, ...(st.bonuses ?? {}) } as BonusProfile;
+    setMode(st.mode); setTerms(ts); setPrior(st.prior); setEqual(st.equal); setScale(sc); setBonuses(bo);
+    setShared(true);
+    run(ts, st.mode, st.prior, st.equal, sc, bo);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const hs = mode === "highschool";
   const fresh = result && !stale ? result : null;
   const main = fresh ? (hs ? fresh.weighted : fresh.unweighted) : null;
@@ -85,14 +116,15 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
   const changed = () => {
     if (result) setStale(true);
     setPlan(null);
+    setShareNote("");
     storage.clearNote();
   };
 
-  const run = (ts = terms, m = mode, pr = prior, eq = equal) => {
+  const run = (ts = terms, m = mode, pr = prior, eq = equal, sc = scale, bo = bonuses) => {
     const out = calculateHome(
       ts.map((t) => ({ name: t.name, rows: t.rows })),
       pr,
-      { mode: m, scale, bonuses, equalWeight: eq },
+      { mode: m, scale: sc, bonuses: bo, equalWeight: eq },
     );
     if (out.kind === "error") {
       setRowErrors(out.rowErrors);
@@ -110,6 +142,8 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
     setResult(out.kind === "result" ? out : null);
     setStale(false);
     setPlan(null);
+    setWiKey("");
+    setWiGrade("");
     scrollIntoViewSoon(resultRef.current);
   };
 
@@ -182,6 +216,43 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
     setPlan(planTarget(current, target.gpa, target.credits, topPoint));
   };
   const priorErr = (f: PriorFieldError["field"]) => priorErrors.find((e) => e.field === f);
+
+  const isDefault = (a: Record<string, number>, b: Record<string, number>) => Object.keys(b).every((k) => a[k] === b[k]);
+  const copyShare = async () => {
+    const token = encodeShare({
+      mode, terms, prior, equal,
+      ...(isDefault(scale as Record<string, number>, EXAMPLE_SCALE as Record<string, number>) ? {} : { scale: scale as Record<string, number> }),
+      ...(hs && !isDefault(bonuses, EXAMPLE_BONUSES) ? { bonuses } : {}),
+    });
+    const url = `${window.location.origin}/#share=${token}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareNote("Link copied. Anyone who opens it sees these classes and grades.");
+    } catch {
+      window.prompt("Copy this link:", url);
+    }
+  };
+  const classLabel = (r: WhatIfRow) => {
+    const t = terms[r.semester - 1];
+    const name = t?.rows[r.index - 1]?.name.trim();
+    const where = terms.length > 1 ? `${t?.name.trim() || `Term ${r.semester}`}, ` : "";
+    return `${where}${name || `class ${r.index}`}`;
+  };
+  const topLetter = Math.max(...LETTER_GRADES.map((g) => scale[g] ?? 0));
+  const boostEarly = fresh ? biggestBoost(fresh, topLetter) : null;
+  const wiRows = fresh ? whatIfRows(fresh) : [];
+  const wiRow = wiRows.find((r) => `${r.semester}-${r.index}` === wiKey) ?? boostEarly?.row ?? wiRows[0];
+  // Default "new grade": one letter above the class's grade (an A stays an A).
+  const stepUp = (g: string) => {
+    const i = LETTER_GRADES.indexOf(g as (typeof LETTER_GRADES)[number]);
+    const up = LETTER_GRADES[Math.max(0, i - 1)] ?? "A";
+    return up === "A+" && (scale["A+"] ?? 0) <= (scale.A ?? 0) ? "A" : up;
+  };
+  const wiNew = wiGrade || (wiRow ? stepUp(wiRow.grade) : "A");
+  const wiOut = fresh && wiRow ? whatIf(fresh, wiRow, scale[wiNew as keyof GradeScale] ?? 0) : null;
+  const topName = (scale.A ?? 0) === topLetter ? "A" : (LETTER_GRADES.find((g) => (scale[g] ?? 0) === topLetter) ?? "A");
+  const an = (g: string) => (g.startsWith("A") || g === "F" ? "an" : "a");
+  const boost = boostEarly;
 
   return (
     <>
@@ -410,6 +481,44 @@ export function HomeCalculator({ onResult }: { onResult?: (r: GpaResult | null) 
                 </p>
               ) : null}
             </div>
+            {boost ? (
+              <p className="flex items-start gap-2 rounded-[10px] border border-divider bg-[#FBFDFC] px-4 py-3">
+                <Sparkles aria-hidden="true" size={18} className="mt-0.5 shrink-0 text-primary" />
+                <span>
+                  <strong>Biggest boost:</strong> {an(topName)} {topName} in {classLabel(boost.row)} instead of {an(boost.row.grade)} {boost.row.grade} would
+                  raise your {hs ? "weighted " : ""}GPA the most, from {formatGpa(main.value)} to {formatGpa(boost.main)}.
+                </span>
+              </p>
+            ) : null}
+            {wiRow && wiOut ? (
+              <div className="rounded-[12px] border border-divider p-3">
+                <h3 className="text-base">What if you changed a grade?</h3>
+                <div className="mt-2 flex flex-wrap items-end gap-2">
+                  <div className="min-w-0 flex-1">
+                    <label htmlFor="wi-class" className="mb-1 block text-sm">Class</label>
+                    <select id="wi-class" className="field" value={`${wiRow.semester}-${wiRow.index}`} onChange={(e) => { setWiKey(e.target.value); setWiGrade(""); }}>
+                      {wiRows.map((r) => { const l = classLabel(r); return <option key={`${r.semester}-${r.index}`} value={`${r.semester}-${r.index}`}>{l.charAt(0).toUpperCase() + l.slice(1)} ({r.grade})</option>; })}
+                    </select>
+                  </div>
+                  <div className="w-28">
+                    <label htmlFor="wi-grade" className="mb-1 block text-sm">New grade</label>
+                    <select id="wi-grade" className="field" value={wiNew} onChange={(e) => setWiGrade(e.target.value)}>
+                      {LETTER_GRADES.map((g) => <option key={g} value={g}>{g}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <p className="tabular mt-2" aria-live="polite">
+                  With {an(wiNew)} {wiNew} instead of {an(wiRow.grade)} {wiRow.grade}, your {hs ? "weighted " : ""}GPA would be <strong>{formatGpa(wiOut.main)}</strong>
+                  {" "}({wiOut.main - main.value >= 0 ? "+" : "−"}{formatGpa(Math.abs(wiOut.main - main.value))})
+                  {wiOut.cumulative !== null ? <>, and your cumulative GPA <strong>{formatGpa(wiOut.cumulative)}</strong></> : null}.
+                </p>
+              </div>
+            ) : null}
+            <div className="flex flex-wrap items-center gap-2">
+              <button type="button" className="btn" onClick={copyShare}><Link2 aria-hidden="true" size={18} /> Copy share link</button>
+              <p role="status" className="text-sm text-text-muted">{shareNote}</p>
+            </div>
+            {shared ? <p className="text-sm text-text-muted">You opened a shared link. Change anything and calculate again; the person who sent it won't see your changes.</p> : null}
           </div>
         ) : stale ? (
           <p>Your classes changed. Calculate again.</p>

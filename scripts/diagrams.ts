@@ -68,6 +68,49 @@ const diagrams: Record<string, string> = {
       { label: "90", value: 2.97, note: "credits" }, { label: "120", value: 2.93, note: "credits" },
     ], 3.6, { x0: 140, y0: 190, w: 920, h: 300, fmt: (v) => v.toFixed(2) }),
     "Math: (2.8 × credits so far + 4.0 × 15) ÷ (credits so far + 15)"),
+  "home-credits-weight": frame(
+    "Credits decide how hard a grade pulls",
+    "An A in a 3-credit class and a B in a 4-credit class",
+    Array.from({ length: 7 }, (_, i) => {
+      const isA = i < 3, x = 96 + i * 146;
+      return `<rect x="${x}" y="190" width="132" height="132" rx="14" fill="${isA ? C.primary : C.soft}"/>`
+        + t(x + 66, 250, isA ? "A" : "B", 40, isA ? "#FFFFFF" : C.text, 650, "middle")
+        + t(x + 66, 290, isA ? "4.0" : "3.0", 24, isA ? "#FFFFFF" : C.text, 500, "middle");
+    }).join("")
+      + t(96, 362, "Each square is one credit: 3 credits of A, 4 credits of B", 22, C.muted)
+      + `<rect x="96" y="392" width="480" height="120" rx="16" fill="${C.bg}" stroke="${C.divider}"/>`
+      + t(124, 436, "Plain average of the two grades", 22, C.muted) + t(124, 488, "(4.0 + 3.0) ÷ 2 = 3.50", 32, C.text, 650)
+      + `<rect x="608" y="392" width="496" height="120" rx="16" fill="${C.accent}"/>`
+      + t(636, 436, "GPA weighted by credits", 22, C.text) + t(636, 488, "(12 + 12) ÷ 7 = 3.43", 32, C.text, 650),
+    "The B carries more credits, so it pulls the GPA below 3.5."),
+  "home-what-counts": frame(
+    "What counts toward your GPA",
+    "Four 3-credit classes: an A, an F, a Pass and a Withdrawal",
+    [["A", "Counted", "4.0 × 3 = 12", true], ["F", "Counted", "0 × 3 = 0", true], ["P", "Not counted", "no grade points", false], ["W", "Not counted", "no grade points", false]]
+      .map(([g, label, math, on], i) => {
+        const x = 64 + i * 272;
+        return `<rect x="${x}" y="180" width="248" height="230" rx="18" fill="${on ? "#FFFFFF" : C.bg}" stroke="${on ? C.primary : C.divider}" stroke-width="${on ? 3 : 2}" ${on ? "" : 'stroke-dasharray="10 8"'}/>`
+          + t(x + 124, 262, String(g), 64, on ? C.text : C.muted, 650, "middle")
+          + `<rect x="${x + 44}" y="292" width="160" height="40" rx="20" fill="${on ? C.accent : C.divider}"/>`
+          + t(x + 124, 320, String(label), 20, C.text, 650, "middle")
+          + t(x + 124, 378, String(math), 22, on ? C.text : C.muted, 500, "middle");
+      }).join("")
+      + `<rect x="64" y="440" width="1072" height="84" rx="16" fill="${C.accent}"/>`
+      + t(96, 492, "GPA = 12 quality points ÷ 6 counted credits = 2.00", 30, C.text, 650),
+    "On most transcripts P and W add no grade points and no GPA credits. Check your school's policy."),
+  "home-cumulative-weight": frame(
+    "Why one semester moves a cumulative GPA slowly",
+    "A 2.80 over 45 earlier credits, then two terms at 3.00",
+    [["Earlier credits", 45, "2.80"], ["Fall", 6, "3.00"], ["Spring", 4, "3.00"]]
+      .map(([label, cr, gpa], i) => {
+        const y = 186 + i * 86, w = (Number(cr) / 55) * 860;
+        return t(64, y + 36, String(label), 24, C.text, 650)
+          + `<rect x="250" y="${y}" width="${w}" height="56" rx="12" fill="${i === 0 ? C.soft : C.primary}"/>`
+          + t(250 + w + 16, y + 36, `${cr} credits · ${gpa}`, 22, C.muted);
+      }).join("")
+      + `<rect x="64" y="452" width="1072" height="76" rx="16" fill="${C.accent}"/>`
+      + t(96, 500, "Cumulative: (2.80 × 45 + 30) ÷ 55 = 2.84", 30, C.text, 650),
+    "The new terms are 10 of 55 credits, so two 3.00 terms lift a 2.80 only to 2.84."),
 };
 
 for (const [name, svg] of Object.entries(diagrams)) {

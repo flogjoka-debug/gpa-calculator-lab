@@ -29,8 +29,8 @@ describe("SEO structured data rules", () => {
       const calculator = Object.values(PAGES).some((p) => p.path === page.path);
       const extra: Record<string, string> = { "/guides/": "CollectionPage", "/about/": "AboutPage", "/contact/": "ContactPage", "/methodology/": "TechArticle" };
       expect(types).toEqual(page.path === "/"
-        ? ["WebSite", "Organization", "WebApplication", "FAQPage"]
-        : [...(page.article ? ["Article"] : []), ...(calculator ? ["WebApplication"] : []), ...(extra[page.path] ? [extra[page.path]] : []), "BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
+        ? ["WebSite", "Organization", "WebPage", "WebApplication", "FAQPage"]
+        : [...(page.article ? ["Article"] : []), ...(calculator ? ["WebPage", "WebApplication"] : []), ...(extra[page.path] ? [extra[page.path]] : []), "BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
     }
   });
   it("uses the approved organization URL, logo and contact email", () => {

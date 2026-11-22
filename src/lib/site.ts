@@ -25,8 +25,8 @@ export const PAGES = {
 const SUPPORT_OG = { og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true };
 export const SUPPORT = {
   about: { path: "/about/", h1: "About GPA Calculator Lab", title: PAGE_META.about.title, description: PAGE_META.about.meta, ...SUPPORT_OG, og: "about.png", ogAlt: "About GPA Calculator Lab: free GPA tools that show their math" },
-  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" },
-  privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_META.privacy.title, description: PAGE_META.privacy.meta, ...SUPPORT_OG, og: "privacy.png", ogAlt: "GPA Calculator Lab privacy policy: your grades stay in your browser" },
+  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" , updated: "2026-11-23" },
+  privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_META.privacy.title, description: PAGE_META.privacy.meta, ...SUPPORT_OG, og: "privacy.png", ogAlt: "GPA Calculator Lab privacy policy: your grades stay in your browser" , updated: "2026-11-23" },
   forSchools: { path: "/for-schools/", h1: "Free GPA Calculator for Your School Website", title: PAGE_META.forSchools.title, description: PAGE_META.forSchools.meta, ...SUPPORT_OG, og: "for-schools.png", ogAlt: "Embed the free GPA Calculator Lab calculator on your school website" },
   terms: { path: "/terms/", h1: "Terms of Use", title: PAGE_META.terms.title, description: PAGE_META.terms.meta, ...SUPPORT_OG, og: "terms.png", ogAlt: "GPA Calculator Lab terms of use: free calculators that give estimates" },
   contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_META.contact.title, description: PAGE_META.contact.meta, ...SUPPORT_OG, og: "contact.png", ogAlt: "Contact GPA Calculator Lab to report an error or an outdated rule" },
@@ -130,6 +130,25 @@ export const METHODOLOGY_SOURCES = [
   "https://www.lsac.org/blog/providing-more-time-adjust-lsac-gpa-changes",
 ];
 
+/** WebPage node for calculator pages: who wrote and checked the page, and when it last changed. */
+function webPageSchema(page: PageInfo) {
+  return ld({
+    "@type": "WebPage",
+    "@id": `${canonical(page.path)}#webpage`,
+    url: canonical(page.path),
+    name: page.title,
+    description: page.description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: { "@id": `${canonical(page.path)}#app` },
+    primaryImageOfPage: { "@type": "ImageObject", url: `${SITE_URL}/og/${page.og}`, width: 1200, height: 630 },
+    dateModified: lastModified(page),
+    author: FLOPIXELS,
+    reviewedBy: FLOPIXELS,
+    publisher: ORG_REF,
+  });
+}
+
 /** Full head for a registry page (title, description, canonical, one og:image). */
 export function pageHead(page: PageInfo) {
   const img = `${SITE_URL}/og/${page.og}`;
@@ -140,12 +159,13 @@ export function pageHead(page: PageInfo) {
     ? [
         ld({ "@type": "WebSite", "@id": WEBSITE_ID, name: SITE_NAME, url: `${SITE_URL}/`, inLanguage: "en-US", publisher: ORG_REF }),
         ld({ ...ORGANIZATION, creator: FLOPIXELS }),
+        webPageSchema(page),
         webAppSchema(page),
         faqSchema(HOME_FAQ),
       ]
     : [
         ...(page.article ? [articleSchema(page)] : []),
-        ...(CALCULATOR_PATHS.has(page.path) ? [webAppSchema(page)] : []),
+        ...(CALCULATOR_PATHS.has(page.path) ? [webPageSchema(page), webAppSchema(page)] : []),
         ...pageTypeSchema(page),
         breadcrumbSchema(page, SITE_URL),
         ...(faq ? [faqSchema(faq)] : []),
