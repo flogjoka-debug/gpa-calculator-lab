@@ -23,10 +23,10 @@ export const PAGES = {
 /** Support pages (phase 5). They use the home social image as an approved fallback. */
 const SUPPORT_OG = { og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true };
 export const SUPPORT = {
-  about: { path: "/about/", h1: "About GPA Calculator Lab", title: PAGE_COPY.about.title, description: PAGE_COPY.about.meta, ...SUPPORT_OG },
-  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG },
-  privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_COPY.privacy.title, description: PAGE_COPY.privacy.meta, ...SUPPORT_OG },
-  contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_COPY.contact.title, description: PAGE_COPY.contact.meta, ...SUPPORT_OG },
+  about: { path: "/about/", h1: "About GPA Calculator Lab", title: PAGE_COPY.about.title, description: PAGE_COPY.about.meta, ...SUPPORT_OG, og: "about.png", ogAlt: "About GPA Calculator Lab: free GPA tools that show their math" },
+  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" },
+  privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_COPY.privacy.title, description: PAGE_COPY.privacy.meta, ...SUPPORT_OG, og: "privacy.png", ogAlt: "GPA Calculator Lab privacy policy: your grades stay in your browser" },
+  contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_COPY.contact.title, description: PAGE_COPY.contact.meta, ...SUPPORT_OG, og: "contact.png", ogAlt: "Contact GPA Calculator Lab to report an error or an outdated rule" },
 } satisfies Record<string, PageInfo>;
 
 /** Guides: long-form answers to common GPA questions, each linked to the matching calculators. */
