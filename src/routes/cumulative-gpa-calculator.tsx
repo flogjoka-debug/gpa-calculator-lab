@@ -1,6 +1,8 @@
+import copyCumulativeIntro from "@/lib/copy/cumulativeIntro";
+import copyCumulativeMore from "@/lib/copy/cumulativeMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyCumulative from "@/lib/copy/cumulative";
-import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine, EducatorsBanner, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CumulativeCalculator } from "@/components/gpa/CumulativeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,28 @@ import { PAGES, pageHead } from "@/lib/site";
 import { CUMULATIVE_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.cumulative;
+
+const TOC: (readonly [string, string])[] = [
+  ["how-to-use-the-cumulative-gpa-calculator", "How to use the cumulative GPA calculator"],
+  ["what-is-a-cumulative-gpa", "What is a cumulative GPA?"],
+  ["how", "How we calculated this"],
+  ["how-to-calculate-cumulative-gpa", "How to calculate cumulative GPA"],
+  ["example", "Example: 18 credits at 3.0, then 6 credits at 4.0"],
+  ["how-much-can-one-semester-raise-your-gpa", "How much can one semester raise your GPA?"],
+  ["where", "Where to find GPA credits on your transcript"],
+  ["twice", "Don't count a semester twice"],
+  ["the-example-as-a-table", "The example as a table"],
+  ["how-a-semester-of-a-s-moves-your-cumulative-gpa", "How a semester of A's moves your cumulative GPA"],
+  ["transfer-credits-and-your-cumulative-gpa", "Transfer credits and your cumulative GPA"],
+  ["quarter-and-semester-units", "Quarter and semester units"],
+  ["cumulative-gpa-from-semester-gpas", "Cumulative GPA from semester GPAs"],
+  ["is-cumulative-gpa-weighted-or-unweighted", "Is cumulative GPA weighted or unweighted?"],
+  ["mistakes-that-throw-off-a-cumulative-gpa", "Mistakes that throw off a cumulative GPA"],
+  ["cgpa-and-cumulative-gpa", "CGPA and cumulative GPA"],
+  ["how-to-plan-a-target-cumulative-gpa", "How to plan a target cumulative GPA"],
+  ["cumulative-gpa-in-high-school", "Cumulative GPA in high school"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/cumulative-gpa-calculator")({
   head: () => pageHead(page),
@@ -26,6 +50,8 @@ function Page() {
       <UpdatedLine page={page} />
       <CumulativeCalculator />
       <EducatorsBanner />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyCumulativeIntro} />
       <section className="mt-12" aria-labelledby="what-is-a-cumulative-gpa">
         <h2 id="what-is-a-cumulative-gpa" className="text-2xl">What is a cumulative GPA?</h2>
         <p className="mt-2">Your cumulative GPA is the average of every graded class you've taken at a school, weighted by credits. A semester GPA covers one term; the cumulative GPA covers all of them together.</p>
@@ -69,6 +95,7 @@ function Page() {
         <p className="mt-2">If a semester is already part of the GPA and credits you entered, leave it out of the new semesters.</p>
       </section>
       <CopyBlocks blocks={copyCumulative} />
+      <CopyBlocks blocks={copyCumulativeMore} />
       <FaqSection items={CUMULATIVE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

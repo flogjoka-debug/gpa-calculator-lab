@@ -16,7 +16,7 @@ import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CalculatorFooter, ContentTable, Eyebrow, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import { CalculatorFooter, ContentTable, Eyebrow, FaqSection, UpdatedLine, EducatorsBanner, PageToc } from "@/components/PageSeo";
 import type { GuideBlock } from "@/lib/guides-content";
 import { iconFor } from "@/lib/icons";
 import { HOME_FAQ } from "@/lib/seo-content";
@@ -64,14 +64,7 @@ function Home() {
 
       <HomeCalculator onResult={onResult} />
       <EducatorsBanner />
-      <nav aria-labelledby="toc-title" className="mt-8 card p-4 sm:p-5">
-        <h2 id="toc-title" className="text-sm tracking-wide text-text-muted uppercase">On this page</h2>
-        <ol className="mt-2 grid gap-x-6 gap-y-1 sm:grid-cols-2">
-          {TOC.map(([id, label]) => (
-            <li key={id}><a href={`#${id}`} className="picker-link">{label}</a></li>
-          ))}
-        </ol>
-      </nav>
+      <PageToc items={TOC} />
       <section className="mt-10" aria-labelledby="what-gpa-means">
         <h2 id="what-gpa-means" className="text-2xl">What GPA means</h2>
         <p className="mt-2">{PAGE_META.homeDefinition.lead}</p>

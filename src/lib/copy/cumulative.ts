@@ -83,6 +83,14 @@ const blocks: GuideBlock[] = [
     ]
   },
   {
+    "t": "img",
+    "src": "/diagrams/cum-diminishing.webp",
+    "alt": "Bar chart of a 3.00 GPA after one 15-credit semester of A's: 3.50 with 15 credits so far, falling to 3.11 with 120",
+    "caption": "The more credits you already have, the less one strong semester moves your GPA.",
+    "width": 1200,
+    "height": 675
+  },
+  {
     "t": "p",
     "text": "For strategy, such as which classes to put first or when a retake helps, see [how to raise your GPA](/guides/how-to-raise-your-gpa/)."
   },

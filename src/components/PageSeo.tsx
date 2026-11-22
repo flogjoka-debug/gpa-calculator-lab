@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, GraduationCap } from "lucide-react";
+import { ArrowRight, ChevronRight, GraduationCap, ListOrdered } from "lucide-react";
 import { eyebrowFor, iconFor } from "@/lib/icons";
 import { GUIDES, PAGES, SUPPORT, lastModified, type PageInfo } from "@/lib/site";
 import { type FaqItem } from "@/lib/seo-content";
@@ -143,5 +144,37 @@ export function EducatorsBanner() {
       <span className="educators-text">Add this calculator to your website for free</span>
       <span className="educators-arrow" aria-hidden="true"><ArrowRight /></span>
     </a>
+  );
+}
+
+/** "On this page" jump links to the page's H2 sections. */
+export function PageToc({ items }: { items: readonly (readonly [string, string])[] }) {
+  const [open, setOpen] = useState(false);
+  if (!items.length) return null;
+  const SHOWN = 6;
+  return (
+    <nav aria-labelledby="toc-title" className={`toc mt-8 ${open ? "toc-open" : ""}`}>
+      <div className="toc-head">
+        <span className="icon-chip icon-chip-sm" aria-hidden="true"><ListOrdered /></span>
+        <h2 id="toc-title" className="toc-title">On this page</h2>
+        <span className="toc-count">{items.length} sections</span>
+      </div>
+      <ol className="toc-list">
+        {items.map(([id, label], i) => (
+          <li key={id} className={i >= SHOWN ? "toc-extra" : undefined}>
+            <a href={`#${id}`} className="toc-link">
+              <span className="toc-num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <span className="toc-label">{label}</span>
+              <ChevronRight aria-hidden="true" className="toc-arrow" />
+            </a>
+          </li>
+        ))}
+      </ol>
+      {items.length > SHOWN ? (
+        <button type="button" className="toc-more" aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+          {open ? "Show fewer" : `Show all ${items.length} sections`}
+        </button>
+      ) : null}
+    </nav>
   );
 }

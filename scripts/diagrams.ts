@@ -28,6 +28,23 @@ function bars(items: { label: string; value: number; note?: string }[], max: num
   }).join("") + `<line x1="${opts.x0 - 12}" y1="${opts.y0 + opts.h}" x2="${opts.x0 + opts.w + 12}" y2="${opts.y0 + opts.h}" stroke="${C.divider}" stroke-width="2"/>`;
 }
 
+
+// Generic pieces for the calculator-page diagrams.
+const box = (x: number, y: number, w: number, h: number, label: string, value: string, accent = false) =>
+  `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="16" fill="${accent ? C.accent : C.bg}" ${accent ? "" : `stroke="${C.divider}"`}/>`
+  + t(x + 28, y + 38, label, 20, accent ? C.text : C.muted) + (value ? t(x + 28, y + h - 24, value, 32, C.text, 650) : "");
+/** Paired horizontal bars: rows of [label, a, b] on a 0..max scale. */
+function pairBars(rows: [string, number, number][], max: number, legend: [string, string], y0 = 196, rowH = 62, barH = 22) {
+  const x0 = 300, w = 740;
+  const leg = `<rect x="${x0}" y="${y0 - 34}" width="18" height="18" rx="4" fill="${C.soft}"/>` + t(x0 + 26, y0 - 19, legend[0], 18, C.muted)
+    + `<rect x="${x0 + 300}" y="${y0 - 34}" width="18" height="18" rx="4" fill="${C.primary}"/>` + t(x0 + 326, y0 - 19, legend[1], 18, C.muted);
+  return leg + rows.map(([label, a, b], i) => {
+    const y = y0 + i * rowH, y2 = y + barH + 4;
+    return t(64, y + barH + 8, label, 22, C.text, 650)
+      + `<rect x="${x0}" y="${y}" width="${(a / max) * w}" height="${barH}" rx="6" fill="${C.soft}"/>` + t(x0 + (a / max) * w + 10, y + barH - 4, a.toFixed(1), 17, C.muted)
+      + `<rect x="${x0}" y="${y2}" width="${(b / max) * w}" height="${barH}" rx="6" fill="${C.primary}"/>` + t(x0 + (b / max) * w + 10, y2 + barH - 4, b.toFixed(1), 17, C.text, 650);
+  }).join("");
+}
 const diagrams: Record<string, string> = {
   "average-gpa-1990-2019": frame(
     "Average U.S. high school GPA",
@@ -111,6 +128,50 @@ const diagrams: Record<string, string> = {
       + `<rect x="64" y="452" width="1072" height="76" rx="16" fill="${C.accent}"/>`
       + t(96, 500, "Cumulative: (2.80 × 45 + 30) ÷ 55 = 2.84", 30, C.text, 650),
     "The new terms are 10 of 55 credits, so two 3.00 terms lift a 2.80 only to 2.84."),
+  "calc-college-plus-minus": frame(
+    "Plus and minus grades change your GPA",
+    "Four 3-credit classes graded A−, B+, B+ and C+",
+    pairBars([["A−", 4.0, 3.7], ["B+", 3.0, 3.3], ["B+", 3.0, 3.3], ["C+", 2.0, 2.3]], 4.4, ["Letters only (A, B, B, C)", "With plus and minus"], 200, 60)
+      + box(64, 452, 520, 110, "Letters only", "12.0 ÷ 4 = 3.00") + box(616, 452, 520, 110, "With plus and minus", "12.6 ÷ 4 = 3.15", true),
+    "Example values: A− = 3.7, B+ = 3.3, C+ = 2.3. Your college's scale may differ."),
+  "calc-college-retake": frame(
+    "Retaking a class: two ways colleges count it",
+    "A D in a 3-credit class, then an A in the retake",
+    box(64, 180, 520, 250, "Count both attempts", "")
+      + t(92, 290, "D: 1.0 × 3 = 3", 28, C.text) + t(92, 336, "A: 4.0 × 3 = 12", 28, C.text) + t(92, 400, "15 ÷ 6 = 2.50", 36, C.text, 650)
+      + box(616, 180, 520, 250, "Replace the earlier grade", "", true)
+      + t(644, 290, "D: left out", 28, C.muted) + t(644, 336, "A: 4.0 × 3 = 12", 28, C.text) + t(644, 400, "12 ÷ 3 = 4.00", 36, C.text, 650)
+      + t(64, 486, "LSAC counts every graded attempt for law school applications, whatever your college does.", 22, C.muted),
+    "Your registrar's repeat policy decides which one applies, and how many retakes can count."),
+  "calc-hs-weighted-year": frame(
+    "One year, two GPAs",
+    "Six 1-credit classes with Honors and AP bonus points",
+    pairBars([["English (H)", 4.0, 4.5], ["Biology (AP)", 3.0, 4.0], ["Algebra II", 4.0, 4.0], ["Spanish", 3.0, 3.0], ["U.S. History (AP)", 4.0, 5.0], ["PE", 4.0, 4.0]], 5.4, ["Unweighted points", "Weighted points"], 196, 47, 18)
+      + box(64, 488, 520, 104, "Unweighted GPA", "22 ÷ 6 = 3.67") + box(616, 488, 520, 104, "Weighted GPA", "24.5 ÷ 6 = 4.08", true),
+    "Example bonuses: +0.5 for Honors, +1.0 for AP. Schools set their own."),
+  "calc-hs-bonus-scale": frame(
+    "What each grade is worth by class level",
+    "Common example values on a weighted 5.0 scale",
+    [["", "Regular", "Honors", "AP / IB"], ["A", "4.0", "4.5", "5.0"], ["B", "3.0", "3.5", "4.0"], ["C", "2.0", "2.5", "3.0"], ["D", "1.0", "1.5", "2.0"], ["F", "0", "0", "0"]]
+      .map((row, r) => row.map((cell, c) => {
+        const x = 64 + c * 268, y = 176 + r * 64, head = r === 0 || c === 0;
+        return `<rect x="${x}" y="${y}" width="256" height="54" rx="12" fill="${r === 0 ? C.accent : c === 3 && r > 0 ? "#E6F6F1" : C.bg}" stroke="${C.divider}"/>`
+          + t(x + 128, y + 36, cell, 26, C.text, head ? 650 : 500, "middle");
+      }).join("")).join(""),
+    "Some schools give no bonus for a D or F. Set your school's values in the calculator."),
+  "calc-cum-semester-average": frame(
+    "Why you can't average semester GPAs",
+    "Fall: 3.20 over 15 credits. Spring: 3.80 over 12 credits",
+    t(64, 226, "Fall", 24, C.text, 650) + `<rect x="200" y="196" width="${15 * 52}" height="48" rx="10" fill="${C.soft}"/>` + t(220, 228, "15 credits × 3.20 = 48.0", 22, C.text, 650)
+      + t(64, 302, "Spring", 24, C.text, 650) + `<rect x="200" y="272" width="${12 * 52}" height="48" rx="10" fill="${C.primary}"/>` + t(220, 304, "12 credits × 3.80 = 45.6", 22, "#FFFFFF", 650)
+      + box(64, 380, 520, 120, "Plain average of the two GPAs", "(3.20 + 3.80) ÷ 2 = 3.50") + box(616, 380, 520, 120, "Cumulative GPA, weighted by credits", "93.6 ÷ 27 = 3.47", true),
+    "The fall semester has more credits, so it carries more weight."),
+  "calc-cum-diminishing": frame(
+    "The same A semester, later in college",
+    "A 3.00 GPA plus one 15-credit semester of A's",
+    bars([{ label: "15", value: 3.5, note: "credits so far" }, { label: "30", value: 3.33, note: "credits so far" }, { label: "60", value: 3.2, note: "credits so far" }, { label: "90", value: 3.14, note: "credits so far" }, { label: "120", value: 3.11, note: "credits so far" }], 3.6,
+      { x0: 140, y0: 190, w: 920, h: 290, fmt: (v) => v.toFixed(2) }),
+    "Math: (3.0 × credits so far + 4.0 × 15) ÷ (credits so far + 15)"),
 };
 
 for (const [name, svg] of Object.entries(diagrams)) {

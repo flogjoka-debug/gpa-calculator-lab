@@ -1,7 +1,9 @@
+import copyHighschoolIntro from "@/lib/copy/highschoolIntro";
+import copyHighschoolMore from "@/lib/copy/highschoolMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyHighschool from "@/lib/copy/highschool";
 import copyHighschoolWeighted from "@/lib/copy/highschoolWeighted";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { HighSchoolCalculator } from "@/components/gpa/HighSchoolCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -10,6 +12,27 @@ import { PAGES, pageHead } from "@/lib/site";
 import { HIGH_SCHOOL_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.highSchool;
+
+const TOC: (readonly [string, string])[] = [
+  ["what-is-a-high-school-gpa", "What is a high school GPA?"],
+  ["how-to-use-the-high-school-gpa-calculator", "How to use the high school GPA calculator"],
+  ["weighted-and-unweighted-gpa-on-one-screen", "Weighted and unweighted GPA on one screen"],
+  ["how", "How we calculated this"],
+  ["how-to-calculate-a-weighted-gpa", "How to calculate a weighted GPA"],
+  ["weighted-gpa-scale", "Weighted GPA scale"],
+  ["example", "Example: a regular A and an AP B"],
+  ["how-much-is-an-ap-class-worth-on-a-gpa", "How much is an AP class worth on a GPA?"],
+  ["colleges", "Which number do colleges use?"],
+  ["details", "Details that change the result"],
+  ["where-the-bonus-values-come-from", "Where the bonus values come from"],
+  ["example-a-full-year-with-weighted-classes", "Example: a full year with weighted classes"],
+  ["what-is-a-good-high-school-gpa", "What is a good high school GPA?"],
+  ["how-to-raise-your-high-school-gpa", "How to raise your high school GPA"],
+  ["do-freshman-grades-count", "Do freshman grades count?"],
+  ["semester-grades-or-final-grades", "Semester grades or final grades?"],
+  ["why-your-result-might-not-match-your-report-card", "Why your result might not match your report card"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/high-school-gpa-calculator")({
   head: () => pageHead(page),
@@ -27,6 +50,8 @@ function Page() {
       <UpdatedLine page={page} />
       <HighSchoolCalculator />
       <EducatorsBanner />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyHighschoolIntro} />
       <CopyBlocks blocks={copyHighschoolWeighted} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
@@ -76,6 +101,7 @@ function Page() {
         </div>
       </section>
       <CopyBlocks blocks={copyHighschool} />
+      <CopyBlocks blocks={copyHighschoolMore} />
       <FaqSection items={HIGH_SCHOOL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

@@ -3,6 +3,14 @@ import type { GuideBlock } from "../guides-content";
 
 const blocks: GuideBlock[] = [
   {
+    "t": "img",
+    "src": "/diagrams/college-retake.webp",
+    "alt": "Comparison of a D then an A in a 3-credit class: counting both attempts gives 15 ÷ 6 = 2.50, replacing the earlier grade gives 12 ÷ 3 = 4.00",
+    "caption": "Your registrar's repeat policy decides which of the two applies.",
+    "width": 1200,
+    "height": 675
+  },
+  {
     "t": "h2",
     "text": "Retake rules at real colleges",
     "id": "retake-rules-at-real-colleges"

@@ -77,7 +77,11 @@ export const COLLEGE_FAQ: FaqItem[] = [
     "answer": [
       "The same way. Enter quarter units as your credits. If you need semester hours, for example for a law school application, multiply quarter units by 0.67."
     ]
-  }
+  },
+  {"question": "Is college GPA weighted?", "answer": ["Usually not. Colleges grade every class on the same scale and weight each grade by credit hours, not by difficulty. An A in an honors seminar and an A in an intro class are both 4.0."]},
+  {"question": "Do pass/fail classes count in my college GPA?", "answer": ["A passing grade usually adds credits to your transcript but no grade points, so it doesn't change your GPA. Some colleges count a failing grade in a pass/fail class as an F, so check your catalog."]},
+  {"question": "What if a grade isn't posted yet?", "answer": ["Enter the grade you expect to get an estimate, or leave that row blank and calculate without it. Blank rows stay out of the math until you fill them in."]},
+  {"question": "Can I round my GPA up on an application?", "answer": ["Report it the way your transcript shows it unless the application says how to round. Turning a 3.47 into a 3.5 can read as a misstatement when the school checks your transcript."]}
 ];
 
 export const HIGH_SCHOOL_FAQ: FaqItem[] = [
@@ -104,7 +108,11 @@ export const HIGH_SCHOOL_FAQ: FaqItem[] = [
     "answer": [
       "Colleges see the classes you took, not just the number. Many recalculate GPAs with their own rules, so a higher weighted GPA only helps when it reflects harder classes that the college also credits."
     ]
-  }
+  },
+  {"question": "Do AP exam scores count toward my GPA?", "answer": ["No. Your GPA uses the grade you earned in the class. AP exam scores are reported separately and don't change your transcript grade."]},
+  {"question": "Do electives and PE count in my GPA?", "answer": ["At many schools they do, but some leave out PE, pass/fail or non-academic classes. Your student handbook lists which classes your school counts."]},
+  {"question": "Does dual enrollment get extra GPA points?", "answer": ["At some schools. Many weight a dual enrollment class like an AP class, others give no bonus. Set the \"Dual enrollment\" bonus above to match your school."]},
+  {"question": "Can my GPA be higher than 4.0?", "answer": ["Your weighted GPA can, because Honors, AP and IB classes earn bonus points. Your unweighted GPA tops out at 4.0."]}
 ];
 
 export const CUMULATIVE_FAQ: FaqItem[] = [
@@ -131,7 +139,10 @@ export const CUMULATIVE_FAQ: FaqItem[] = [
     "answer": [
       "Yes. The math is the same: total quality points across all your semesters divided by total credits."
     ]
-  }
+  },
+  {"question": "Is CGPA the same as cumulative GPA?", "answer": ["Yes. CGPA is short for cumulative grade point average. Some countries report it on a 10-point scale, which the ", {"text": "GPA converter", "to": "/gpa-converter/"}, " can estimate on a 4.0 scale."]},
+  {"question": "How do I find my cumulative GPA?", "answer": ["Your unofficial transcript or student portal shows it, usually with your GPA hours and quality points. Those two numbers give the exact starting point for this calculator."]},
+  {"question": "What is a good cumulative GPA?", "answer": ["It depends on the goal: keeping financial aid, getting into a major or applying to graduate school each come with their own minimum. Our guide to ", {"text": "what counts as a good GPA", "to": "/guides/what-is-a-good-gpa/"}, " has examples."]}
 ];
 
 export const GRADE_FAQ: FaqItem[] = [

@@ -59,5 +59,11 @@ export const PAGE_META = {
   },
   "homeHowto": {},
   "homeWeighted": {},
-  "homeOfficial": {}
+  "homeOfficial": {},
+  "collegeIntro": {},
+  "collegeMore": {},
+  "highschoolIntro": {},
+  "highschoolMore": {},
+  "cumulativeIntro": {},
+  "cumulativeMore": {}
 } satisfies Record<string, PageMeta>;

@@ -1,6 +1,8 @@
+import copyCollegeIntro from "@/lib/copy/collegeIntro";
+import copyCollegeMore from "@/lib/copy/collegeMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyCollege from "@/lib/copy/college";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CollegeCalculator } from "@/components/gpa/CollegeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,24 @@ import { PAGES, pageHead } from "@/lib/site";
 import { COLLEGE_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.college;
+
+const TOC: (readonly [string, string])[] = [
+  ["what-is-a-college-gpa", "What is a college GPA?"],
+  ["how-to-use-the-college-gpa-calculator", "How to use the college GPA calculator"],
+  ["how", "How we calculated this"],
+  ["how-to-calculate-your-semester-gpa", "How to calculate your semester GPA"],
+  ["college-gpa-scale-with-plus-and-minus-grades", "College GPA scale with plus and minus grades"],
+  ["example", "Example: retaking a class"],
+  ["retake", "Does retaking a class replace the old grade?"],
+  ["semester", "Semester GPA and cumulative GPA"],
+  ["counts", "What counts toward a college GPA"],
+  ["retake-rules-at-real-colleges", "Retake rules at real colleges"],
+  ["example-a-full-semester-step-by-step", "Example: a full semester, step by step"],
+  ["how-to-calculate-your-major-gpa", "How to calculate your major GPA"],
+  ["what-is-a-good-college-gpa", "What is a good college GPA?"],
+  ["how-to-raise-your-college-gpa", "How to raise your college GPA"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/college-gpa-calculator")({
   head: () => pageHead(page),
@@ -26,6 +46,8 @@ function Page() {
       <UpdatedLine page={page} />
       <CollegeCalculator />
       <EducatorsBanner />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyCollegeIntro} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">
@@ -82,6 +104,7 @@ function Page() {
         </div>
       </section>
       <CopyBlocks blocks={copyCollege} />
+      <CopyBlocks blocks={copyCollegeMore} />
       <FaqSection items={COLLEGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>
