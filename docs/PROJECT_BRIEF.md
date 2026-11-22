@@ -110,4 +110,5 @@ Handoffs use a normal link plus opt-in local state. If the destination already h
 ## 9. Build phases (work order, not a ranking)
 0–1 Brief, identity, homepage · 2 GPA engine, College, High School, Cumulative · 3 Percentage, Grade, Semester Grade, Final Grade · 4 UC and Law School · 5 Copy, links, indexability · 6 QA · 7 Domain, launch, measurement.
 Done (phase 2, 2026-11-22): /college-gpa-calculator/, /high-school-gpa-calculator/, /cumulative-gpa-calculator/.
+Done (phase 3, 2026-11-22): /percentage-to-letter-grade/, /grade-calculator/, /semester-grade-calculator/, /final-grade-calculator/.
 After each phase report: what changed, test results as expected vs actual, and anything left open.

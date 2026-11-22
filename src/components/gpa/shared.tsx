@@ -6,6 +6,7 @@ import type { GradeScale, LetterGrade } from "@/lib/calc/gpa";
 export function useDeviceStorage<T>(key: string, onRestore: (data: T) => void) {
   const [ok, setOk] = useState(true);
   const [note, setNote] = useState("");
+  const [ready, setReady] = useState(false);
   const restore = useRef(onRestore);
   restore.current = onRestore;
   useEffect(() => {
@@ -18,9 +19,11 @@ export function useDeviceStorage<T>(key: string, onRestore: (data: T) => void) {
     } catch {
       setOk(false);
     }
+    setReady(true);
   }, [key]);
   return {
     ok,
+    ready,
     note,
     clearNote: () => setNote(""),
     save: (data: T) => {

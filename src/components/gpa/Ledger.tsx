@@ -3,7 +3,7 @@ import { formatCredits, formatGpa, formatPoints, formatQp, type ExcludeReason, t
 const REASON: Record<ExcludeReason, string> = {
   pass: "Pass grades add no grade points on this scale.",
   withdrawal: "Withdrawals add no grade points on this scale.",
-  nopass: "[COPY NEEDED: NP reason]",
+  nopass: "No Pass grades add no grade points on this scale.",
   replaced: "Replaced by a later attempt.",
 };
 

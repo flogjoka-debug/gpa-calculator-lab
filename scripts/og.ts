@@ -35,6 +35,9 @@ const headSvg = lines
   .map((l, i) => `<text x="72" y="${headY + i * 96}" font-family="${F} 650" font-size="86" fill="#132B38">${esc(l)}</text>`)
   .join("");
 
+const bigSize = cardNumber.length > 4 ? 80 : 96;
+const stripSize = Math.min(28, Math.floor(250 / (0.5 * cardStrip.length)));
+
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 <rect width="1200" height="630" fill="#F5F8F7"/>
 <rect width="1200" height="14" fill="#075F57"/>
@@ -46,9 +49,9 @@ ${headSvg}
 <g transform="translate(830 170)">
   <rect width="300" height="300" rx="14" fill="#FFFFFF" stroke="#C9D6D3" stroke-width="2"/>
   <text x="32" y="70" font-family="${F} 500" font-size="28" fill="#4A6470">${esc(cardLabel)}</text>
-  <text x="32" y="170" font-family="${F} 650" font-size="96" fill="#132B38">${esc(cardNumber)}</text>
+  <text x="32" y="170" font-family="${F} 650" font-size="${bigSize}" fill="#132B38">${esc(cardNumber)}</text>
   <rect x="20" y="212" width="260" height="60" rx="10" fill="#B8ECDD"/>
-  <text x="40" y="252" font-family="${F} 650" font-size="28" fill="#132B38">${esc(cardStrip)}</text>
+  <text x="40" y="252" font-family="${F} 650" font-size="${stripSize}" fill="#132B38">${esc(cardStrip)}</text>
 </g>
 </svg>`;
 
