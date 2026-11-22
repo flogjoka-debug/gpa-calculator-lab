@@ -9,22 +9,8 @@ const OUT = "static";
 const PORT = 4317;
 const BASE = `http://localhost:${PORT}`;
 
-const PAGES = [
-  "/",
-  "/college-gpa-calculator/",
-  "/high-school-gpa-calculator/",
-  "/cumulative-gpa-calculator/",
-  "/grade-calculator/",
-  "/final-grade-calculator/",
-  "/semester-grade-calculator/",
-  "/percentage-to-letter-grade/",
-  "/uc-gpa-calculator/",
-  "/law-school-gpa-calculator/",
-  "/about/",
-  "/methodology/",
-  "/privacy/",
-  "/contact/",
-];
+// Pages come from the live sitemap, so every indexable route is exported and nothing drifts.
+let PAGES = [];
 const FILES = ["/robots.txt", "/sitemap.xml"];
 
 const server = spawn("node", [".output/server/index.mjs"], {
@@ -54,11 +40,10 @@ try {
   await rm(OUT, { recursive: true, force: true });
   await cp(".output/public", OUT, { recursive: true });
 
-  // Pages must be validated against the sitemap so nothing drifts.
-  const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
+    const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
   const inSitemap = [...sitemap.matchAll(/<loc>https:\/\/gpacalculatorlab\.com([^<]*)<\/loc>/g)].map((m) => m[1]);
-  const missing = inSitemap.filter((p) => !PAGES.includes(p));
-  if (missing.length) throw new Error(`Sitemap pages missing from export: ${missing.join(", ")}`);
+  PAGES = inSitemap;
+  if (!PAGES.includes("/")) throw new Error("Sitemap is missing the homepage");
 
   for (const path of PAGES) {
     const r = await fetch(`${BASE}${path}`, { redirect: "manual" });

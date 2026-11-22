@@ -2,9 +2,10 @@ import { describe, expect, it } from "vitest";
 import { isNoindexHost, robotsTxt, sitemapXml } from "./seo-files";
 
 describe("indexing", () => {
-  it("sitemap lists exactly the 10 calculators and 4 support pages", () => {
+  it("sitemap lists exactly the 10 calculators, the guides hub, 4 guides and 4 support pages", () => {
     const locs = [...sitemapXml().matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-    expect(locs).toHaveLength(14);
+    expect(locs).toHaveLength(19);
+    expect(locs).toContain("https://gpacalculatorlab.com/guides/what-is-a-good-gpa/");
     expect(locs.every((l) => l?.startsWith("https://gpacalculatorlab.com/") && l.endsWith("/"))).toBe(true);
     expect(locs).toContain("https://gpacalculatorlab.com/contact/");
   });

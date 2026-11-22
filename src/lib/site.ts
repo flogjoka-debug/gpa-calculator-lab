@@ -1,9 +1,10 @@
 import { HOME_FAQ, PAGE_FAQS, breadcrumbSchema, faqSchema } from "./seo-content";
+import { GUIDE_CONTENT } from "./guides-content";
 
 export const SITE_URL = "https://gpacalculatorlab.com";
 export const SITE_NAME = "GPA Calculator Lab";
 
-export interface PageInfo { path: string; h1: string; title: string; description: string; og: string; ogAlt: string; indexable: boolean }
+export interface PageInfo { path: string; h1: string; title: string; description: string; og: string; ogAlt: string; indexable: boolean; parent?: { path: string; h1: string }; article?: { published: string; updated: string } }
 
 export const PAGES = {
   home: { path: "/", h1: "GPA Calculator", title: "GPA Calculator – Calculate Your GPA With or Without Credits", description: "Free GPA calculator for high school and college. Enter grades and credits to get your GPA on a 4.0 scale, your quality points, and which classes counted.", og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true },
@@ -27,8 +28,24 @@ export const SUPPORT = {
   contact: { path: "/contact/", h1: "Contact", title: "Contact GPA Calculator Lab", description: "Report a wrong result or an outdated rule, or send a question about GPA Calculator Lab.", ...SUPPORT_OG },
 } satisfies Record<string, PageInfo>;
 
+/** Guides: long-form answers to common GPA questions, each linked to the matching calculators. */
+const GUIDE_DATES = { published: "2026-11-22", updated: "2026-11-22" };
+const GUIDES_HUB = { path: "/guides/", h1: "GPA Guides" };
+const guide = (key: keyof typeof GUIDE_CONTENT, og: string, ogAlt: string): PageInfo => {
+  const c = GUIDE_CONTENT[key];
+  return { path: c.path, h1: c.h1, title: c.title, description: c.description, og, ogAlt, indexable: true, parent: GUIDES_HUB, article: GUIDE_DATES };
+};
+export const GUIDES = {
+  hub: { ...GUIDES_HUB, title: "GPA Guides – Good GPA, GPA Scale and Raising Your GPA", description: "Short, sourced guides to GPA: what counts as a good GPA, weighted vs unweighted, the 4.0 scale with percentages, and how to raise your GPA.", og: "guides.png", ogAlt: "GPA Calculator Lab guides to good GPAs, the 4.0 scale and raising your GPA", indexable: true },
+  goodGpa: guide("goodGpa", "guide-good-gpa.png", "What is a good GPA: the average U.S. high school GPA was 3.11 in 2019"),
+  weighted: guide("weighted", "guide-weighted.png", "Weighted vs unweighted GPA example: 3.88 weighted next to 3.25 unweighted"),
+  scale: guide("scale", "guide-gpa-scale.png", "4.0 GPA scale: an A from 93 to 100 percent is worth 4.0 grade points"),
+  raise: guide("raise", "guide-raise-gpa.png", "How to raise your GPA: a 3.6 semester takes a 2.8 GPA to 3.0"),
+} satisfies Record<string, PageInfo>;
+export const GUIDE_LIST: PageInfo[] = [GUIDES.goodGpa, GUIDES.weighted, GUIDES.scale, GUIDES.raise];
+
 /** Single public route registry: sitemap, canonicals and Open Graph tags all come from here. */
-export const ROUTES: PageInfo[] = [...Object.values(PAGES), ...Object.values(SUPPORT)];
+export const ROUTES: PageInfo[] = [...Object.values(PAGES), GUIDES.hub, ...GUIDE_LIST, ...Object.values(SUPPORT)];
 export const INDEXABLE_ROUTES = ROUTES.filter((r) => r.indexable);
 
 export const TOOL_GROUPS: { label: string; items: PageInfo[] }[] = [
@@ -70,7 +87,24 @@ export function pageHead(page: PageInfo) {
       { "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: `${SITE_URL}/` },
       { "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png`, email: "info@gpacalculatorlab.com" },
       faqSchema(HOME_FAQ),
-    ] : [breadcrumbSchema(page, SITE_URL), ...(faq ? [faqSchema(faq)] : [])]).map((schema) => ({ type: "application/ld+json", children: JSON.stringify(schema) })),
+    ] : [...(page.article ? [articleSchema(page)] : []), breadcrumbSchema(page, SITE_URL), ...(faq ? [faqSchema(faq)] : [])]).map((schema) => ({ type: "application/ld+json", children: JSON.stringify(schema) })),
+  };
+}
+
+/** Article schema for guides: the publisher is the site itself; no invented authors. */
+export function articleSchema(page: PageInfo) {
+  const org = { "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/`, logo: { "@type": "ImageObject", url: `${SITE_URL}/icon-512.png` } };
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: page.h1,
+    description: page.description,
+    image: `${SITE_URL}/og/${page.og}`,
+    datePublished: page.article?.published,
+    dateModified: page.article?.updated,
+    author: org,
+    publisher: org,
+    mainEntityOfPage: canonical(page.path),
   };
 }
 

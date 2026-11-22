@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { PAGES, SUPPORT, type PageInfo } from "@/lib/site";
+import { GUIDES, PAGES, SUPPORT, type PageInfo } from "@/lib/site";
 import { type FaqItem } from "@/lib/seo-content";
 
 export function Breadcrumbs({ page }: { page: PageInfo }) {
@@ -7,6 +7,7 @@ export function Breadcrumbs({ page }: { page: PageInfo }) {
     <nav aria-label="Breadcrumb" className="mb-3 text-sm text-text-muted">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         <li><Link to="/">Home</Link><span aria-hidden="true" className="ml-2">›</span></li>
+        {page.parent ? <li><Link to={page.parent.path}>{page.parent.h1}</Link><span aria-hidden="true" className="ml-2">›</span></li> : null}
         <li aria-current="page">{page.h1}</li>
       </ol>
     </nav>
@@ -25,6 +26,29 @@ const RELATED: Record<string, PageInfo[]> = {
   [PAGES.law.path]: [PAGES.college, PAGES.cumulative, PAGES.percentage],
 };
 
+/** Guides that answer the questions people ask around each calculator. */
+export const RELATED_GUIDES: Record<string, PageInfo[]> = {
+  [PAGES.home.path]: [GUIDES.goodGpa, GUIDES.scale],
+  [PAGES.college.path]: [GUIDES.raise, GUIDES.goodGpa],
+  [PAGES.highSchool.path]: [GUIDES.weighted, GUIDES.goodGpa],
+  [PAGES.cumulative.path]: [GUIDES.raise],
+  [PAGES.finalGrade.path]: [GUIDES.raise],
+  [PAGES.percentage.path]: [GUIDES.scale],
+  [PAGES.uc.path]: [GUIDES.weighted],
+};
+
+export function RelatedGuides({ items }: { items: PageInfo[] | undefined }) {
+  if (!items?.length) return null;
+  return (
+    <section className="mt-6" aria-labelledby="related-guides">
+      <h2 id="related-guides" className="text-2xl">Related guides</h2>
+      <ul className="mt-2 space-y-1">
+        {items.map((item) => <li key={item.path}><Link to={item.path} className="inline-flex min-h-11 items-center">{item.h1}</Link></li>)}
+      </ul>
+    </section>
+  );
+}
+
 export function CalculatorFooter({ page }: { page: PageInfo }) {
   const related = RELATED[page.path];
   return (
@@ -38,6 +62,7 @@ export function CalculatorFooter({ page }: { page: PageInfo }) {
           </ul>
         </section>
       ) : null}
+      <RelatedGuides items={RELATED_GUIDES[page.path]} />
     </div>
   );
 }

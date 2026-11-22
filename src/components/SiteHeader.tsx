@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PAGES, SUPPORT, type PageInfo } from "@/lib/site";
+import { GUIDES, PAGES, SUPPORT, type PageInfo } from "@/lib/site";
 
 const GROUPS = [
   { id: "gpa", label: "GPA calculators", items: [PAGES.home, PAGES.college, PAGES.highSchool, PAGES.cumulative] },
@@ -74,6 +74,8 @@ export function SiteHeader() {
               </div>
             </div>
           ))}
+          <Link to={GUIDES.hub.path} className="header-link"
+            aria-current={currentPath.startsWith(GUIDES.hub.path) ? "page" : undefined} onClick={() => setOpen(null)}>Guides</Link>
           <Link to={SUPPORT.methodology.path} className="header-link"
             aria-current={currentPath === SUPPORT.methodology.path ? "page" : undefined} onClick={() => setOpen(null)}>How it works</Link>
         </nav>
@@ -90,6 +92,8 @@ export function SiteHeader() {
             <ul>{group.items.map((page) => <li key={page.path}>{navLink(page)}</li>)}</ul>
           </div>
         ))}
+        <Link to={GUIDES.hub.path} className="header-link"
+          aria-current={currentPath.startsWith(GUIDES.hub.path) ? "page" : undefined} onClick={() => setOpen(null)}>Guides</Link>
         <Link to={SUPPORT.methodology.path} className="header-link"
           aria-current={currentPath === SUPPORT.methodology.path ? "page" : undefined} onClick={() => setOpen(null)}>How it works</Link>
       </nav>

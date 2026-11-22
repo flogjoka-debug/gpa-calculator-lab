@@ -1,3 +1,4 @@
+import { GUIDE_CONTENT } from "./guides-content";
 export interface FaqLink { text: string; to: string }
 export interface FaqItem { question: string; answer: (string | FaqLink)[] }
 
@@ -19,14 +20,12 @@ export function faqSchema(items: FaqItem[]) {
   };
 }
 
-export function breadcrumbSchema(page: { path: string; h1: string }, origin: string) {
+export function breadcrumbSchema(page: { path: string; h1: string; parent?: { path: string; h1: string } }, origin: string) {
+  const trail = [{ name: "Home", path: "/" }, ...(page.parent ? [{ name: page.parent.h1, path: page.parent.path }] : []), { name: page.h1, path: page.path }];
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: `${origin}/` },
-      { "@type": "ListItem", position: 2, name: page.h1, item: `${origin}${page.path}` },
-    ],
+    itemListElement: trail.map((crumb, i) => ({ "@type": "ListItem", position: i + 1, name: crumb.name, item: `${origin}${crumb.path}` })),
   };
 }
 
@@ -312,6 +311,7 @@ export const LAW_FAQ: FaqItem[] = [
 
 export const PAGE_FAQS: Record<string, FaqItem[]> = {
   "/": HOME_FAQ,
+  ...Object.fromEntries(Object.values(GUIDE_CONTENT).map((g) => [g.path, g.faq as FaqItem[]])),
   "/uc-gpa-calculator/": UC_FAQ,
   "/law-school-gpa-calculator/": LAW_FAQ,
 

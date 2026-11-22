@@ -1,15 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { PAGE_FAQS, breadcrumbSchema, faqSchema } from "./seo-content";
-import { PAGES, ROUTES, SITE_URL, pageHead } from "./site";
+import { GUIDE_LIST, PAGES, ROUTES, SITE_URL, pageHead } from "./site";
+import { GUIDE_CONTENT } from "./guides-content";
 
 describe("SEO structured data rules", () => {
-  it("makes two breadcrumb items with absolute canonical trailing-slash URLs for each non-home page", () => {
+  it("makes breadcrumb items with absolute canonical trailing-slash URLs for each non-home page", () => {
     for (const page of ROUTES.filter((p) => p.path !== "/")) {
       const schema = breadcrumbSchema(page, SITE_URL);
-      expect(schema.itemListElement).toHaveLength(2);
-      expect(schema.itemListElement.map((item) => item.position)).toEqual([1, 2]);
-      expect(schema.itemListElement.map((item) => item.item)).toEqual(["https://gpacalculatorlab.com/", `https://gpacalculatorlab.com${page.path}`]);
-      expect(schema.itemListElement[1]?.name).toBe(page.h1);
+      const expected = ["https://gpacalculatorlab.com/", ...(page.parent ? [`https://gpacalculatorlab.com${page.parent.path}`] : []), `https://gpacalculatorlab.com${page.path}`];
+      expect(schema.itemListElement.map((item) => item.item)).toEqual(expected);
+      expect(schema.itemListElement.map((item) => item.position)).toEqual(expected.map((_, i) => i + 1));
+      expect(schema.itemListElement.at(-1)?.name).toBe(page.h1);
     }
   });
   it("preserves linked answer text as a single answer without duplicating it", () => {
@@ -19,7 +20,7 @@ describe("SEO structured data rules", () => {
   it("scopes identity schemas to home and FAQPage to pages with visible FAQs", () => {
     for (const page of ROUTES) {
       const types = pageHead(page).scripts.map((script) => (JSON.parse(script.children) as Record<string, unknown>)["@type"]);
-      expect(types).toEqual(page.path === "/" ? ["WebSite", "Organization", "FAQPage"] : ["BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
+      expect(types).toEqual(page.path === "/" ? ["WebSite", "Organization", "FAQPage"] : [...(page.article ? ["Article"] : []), "BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
     }
   });
   it("uses the approved organization URL, logo and contact email", () => {
@@ -27,5 +28,22 @@ describe("SEO structured data rules", () => {
     expect(organization?.["url"]).toBe("https://gpacalculatorlab.com/");
     expect(organization?.["logo"]).toBe("https://gpacalculatorlab.com/icon-512.png");
     expect(organization?.["email"]).toBe("info@gpacalculatorlab.com");
+  });
+  it("gives every guide a unique title, an Article dated by the site, visible FAQs and only known internal links", () => {
+    const known = new Set(ROUTES.map((r) => r.path));
+    const titles = new Set(ROUTES.map((r) => r.title));
+    expect(titles.size).toBe(ROUTES.length);
+    for (const guide of GUIDE_LIST) {
+      expect(guide.title.length).toBeLessThanOrEqual(60);
+      expect(guide.description.length).toBeLessThanOrEqual(160);
+      const article = pageHead(guide).scripts.map((s) => JSON.parse(s.children) as Record<string, unknown>).find((s) => s["@type"] === "Article");
+      expect(article?.["headline"]).toBe(guide.h1);
+      expect((article?.["author"] as Record<string, unknown>)["name"]).toBe("GPA Calculator Lab");
+      const content = Object.values(GUIDE_CONTENT).find((c) => c.path === guide.path);
+      expect(content?.faq.length).toBeGreaterThanOrEqual(3);
+      const text = JSON.stringify(content);
+      for (const [, href] of text.matchAll(/\]\((\/[^)]*)\)/g)) expect(known.has(href ?? "")).toBe(true);
+      for (const item of content?.faq ?? []) for (const part of item.answer) if (typeof part !== "string") expect(known.has(part.to)).toBe(true);
+    }
   });
 });

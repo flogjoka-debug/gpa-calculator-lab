@@ -25,6 +25,11 @@ import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SemesterGradeCalculatorRouteImport } from './routes/semester-grade-calculator'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UcGpaCalculatorRouteImport } from './routes/uc-gpa-calculator'
+import { Route as GuidesIndexRouteImport } from './routes/guides/index'
+import { Route as GuidesGpaScaleRouteImport } from './routes/guides/gpa-scale'
+import { Route as GuidesHowToRaiseYourGpaRouteImport } from './routes/guides/how-to-raise-your-gpa'
+import { Route as GuidesWeightedVsUnweightedGpaRouteImport } from './routes/guides/weighted-vs-unweighted-gpa'
+import { Route as GuidesWhatIsAGoodGpaRouteImport } from './routes/guides/what-is-a-good-gpa'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -106,6 +111,32 @@ const UcGpaCalculatorRoute = UcGpaCalculatorRouteImport.update({
   path: '/uc-gpa-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesGpaScaleRoute = GuidesGpaScaleRouteImport.update({
+  id: '/guides/gpa-scale',
+  path: '/guides/gpa-scale',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesHowToRaiseYourGpaRoute = GuidesHowToRaiseYourGpaRouteImport.update({
+  id: '/guides/how-to-raise-your-gpa',
+  path: '/guides/how-to-raise-your-gpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesWeightedVsUnweightedGpaRoute =
+  GuidesWeightedVsUnweightedGpaRouteImport.update({
+    id: '/guides/weighted-vs-unweighted-gpa',
+    path: '/guides/weighted-vs-unweighted-gpa',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const GuidesWhatIsAGoodGpaRoute = GuidesWhatIsAGoodGpaRouteImport.update({
+  id: '/guides/what-is-a-good-gpa',
+  path: '/guides/what-is-a-good-gpa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,6 +155,11 @@ export interface FileRoutesByFullPath {
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/guides/gpa-scale': typeof GuidesGpaScaleRoute
+  '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
+  '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
+  '/guides/what-is-a-good-gpa': typeof GuidesWhatIsAGoodGpaRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -142,6 +178,11 @@ export interface FileRoutesByTo {
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/guides/gpa-scale': typeof GuidesGpaScaleRoute
+  '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
+  '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
+  '/guides/what-is-a-good-gpa': typeof GuidesWhatIsAGoodGpaRoute
+  '/guides': typeof GuidesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -161,6 +202,11 @@ export interface FileRoutesById {
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/guides/gpa-scale': typeof GuidesGpaScaleRoute
+  '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
+  '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
+  '/guides/what-is-a-good-gpa': typeof GuidesWhatIsAGoodGpaRoute
+  '/guides/': typeof GuidesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -181,6 +227,11 @@ export interface FileRouteTypes {
     | '/semester-grade-calculator'
     | '/sitemap.xml'
     | '/uc-gpa-calculator'
+    | '/guides/gpa-scale'
+    | '/guides/how-to-raise-your-gpa'
+    | '/guides/weighted-vs-unweighted-gpa'
+    | '/guides/what-is-a-good-gpa'
+    | '/guides/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -199,6 +250,11 @@ export interface FileRouteTypes {
     | '/semester-grade-calculator'
     | '/sitemap.xml'
     | '/uc-gpa-calculator'
+    | '/guides/gpa-scale'
+    | '/guides/how-to-raise-your-gpa'
+    | '/guides/weighted-vs-unweighted-gpa'
+    | '/guides/what-is-a-good-gpa'
+    | '/guides'
   id:
     | '__root__'
     | '/'
@@ -217,6 +273,11 @@ export interface FileRouteTypes {
     | '/semester-grade-calculator'
     | '/sitemap.xml'
     | '/uc-gpa-calculator'
+    | '/guides/gpa-scale'
+    | '/guides/how-to-raise-your-gpa'
+    | '/guides/weighted-vs-unweighted-gpa'
+    | '/guides/what-is-a-good-gpa'
+    | '/guides/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -236,6 +297,11 @@ export interface RootRouteChildren {
   SemesterGradeCalculatorRoute: typeof SemesterGradeCalculatorRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UcGpaCalculatorRoute: typeof UcGpaCalculatorRoute
+  GuidesGpaScaleRoute: typeof GuidesGpaScaleRoute
+  GuidesHowToRaiseYourGpaRoute: typeof GuidesHowToRaiseYourGpaRoute
+  GuidesWeightedVsUnweightedGpaRoute: typeof GuidesWeightedVsUnweightedGpaRoute
+  GuidesWhatIsAGoodGpaRoute: typeof GuidesWhatIsAGoodGpaRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -352,6 +418,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UcGpaCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/gpa-scale': {
+      id: '/guides/gpa-scale'
+      path: '/guides/gpa-scale'
+      fullPath: '/guides/gpa-scale'
+      preLoaderRoute: typeof GuidesGpaScaleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/how-to-raise-your-gpa': {
+      id: '/guides/how-to-raise-your-gpa'
+      path: '/guides/how-to-raise-your-gpa'
+      fullPath: '/guides/how-to-raise-your-gpa'
+      preLoaderRoute: typeof GuidesHowToRaiseYourGpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/weighted-vs-unweighted-gpa': {
+      id: '/guides/weighted-vs-unweighted-gpa'
+      path: '/guides/weighted-vs-unweighted-gpa'
+      fullPath: '/guides/weighted-vs-unweighted-gpa'
+      preLoaderRoute: typeof GuidesWeightedVsUnweightedGpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/what-is-a-good-gpa': {
+      id: '/guides/what-is-a-good-gpa'
+      path: '/guides/what-is-a-good-gpa'
+      fullPath: '/guides/what-is-a-good-gpa'
+      preLoaderRoute: typeof GuidesWhatIsAGoodGpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -372,6 +473,11 @@ const rootRouteChildren: RootRouteChildren = {
   SemesterGradeCalculatorRoute: SemesterGradeCalculatorRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   UcGpaCalculatorRoute: UcGpaCalculatorRoute,
+  GuidesGpaScaleRoute: GuidesGpaScaleRoute,
+  GuidesHowToRaiseYourGpaRoute: GuidesHowToRaiseYourGpaRoute,
+  GuidesWeightedVsUnweightedGpaRoute: GuidesWeightedVsUnweightedGpaRoute,
+  GuidesWhatIsAGoodGpaRoute: GuidesWhatIsAGoodGpaRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,6 +1,6 @@
-import { PAGES, SUPPORT, TOOL_GROUPS } from "@/lib/site";
+import { GUIDES, GUIDE_LIST, PAGES, SUPPORT, TOOL_GROUPS } from "@/lib/site";
 
-// Footer: support links plus all 10 calculators in their three groups.
+// Footer: all 10 calculators in their three groups, the guides, and support links.
 const GROUPS = TOOL_GROUPS.map((g) => (g.label === "GPA" ? { ...g, items: [PAGES.home, ...g.items] } : g));
 const linkName = (h1: string) => h1;
 
@@ -17,6 +17,12 @@ export function SiteFooter() {
               </ul>
             </div>
           ))}
+        </nav>
+        <nav aria-label="Guides" className="mt-6 border-t border-divider pt-4">
+          <p className="font-semibold text-text"><a href={GUIDES.hub.path}>GPA guides</a></p>
+          <ul className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+            {GUIDE_LIST.map((g) => <li key={g.path}><a href={g.path}>{g.h1}</a></li>)}
+          </ul>
         </nav>
         <nav aria-label="Site" className="mt-6 border-t border-divider pt-4">
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
