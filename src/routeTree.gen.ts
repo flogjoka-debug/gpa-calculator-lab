@@ -15,6 +15,8 @@ import { Route as CollegeGpaCalculatorRouteImport } from './routes/college-gpa-c
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CumulativeGpaCalculatorRouteImport } from './routes/cumulative-gpa-calculator'
 import { Route as FinalGradeCalculatorRouteImport } from './routes/final-grade-calculator'
+import { Route as ForSchoolsRouteImport } from './routes/for-schools'
+import { Route as GpaConverterRouteImport } from './routes/gpa-converter'
 import { Route as GradeCalculatorRouteImport } from './routes/grade-calculator'
 import { Route as HighSchoolGpaCalculatorRouteImport } from './routes/high-school-gpa-calculator'
 import { Route as LawSchoolGpaCalculatorRouteImport } from './routes/law-school-gpa-calculator'
@@ -25,7 +27,9 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SemesterGradeCalculatorRouteImport } from './routes/semester-grade-calculator'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as UcGpaCalculatorRouteImport } from './routes/uc-gpa-calculator'
+import { Route as EmbedGpaCalculatorRouteImport } from './routes/embed/gpa-calculator'
 import { Route as GuidesIndexRouteImport } from './routes/guides/index'
 import { Route as GuidesGpaScaleRouteImport } from './routes/guides/gpa-scale'
 import { Route as GuidesHowToRaiseYourGpaRouteImport } from './routes/guides/how-to-raise-your-gpa'
@@ -60,6 +64,16 @@ const CumulativeGpaCalculatorRoute = CumulativeGpaCalculatorRouteImport.update({
 const FinalGradeCalculatorRoute = FinalGradeCalculatorRouteImport.update({
   id: '/final-grade-calculator',
   path: '/final-grade-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForSchoolsRoute = ForSchoolsRouteImport.update({
+  id: '/for-schools',
+  path: '/for-schools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GpaConverterRoute = GpaConverterRouteImport.update({
+  id: '/gpa-converter',
+  path: '/gpa-converter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GradeCalculatorRoute = GradeCalculatorRouteImport.update({
@@ -112,9 +126,19 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UcGpaCalculatorRoute = UcGpaCalculatorRouteImport.update({
   id: '/uc-gpa-calculator',
   path: '/uc-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmbedGpaCalculatorRoute = EmbedGpaCalculatorRouteImport.update({
+  id: '/embed/gpa-calculator',
+  path: '/embed/gpa-calculator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
@@ -151,6 +175,8 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
   '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/for-schools': typeof ForSchoolsRoute
+  '/gpa-converter': typeof GpaConverterRoute
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
@@ -161,7 +187,9 @@ export interface FileRoutesByFullPath {
   '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/embed/gpa-calculator': typeof EmbedGpaCalculatorRoute
   '/guides/gpa-scale': typeof GuidesGpaScaleRoute
   '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
   '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
@@ -175,6 +203,8 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
   '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/for-schools': typeof ForSchoolsRoute
+  '/gpa-converter': typeof GpaConverterRoute
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
@@ -185,7 +215,9 @@ export interface FileRoutesByTo {
   '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/embed/gpa-calculator': typeof EmbedGpaCalculatorRoute
   '/guides/gpa-scale': typeof GuidesGpaScaleRoute
   '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
   '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
@@ -200,6 +232,8 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
   '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/for-schools': typeof ForSchoolsRoute
+  '/gpa-converter': typeof GpaConverterRoute
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
@@ -210,7 +244,9 @@ export interface FileRoutesById {
   '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/terms': typeof TermsRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
+  '/embed/gpa-calculator': typeof EmbedGpaCalculatorRoute
   '/guides/gpa-scale': typeof GuidesGpaScaleRoute
   '/guides/how-to-raise-your-gpa': typeof GuidesHowToRaiseYourGpaRoute
   '/guides/weighted-vs-unweighted-gpa': typeof GuidesWeightedVsUnweightedGpaRoute
@@ -226,6 +262,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cumulative-gpa-calculator'
     | '/final-grade-calculator'
+    | '/for-schools'
+    | '/gpa-converter'
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
@@ -236,7 +274,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/semester-grade-calculator'
     | '/sitemap.xml'
+    | '/terms'
     | '/uc-gpa-calculator'
+    | '/embed/gpa-calculator'
     | '/guides/gpa-scale'
     | '/guides/how-to-raise-your-gpa'
     | '/guides/weighted-vs-unweighted-gpa'
@@ -250,6 +290,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cumulative-gpa-calculator'
     | '/final-grade-calculator'
+    | '/for-schools'
+    | '/gpa-converter'
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
@@ -260,7 +302,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/semester-grade-calculator'
     | '/sitemap.xml'
+    | '/terms'
     | '/uc-gpa-calculator'
+    | '/embed/gpa-calculator'
     | '/guides/gpa-scale'
     | '/guides/how-to-raise-your-gpa'
     | '/guides/weighted-vs-unweighted-gpa'
@@ -274,6 +318,8 @@ export interface FileRouteTypes {
     | '/contact'
     | '/cumulative-gpa-calculator'
     | '/final-grade-calculator'
+    | '/for-schools'
+    | '/gpa-converter'
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
@@ -284,7 +330,9 @@ export interface FileRouteTypes {
     | '/robots.txt'
     | '/semester-grade-calculator'
     | '/sitemap.xml'
+    | '/terms'
     | '/uc-gpa-calculator'
+    | '/embed/gpa-calculator'
     | '/guides/gpa-scale'
     | '/guides/how-to-raise-your-gpa'
     | '/guides/weighted-vs-unweighted-gpa'
@@ -299,6 +347,8 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   CumulativeGpaCalculatorRoute: typeof CumulativeGpaCalculatorRoute
   FinalGradeCalculatorRoute: typeof FinalGradeCalculatorRoute
+  ForSchoolsRoute: typeof ForSchoolsRoute
+  GpaConverterRoute: typeof GpaConverterRoute
   GradeCalculatorRoute: typeof GradeCalculatorRoute
   HighSchoolGpaCalculatorRoute: typeof HighSchoolGpaCalculatorRoute
   LawSchoolGpaCalculatorRoute: typeof LawSchoolGpaCalculatorRoute
@@ -309,7 +359,9 @@ export interface RootRouteChildren {
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SemesterGradeCalculatorRoute: typeof SemesterGradeCalculatorRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermsRoute: typeof TermsRoute
   UcGpaCalculatorRoute: typeof UcGpaCalculatorRoute
+  EmbedGpaCalculatorRoute: typeof EmbedGpaCalculatorRoute
   GuidesGpaScaleRoute: typeof GuidesGpaScaleRoute
   GuidesHowToRaiseYourGpaRoute: typeof GuidesHowToRaiseYourGpaRoute
   GuidesWeightedVsUnweightedGpaRoute: typeof GuidesWeightedVsUnweightedGpaRoute
@@ -359,6 +411,20 @@ declare module '@tanstack/react-router' {
       path: '/final-grade-calculator'
       fullPath: '/final-grade-calculator'
       preLoaderRoute: typeof FinalGradeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-schools': {
+      id: '/for-schools'
+      path: '/for-schools'
+      fullPath: '/for-schools'
+      preLoaderRoute: typeof ForSchoolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gpa-converter': {
+      id: '/gpa-converter'
+      path: '/gpa-converter'
+      fullPath: '/gpa-converter'
+      preLoaderRoute: typeof GpaConverterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/grade-calculator': {
@@ -431,11 +497,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/uc-gpa-calculator': {
       id: '/uc-gpa-calculator'
       path: '/uc-gpa-calculator'
       fullPath: '/uc-gpa-calculator'
       preLoaderRoute: typeof UcGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/embed/gpa-calculator': {
+      id: '/embed/gpa-calculator'
+      path: '/embed/gpa-calculator'
+      fullPath: '/embed/gpa-calculator'
+      preLoaderRoute: typeof EmbedGpaCalculatorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/guides/': {
@@ -483,6 +563,8 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   CumulativeGpaCalculatorRoute: CumulativeGpaCalculatorRoute,
   FinalGradeCalculatorRoute: FinalGradeCalculatorRoute,
+  ForSchoolsRoute: ForSchoolsRoute,
+  GpaConverterRoute: GpaConverterRoute,
   GradeCalculatorRoute: GradeCalculatorRoute,
   HighSchoolGpaCalculatorRoute: HighSchoolGpaCalculatorRoute,
   LawSchoolGpaCalculatorRoute: LawSchoolGpaCalculatorRoute,
@@ -493,7 +575,9 @@ const rootRouteChildren: RootRouteChildren = {
   RobotsDottxtRoute: RobotsDottxtRoute,
   SemesterGradeCalculatorRoute: SemesterGradeCalculatorRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermsRoute: TermsRoute,
   UcGpaCalculatorRoute: UcGpaCalculatorRoute,
+  EmbedGpaCalculatorRoute: EmbedGpaCalculatorRoute,
   GuidesGpaScaleRoute: GuidesGpaScaleRoute,
   GuidesHowToRaiseYourGpaRoute: GuidesHowToRaiseYourGpaRoute,
   GuidesWeightedVsUnweightedGpaRoute: GuidesWeightedVsUnweightedGpaRoute,

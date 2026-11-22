@@ -1246,5 +1246,406 @@ export const PAGE_COPY = {
         ]
       }
     ]
+  },
+  "homeTerms": {
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "Semester vs. cumulative GPA",
+        "id": "semester-vs-cumulative-gpa"
+      },
+      {
+        "t": "p",
+        "text": "Your semester GPA covers one term. Your cumulative GPA covers every graded class you've taken, so each new semester moves it less than the one before. Add a term for each semester above, and the calculator shows both: a GPA for each term and one for all of them together."
+      },
+      {
+        "t": "table",
+        "caption": "Semester vs. cumulative GPA",
+        "columns": [
+          "Term",
+          "Grades and credits",
+          "Quality points",
+          "GPA"
+        ],
+        "rows": [
+          [
+            "Fall",
+            "A (3), C (3)",
+            "12 + 6 = 18",
+            "18 ÷ 6 = 3.00"
+          ],
+          [
+            "Spring",
+            "B (4)",
+            "12",
+            "12 ÷ 4 = 3.00"
+          ],
+          [
+            "Both terms",
+            "10 credits",
+            "30",
+            "30 ÷ 10 = 3.00"
+          ],
+          [
+            "With a 2.8 GPA over 45 earlier credits",
+            "55 credits",
+            "126 + 30 = 156",
+            "156 ÷ 55 = 2.84"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "The last row is what \"Add your GPA so far\" does. It turns your old GPA back into quality points (2.8 × 45 = 126), adds the new ones, and divides by all the credits. For an exact match with your transcript, use the [cumulative GPA calculator](/cumulative-gpa-calculator/), which takes the quality points printed on it."
+      }
+    ]
+  },
+  "homeTranscript": {
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "Why your result might not match your transcript",
+        "id": "why-your-result-might-not-match-your-transcript"
+      },
+      {
+        "t": "p",
+        "text": "A small gap usually has a simple cause. Check these before you assume either number is wrong:"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "Your school uses a different scale, such as 3.67 for an A− instead of 3.7, or gives an A+ more than 4.0. Edit the grade scale above to match.",
+          "A retaken class replaced the earlier grade on your transcript, but both attempts are in your list here. Remove the attempt your school drops, or use the [college GPA calculator](/college-gpa-calculator/), which handles retakes.",
+          "Transfer credits count toward your degree but often not toward your GPA at the new school.",
+          "Your high school rounds each semester grade, or adds a bonus for Honors and AP classes that's different from the example values here."
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Your registrar's number is the official one. Use this calculator to plan, and the transcript to report."
+      }
+    ]
+  },
+  "homeGood": {
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "What is a good GPA?",
+        "id": "what-is-a-good-gpa"
+      },
+      {
+        "t": "p",
+        "text": "It depends on what the GPA is for. The average U.S. high school graduate finished with a 3.11 in 2019, according to the federal High School Transcript Study. In college, federal financial aid rules require students in programs longer than two years to have at least a C average, or its equivalent, by the end of their second academic year ([34 CFR 668.34](https://www.law.cornell.edu/cfr/text/34/668.34)). Many scholarships and selective programs ask for much more. Our guide to [what counts as a good GPA](/guides/what-is-a-good-gpa/) puts 2.5, 3.0, 3.5 and 4.0 in context."
+      }
+    ]
+  },
+  "homeTarget": {
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "How the target GPA planner works",
+        "id": "how-the-target-gpa-planner-works"
+      },
+      {
+        "t": "p",
+        "text": "Set a target and the credits you'll take next term, and the planner works backward: (target × total credits after next term − quality points so far) ÷ credits next term. With a 2.8 over 45 credits and a 3.0 target, a 15-credit term needs (3.0 × 60 − 126) ÷ 15 = 3.6. If the answer is above the top of your scale, one term can't get you there, and the planner shows how many terms of straight A's it would take. The guide on [how to raise your GPA](/guides/how-to-raise-your-gpa/) covers what else moves the number."
+      }
+    ]
+  },
+  "converter": {
+    "title": "GPA Converter – Convert Your GPA to a 4.0 Scale",
+    "meta": "Convert a GPA from a 4.5, 5.0, 10 or 20-point scale to the 4.0 scale, or back. See the formula, worked examples and when the result is only an estimate.",
+    "lead": "Convert a GPA from any scale to the 4.0 scale, or from 4.0 to another one. Enter your GPA and the top of your school's scale, and you'll get the converted GPA with the math shown.",
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "How to convert a GPA to a 4.0 scale",
+        "id": "how-to-convert-a-gpa-to-a-4-0-scale"
+      },
+      {
+        "t": "p",
+        "text": "Divide your GPA by the top of your scale, then multiply by 4. Your place on the scale stays the same: a student 90% of the way up a 5.0 scale is also 90% of the way up a 4.0 scale."
+      },
+      {
+        "t": "table",
+        "caption": "How to convert a GPA to a 4.0 scale",
+        "columns": [
+          "Your GPA",
+          "Your scale",
+          "Math",
+          "On a 4.0 scale"
+        ],
+        "rows": [
+          [
+            "4.1",
+            "4.5",
+            "4.1 × 4 ÷ 4.5",
+            "3.64"
+          ],
+          [
+            "4.5",
+            "5.0",
+            "4.5 × 4 ÷ 5",
+            "3.60"
+          ],
+          [
+            "7.16",
+            "10",
+            "7.16 × 4 ÷ 10",
+            "2.86"
+          ],
+          [
+            "8.0",
+            "10",
+            "8.0 × 4 ÷ 10",
+            "3.20"
+          ],
+          [
+            "15",
+            "20",
+            "15 × 4 ÷ 20",
+            "3.00"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "Universities that publish this formula, such as the University of Texas at Arlington and the University of Arizona Graduate College, describe it as an estimate, not an official conversion. Sources: [UT Arlington: GPA converter](https://uta.edu/student-success/resources/student-resources/gpa-converter), [University of Arizona Graduate College: GPA calculator](https://grad.arizona.edu/gpacalculator/)."
+      },
+      {
+        "t": "h2",
+        "text": "Converting from 4.0 to another scale",
+        "id": "converting-from-4-0-to-another-scale"
+      },
+      {
+        "t": "p",
+        "text": "The same formula works in reverse: multiply by the top of the new scale and divide by 4. A 3.2 on a 4.0 scale is 3.2 × 10 ÷ 4 = 8.0 on a 10-point scale. Pick the scale you need under \"Convert to\"."
+      },
+      {
+        "t": "h2",
+        "text": "When a straight conversion gives the wrong answer",
+        "id": "when-a-straight-conversion-gives-the-wrong-answer"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "A weighted high school GPA. A 4.5 on a weighted 5.0 scale includes bonus points for Honors and AP classes, and dividing it down doesn't remove them. Recalculate from your grades in the [high school GPA calculator](/high-school-gpa-calculator/), which shows the unweighted GPA next to the weighted one.",
+          "A percentage average. An 85% average isn't a 3.4. On the common U.S. scale an 85 is a B, worth 3.0. Use the [percentage to letter grade calculator](/percentage-to-letter-grade/) to find the letter first.",
+          "A scale where lower is better. In Germany, for example, 1.0 is the best grade and 4.0 is the lowest pass, so multiplying would turn a top student into a weak one. Use the method your target school or credential evaluator names.",
+          "A scale where the passing mark sits high up. The formula assumes every point on the scale is worth the same, which isn't true everywhere."
+        ]
+      },
+      {
+        "t": "h2",
+        "text": "How colleges handle GPAs from other scales",
+        "id": "how-colleges-handle-gpas-from-other-scales"
+      },
+      {
+        "t": "p",
+        "text": "U.S. colleges don't rely on a number you converted yourself. Many recalculate a GPA from the grades on your transcript with their own rules, and applicants with transcripts from outside the U.S. are often asked for a course-by-course evaluation from a credential evaluation service. The Common App asks for your GPA on your school's own scale, with options from 4 up to 20 and 100, so there's no need to convert it there. Our guide to [weighted vs. unweighted GPA](/guides/weighted-vs-unweighted-gpa/) covers which number to report."
+      },
+      {
+        "t": "h2",
+        "text": "Common GPA scales",
+        "id": "common-gpa-scales"
+      },
+      {
+        "t": "table",
+        "caption": "Common GPA scales",
+        "columns": [
+          "Scale",
+          "Where you'll see it"
+        ],
+        "rows": [
+          [
+            "4.0",
+            "Most U.S. high schools and colleges (unweighted)"
+          ],
+          [
+            "4.33",
+            "Colleges that give an A+ more than 4.0, and LSAC for law school applicants"
+          ],
+          [
+            "4.5 or 5.0",
+            "Weighted high school GPAs with bonus points for Honors, AP or IB"
+          ],
+          [
+            "10",
+            "CGPA at many universities in India"
+          ],
+          [
+            "20",
+            "Grades in France"
+          ]
+        ]
+      },
+      {
+        "t": "p",
+        "text": "For the full letter-by-letter breakdown of the 4.0 scale, see [the 4.0 GPA scale](/guides/gpa-scale/)."
+      }
+    ]
+  },
+  "forSchools": {
+    "title": "Free GPA Calculator for Your School Website – GPA Calculator Lab",
+    "meta": "Add our free GPA calculator to your school, counseling or advising page with one block of code. No sign-up, no ads, and students' grades stay in their browser.",
+    "lead": "Counselors, advisors and teachers can put our GPA calculator on their own page for free. Copy the code below into your site, or link to the calculator that fits your students.",
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "What students get",
+        "id": "what-students-get"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "Semester and cumulative GPA, with an optional GPA so far from their transcript",
+          "A high school mode with Honors, AP, IB and dual enrollment bonus points you can set to your school's values",
+          "A target planner that shows the average they need next term",
+          "The math behind every result, so they can check it against their transcript"
+        ]
+      },
+      {
+        "t": "h2",
+        "text": "Add the calculator to your page",
+        "id": "add-the-calculator-to-your-page"
+      },
+      {
+        "t": "p",
+        "text": "Paste this code where you want the calculator to appear. It works in most website builders that accept an HTML or embed block. Keep the credit link under the calculator: it tells students where the tool comes from and where to find the other calculators."
+      },
+      {
+        "t": "h2",
+        "text": "Prefer a link?",
+        "id": "prefer-a-link"
+      },
+      {
+        "t": "p",
+        "text": "If your site doesn't allow embedded tools, a plain link works just as well. The pages students use most are the [GPA calculator](/), the [high school GPA calculator](/high-school-gpa-calculator/), the [college GPA calculator](/college-gpa-calculator/), the [final grade calculator](/final-grade-calculator/) and the [UC GPA calculator](/uc-gpa-calculator/)."
+      },
+      {
+        "t": "h2",
+        "text": "Privacy for your students",
+        "id": "privacy-for-your-students"
+      },
+      {
+        "t": "p",
+        "text": "The calculator runs in the student's browser. Grades aren't sent to us or to you, the embedded version doesn't load analytics, and there are no ads. The details are in our [privacy policy](/privacy/)."
+      },
+      {
+        "t": "h2",
+        "text": "Questions or a different scale?",
+        "id": "questions-or-a-different-scale"
+      },
+      {
+        "t": "p",
+        "text": "If your school uses bonus points or a grade scale the calculator doesn't cover, [tell us](/contact/). We'd rather fix the tool than have students get the wrong number."
+      }
+    ]
+  },
+  "terms": {
+    "title": "Terms of Use – GPA Calculator Lab",
+    "meta": "The terms for using GPA Calculator Lab: free calculators that give estimates, how you may embed or link to them, and the limits of our responsibility.",
+    "lead": "Effective November 22, 2026. By using gpacalculatorlab.com you agree to these terms. If you don't agree, please don't use the site.",
+    "blocks": [
+      {
+        "t": "h2",
+        "text": "The calculators give estimates",
+        "id": "the-calculators-give-estimates"
+      },
+      {
+        "t": "p",
+        "text": "Results are estimates based on the grades, credits and settings you enter and on the published rules we cite. They are not an official GPA. Your school, a university, LSAC or another organization calculates the number that counts, and its result wins if the two differ. Don't rely on a result here alone for a decision about admission, financial aid, eligibility or graduation."
+      },
+      {
+        "t": "h2",
+        "text": "No professional advice",
+        "id": "no-professional-advice"
+      },
+      {
+        "t": "p",
+        "text": "The site gives general information about grades and GPA. It isn't academic, admissions, financial or legal advice. For your own situation, talk to your school counselor, your registrar or the organization involved."
+      },
+      {
+        "t": "h2",
+        "text": "Using the site",
+        "id": "using-the-site"
+      },
+      {
+        "t": "p",
+        "text": "You may use the calculators and guides for free, for personal and educational purposes. Please don't try to disrupt the site, scrape it in a way that overloads it, or present our content as your own."
+      },
+      {
+        "t": "h2",
+        "text": "Embedding and linking",
+        "id": "embedding-and-linking"
+      },
+      {
+        "t": "p",
+        "text": "You may link to any page on the site. Schools, teachers and other educational sites may embed the calculator with the code on our [for schools](/for-schools/) page, as long as the credit link stays visible and the calculator isn't changed. We may update or retire the embedded version at any time."
+      },
+      {
+        "t": "h2",
+        "text": "Content and accuracy",
+        "id": "content-and-accuracy"
+      },
+      {
+        "t": "p",
+        "text": "We check every rule against its source and date each check, but policies change and mistakes happen. If you find an error, [contact us](/contact/) and we'll correct it. The guides, calculators, text and graphics on the site belong to GPA Calculator Lab unless a source is credited."
+      },
+      {
+        "t": "h2",
+        "text": "No warranty",
+        "id": "no-warranty"
+      },
+      {
+        "t": "p",
+        "text": "The site is provided \"as is\" and \"as available\". We don't promise that it will always be online, free of errors or up to date."
+      },
+      {
+        "t": "h2",
+        "text": "Limit of liability",
+        "id": "limit-of-liability"
+      },
+      {
+        "t": "p",
+        "text": "To the extent the law allows, GPA Calculator Lab and FloPixels aren't liable for any loss or damage that comes from using the site or relying on its results."
+      },
+      {
+        "t": "h2",
+        "text": "Links to other sites",
+        "id": "links-to-other-sites"
+      },
+      {
+        "t": "p",
+        "text": "We link to schools, universities and other organizations as sources. We don't control those sites and aren't responsible for their content."
+      },
+      {
+        "t": "h2",
+        "text": "Privacy",
+        "id": "privacy"
+      },
+      {
+        "t": "p",
+        "text": "How we handle data is explained in our [privacy policy](/privacy/)."
+      },
+      {
+        "t": "h2",
+        "text": "Changes to these terms",
+        "id": "changes-to-these-terms"
+      },
+      {
+        "t": "p",
+        "text": "We may update these terms. When we do, we'll change the effective date at the top of this page. Using the site after a change means you accept the updated terms."
+      },
+      {
+        "t": "h2",
+        "text": "Contact",
+        "id": "contact"
+      },
+      {
+        "t": "p",
+        "text": "Questions about these terms? Email [info@gpacalculatorlab.com](mailto:info@gpacalculatorlab.com)."
+      }
+    ]
   }
 } satisfies Record<string, PageCopy>;

@@ -636,7 +636,7 @@ export const GUIDE_CONTENT = {
       },
       {
         "t": "p",
-        "text": "If your school reports GPA on a 5.0, 6.0 or 10-point scale, the quick conversion is your GPA × 4 ÷ your school's scale. A 4.1 on a 4.5 scale becomes 4.1 × 4 ÷ 4.5 = 3.64. A 7.16 on a 10-point scale becomes 2.86. Universities use this formula as an estimate, not an official conversion. Sources: [UT Arlington: GPA converter](https://uta.edu/student-success/resources/student-resources/gpa-converter), [University of Arizona Graduate College: GPA calculator](https://grad.arizona.edu/gpacalculator/)."
+        "text": "If your school reports GPA on a 5.0, 6.0 or 10-point scale, the quick conversion is your GPA × 4 ÷ your school's scale. A 4.1 on a 4.5 scale becomes 4.1 × 4 ÷ 4.5 = 3.64. A 7.16 on a 10-point scale becomes 2.86. Universities use this formula as an estimate, not an official conversion. The [GPA converter](/gpa-converter/) does the math for any scale. Sources: [UT Arlington: GPA converter](https://uta.edu/student-success/resources/student-resources/gpa-converter), [University of Arizona Graduate College: GPA calculator](https://grad.arizona.edu/gpacalculator/)."
       },
       {
         "t": "p",

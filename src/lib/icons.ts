@@ -1,6 +1,6 @@
 import {
   Award, BookOpen, CalendarRange, Calculator, ClipboardCheck, FlaskConical, GraduationCap, Landmark, Layers,
-  ListChecks, Mail, Percent, Ruler, Scale, School, ShieldCheck, SlidersHorizontal, Target, TrendingUp, Users,
+  ListChecks, Mail, ArrowLeftRight, FileText, Code, Percent, Ruler, Scale, School, ShieldCheck, SlidersHorizontal, Target, TrendingUp, Users,
   type LucideIcon,
 } from "lucide-react";
 
@@ -25,6 +25,9 @@ export const PAGE_ICONS: Record<string, LucideIcon> = {
   "/methodology/": FlaskConical,
   "/privacy/": ShieldCheck,
   "/contact/": Mail,
+  "/gpa-converter/": ArrowLeftRight,
+  "/for-schools/": Code,
+  "/terms/": FileText,
 };
 
 export const GROUP_ICONS = { gpa: GraduationCap, grade: ListChecks, admissions: Landmark, guides: BookOpen, how: FlaskConical } satisfies Record<string, LucideIcon>;
@@ -34,7 +37,7 @@ export const iconFor = (path: string): LucideIcon => PAGE_ICONS[path] ?? Calcula
 /** Short label shown in the eyebrow above each page's H1, taken from its navigation group. */
 export function eyebrowFor(path: string): { label: string; icon: LucideIcon } {
   if (path.startsWith("/guides/")) return { label: path === "/guides/" ? "Guides" : "GPA guide", icon: GROUP_ICONS.guides };
-  if (["/", "/college-gpa-calculator/", "/high-school-gpa-calculator/", "/cumulative-gpa-calculator/"].includes(path)) return { label: "GPA calculator", icon: GROUP_ICONS.gpa };
+  if (["/", "/college-gpa-calculator/", "/high-school-gpa-calculator/", "/cumulative-gpa-calculator/", "/gpa-converter/"].includes(path)) return { label: "GPA calculator", icon: GROUP_ICONS.gpa };
   if (["/grade-calculator/", "/final-grade-calculator/", "/semester-grade-calculator/", "/percentage-to-letter-grade/"].includes(path)) return { label: "Grade calculator", icon: GROUP_ICONS.grade };
   if (["/uc-gpa-calculator/", "/law-school-gpa-calculator/"].includes(path)) return { label: "Admissions", icon: GROUP_ICONS.admissions };
   return { label: "GPA Calculator Lab", icon: iconFor(path) };

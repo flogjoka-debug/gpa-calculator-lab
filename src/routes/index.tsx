@@ -1,7 +1,9 @@
 import { PAGE_COPY } from "@/lib/page-copy";
+import { CopyBlocks } from "@/components/Guide";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
-import { EXAMPLE_RESULT, GpaCalculator } from "@/components/gpa/GpaCalculator";
+import { EXAMPLE_RESULT } from "@/components/gpa/GpaCalculator";
+import { HomeCalculator } from "@/components/gpa/HomeCalculator";
 import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
 import { Link } from "@tanstack/react-router";
@@ -28,10 +30,10 @@ function Home() {
       <Eyebrow path={page.path} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter each grade and its credits. You'll get your GPA, your total quality points, and the credits that counted.
+        Enter each grade and its credits for one term or several. Add your GPA so far for a cumulative GPA, or switch to high school for weighted and unweighted GPA.
       </p>
 
-      <GpaCalculator onResult={onResult} />
+      <HomeCalculator onResult={onResult} />
       <section className="mt-10" aria-labelledby="what-gpa-means">
         <h2 id="what-gpa-means" className="text-2xl">What GPA means</h2>
         <p className="mt-2">{PAGE_COPY.homeDefinition.lead}</p>
@@ -82,6 +84,9 @@ function Home() {
         <p className="mt-3">With an A in a 3-credit class and a B in a 4-credit class, that's 12 + 12 = 24 quality points over 7 credits, so 24 ÷ 7 = 3.43.</p>
       </section>
 
+      <CopyBlocks blocks={PAGE_COPY.homeTerms.blocks} />
+      <CopyBlocks blocks={PAGE_COPY.homeTarget.blocks} />
+
       <section className="mt-12" aria-labelledby="gpa-scale">
         <h2 id="gpa-scale" className="text-2xl">GPA scale: letter grades, percentages and grade points</h2>
         <p className="mt-2">This is the scale the calculator starts with. Your school may use different cutoffs or point values, so treat it as an example and edit the scale above if yours differs.</p>
@@ -118,13 +123,16 @@ function Home() {
         </div>
       </section>
 
+      <CopyBlocks blocks={PAGE_COPY.homeTranscript.blocks} />
+      <CopyBlocks blocks={PAGE_COPY.homeGood.blocks} />
+
       <FaqSection items={HOME_FAQ} />
 
       <section className="mt-12" aria-labelledby="picker">
         <h2 id="picker" className="text-2xl">Pick the calculator that fits</h2>
         <p className="mt-2">
-          This page handles a quick GPA. The tools below handle the cases that need more: plus/minus scales and retakes,
-          honors bonuses, a full transcript, a single class grade, or an admissions formula.
+          This page covers most GPAs. The tools below handle the cases that need more: A+ grades and retakes, exact
+          transcript quality points, a single class grade, or an admissions formula.
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {TOOL_GROUPS.map((g) => (

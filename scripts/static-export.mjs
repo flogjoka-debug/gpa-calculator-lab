@@ -12,6 +12,8 @@ const BASE = `http://localhost:${PORT}`;
 // Pages come from the live sitemap, so every indexable route is exported and nothing drifts.
 let PAGES = [];
 const FILES = ["/robots.txt", "/sitemap.xml", "/llms.txt"];
+// Public but not indexable (noindex), so not in the sitemap.
+const EXTRA_PAGES = ["/embed/gpa-calculator/"];
 
 const server = spawn("node", [".output/server/index.mjs"], {
   env: { ...process.env, PORT: String(PORT), HOST: "127.0.0.1", NITRO_PORT: String(PORT) },
@@ -42,7 +44,7 @@ try {
 
     const sitemap = await (await fetch(`${BASE}/sitemap.xml`)).text();
   const inSitemap = [...sitemap.matchAll(/<loc>https:\/\/gpacalculatorlab\.com([^<]*)<\/loc>/g)].map((m) => m[1]);
-  PAGES = inSitemap;
+  PAGES = [...inSitemap, ...EXTRA_PAGES];
   if (!PAGES.includes("/")) throw new Error("Sitemap is missing the homepage");
 
   for (const path of PAGES) {

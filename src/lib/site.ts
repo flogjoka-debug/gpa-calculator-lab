@@ -8,7 +8,7 @@ export const SITE_NAME = "GPA Calculator Lab";
 export interface PageInfo { path: string; h1: string; title: string; description: string; og: string; ogAlt: string; indexable: boolean; parent?: { path: string; h1: string }; article?: { published: string; updated: string }; updated?: string }
 
 export const PAGES = {
-  home: { path: "/", h1: "GPA Calculator", title: "GPA Calculator – Calculate Your GPA With or Without Credits", description: "Free GPA calculator for high school and college. Enter grades and credits to get your GPA on a 4.0 scale, your quality points, and which classes counted.", og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true },
+  home: { path: "/", h1: "GPA Calculator", title: "GPA Calculator – Semester, Cumulative & Weighted GPA", description: "Free GPA calculator for high school and college. Add semesters, your GPA so far and Honors or AP classes to get your semester, cumulative and weighted GPA.", og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true },
   college: { path: "/college-gpa-calculator/", h1: "College GPA Calculator", title: "College GPA Calculator – Semester GPA, Plus/Minus & Retakes", description: "Calculate your college or semester GPA from credit hours and plus/minus grades. Compare counting both attempts of a retaken class with grade replacement.", og: "college.png", ogAlt: "College GPA calculator comparing a 2.50 and a 4.00 GPA for a retaken class", indexable: true },
   highSchool: { path: "/high-school-gpa-calculator/", h1: "High School GPA Calculator", title: "High School GPA Calculator – Weighted & Unweighted GPA", description: "Free high school GPA calculator. See your weighted and unweighted GPA side by side, set Honors, AP and IB bonus points, and see what each class adds.", og: "high-school.png", ogAlt: "High school GPA calculator showing a 3.50 unweighted and 4.00 weighted GPA", indexable: true },
   cumulative: { path: "/cumulative-gpa-calculator/", h1: "Cumulative GPA Calculator", title: "Cumulative GPA Calculator – How to Calculate Cumulative GPA", description: "Add new semesters to your current GPA. Use GPA credits and quality points from your transcript for an exact cumulative GPA, or a rounded GPA for an estimate.", og: "cumulative.png", ogAlt: "Cumulative GPA calculator showing 78 quality points over 24 credits and a 3.25 GPA", indexable: true },
@@ -18,6 +18,7 @@ export const PAGES = {
   percentage: { path: "/percentage-to-letter-grade/", h1: "Percentage to Letter Grade Calculator", title: "Percentage to Letter Grade Calculator + Grade Chart (A–F)", description: "Convert any percentage, even decimals like 89.5, to a letter grade. See the full grade chart, your grade's range, and how far you are from the next one.", og: "percentage.png", ogAlt: "Percentage to letter grade calculator converting 89.99% to a B+", indexable: true },
   uc: { path: "/uc-gpa-calculator/", h1: "UC GPA Calculator", title: "UC GPA Calculator – How to Calculate Your UC GPA (Capped)", description: "Estimate your UC GPA from 10th and 11th grade A-G courses. See your capped and unweighted GPA and which honors points count toward the 8-point cap.", og: "uc.png", ogAlt: "UC GPA calculator showing a 4.66 capped GPA with 8 of 12 honors points counted", indexable: true },
   law: { path: "/law-school-gpa-calculator/", h1: "LSAC GPA Calculator (Law School GPA)", title: "LSAC GPA Calculator – Law School GPA by Application Cycle", description: "Estimate your LSAC GPA, the GPA law schools see, with A+ at 4.33 and every repeated class counted. Pick your cycle to see how dual-enrollment grades count.", og: "law.png", ogAlt: "Law school GPA calculator showing a 3.50 LSAC GPA for the 2026–2027 cycle", indexable: true },
+  converter: { path: "/gpa-converter/", h1: "GPA Converter", title: PAGE_COPY.converter.title, description: PAGE_COPY.converter.meta, og: "converter.png", ogAlt: "GPA converter turning a 4.1 on a 4.5 scale into a 3.64 on a 4.0 scale", indexable: true },
 } satisfies Record<string, PageInfo>;
 
 /** Support pages (phase 5). They use the home social image as an approved fallback. */
@@ -26,6 +27,8 @@ export const SUPPORT = {
   about: { path: "/about/", h1: "About GPA Calculator Lab", title: PAGE_COPY.about.title, description: PAGE_COPY.about.meta, ...SUPPORT_OG, og: "about.png", ogAlt: "About GPA Calculator Lab: free GPA tools that show their math" },
   methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" },
   privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_COPY.privacy.title, description: PAGE_COPY.privacy.meta, ...SUPPORT_OG, og: "privacy.png", ogAlt: "GPA Calculator Lab privacy policy: your grades stay in your browser" },
+  forSchools: { path: "/for-schools/", h1: "Free GPA Calculator for Your School Website", title: PAGE_COPY.forSchools.title, description: PAGE_COPY.forSchools.meta, ...SUPPORT_OG, og: "for-schools.png", ogAlt: "Embed the free GPA Calculator Lab calculator on your school website" },
+  terms: { path: "/terms/", h1: "Terms of Use", title: PAGE_COPY.terms.title, description: PAGE_COPY.terms.meta, ...SUPPORT_OG, og: "terms.png", ogAlt: "GPA Calculator Lab terms of use: free calculators that give estimates" },
   contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_COPY.contact.title, description: PAGE_COPY.contact.meta, ...SUPPORT_OG, og: "contact.png", ogAlt: "Contact GPA Calculator Lab to report an error or an outdated rule" },
 } satisfies Record<string, PageInfo>;
 
@@ -50,7 +53,7 @@ export const ROUTES: PageInfo[] = [...Object.values(PAGES), GUIDES.hub, ...GUIDE
 export const INDEXABLE_ROUTES = ROUTES.filter((r) => r.indexable);
 
 export const TOOL_GROUPS: { label: string; items: PageInfo[] }[] = [
-  { label: "GPA", items: [PAGES.college, PAGES.highSchool, PAGES.cumulative] },
+  { label: "GPA", items: [PAGES.college, PAGES.highSchool, PAGES.cumulative, PAGES.converter] },
   { label: "Grades", items: [PAGES.grade, PAGES.finalGrade, PAGES.semester, PAGES.percentage] },
   { label: "Admissions", items: [PAGES.uc, PAGES.law] },
 ];

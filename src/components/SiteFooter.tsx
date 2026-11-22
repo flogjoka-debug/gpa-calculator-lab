@@ -34,6 +34,8 @@ export function SiteFooter() {
             <li><a href={SUPPORT.methodology.path}>Methodology</a></li>
             <li><a href={SUPPORT.privacy.path}>Privacy</a></li>
             <li><a href={SUPPORT.contact.path}>Contact</a></li>
+            <li><a href={SUPPORT.forSchools.path}>For schools</a></li>
+            <li><a href={SUPPORT.terms.path}>Terms</a></li>
             <li><button type="button" className="footer-link-button" onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}>Cookie settings</button></li>
           </ul>
         </nav>

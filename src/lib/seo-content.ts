@@ -8,6 +8,17 @@ export const HOME_FAQ: FaqItem[] = [
   { question: "Is a 3.0 GPA good?", answer: ["A 3.0 is a B average on the 4.0 scale. Whether it's good enough depends on the goal: scholarships, honor societies and college programs each set their own minimums. Check the exact requirement for the one you care about."] },
   { question: "Does an F count in my GPA?", answer: ["Yes. An F adds zero quality points, but its credits stay in the total, so it pulls the GPA down. An A and an F in two 3-credit classes give 12 ÷ 6 = 2.00."] },
   { question: "Do pass/fail classes affect my GPA?", answer: ["Usually not. A passing grade in a pass/fail class adds credits to your transcript but no grade points. Some schools count a failed pass/fail class as an F, so check your school's policy."] },
+  {"question": "What's my GPA with all A's and one B?", "answer": ["If every class carries the same credits, four A's and one B give (4 × 4.0 + 3.0) ÷ 5 = 3.80. If the B is in a class with more credits than the others, it pulls the GPA down further, so enter your real credits above."]},
+  {"question": "What grades do I need for a 3.5 GPA?", "answer": ["A 3.5 sits halfway between a B (3.0) and an A (4.0). With equal credits, half A's and half B's give exactly 3.5, and so do an A− and a B+ (3.7 and 3.3). To raise a cumulative GPA to 3.5, use the target planner above."]},
+  {"question": "Can I check my GPA before final grades are in?", "answer": ["Yes. Enter the grades you expect and the calculator gives you an estimate. To see what you need on a final exam to keep a grade, use the ", {"text": "final grade calculator", "to": "/final-grade-calculator/"}, "."]},
+  {"question": "Does this work for quarters or trimesters?", "answer": ["It does. Add one term for each quarter or trimester. The math is the same: quality points divided by credits, whatever the length of the term."]},
+];
+
+export const CONVERTER_FAQ: FaqItem[] = [
+  {"question": "How do I convert a 5.0 GPA to a 4.0 scale?", "answer": ["Multiply by 4 and divide by 5. A 4.5 out of 5.0 becomes 3.60. If your 5.0 scale is a weighted high school scale, recalculate from your grades instead, because the bonus points stay in the number."]},
+  {"question": "What is a 3.5 out of 5 on a 4.0 scale?", "answer": ["3.5 × 4 ÷ 5 = 2.80."]},
+  {"question": "How do I convert a 10-point CGPA to a 4.0 GPA?", "answer": ["Multiply by 4 and divide by 10, so an 8.0 becomes 3.20. Treat it as an estimate: universities that admit students from 10-point systems usually ask for the transcript or an evaluation and convert it themselves."]},
+  {"question": "Is a converted GPA official?", "answer": ["No. It's a proportional estimate. The official number is the one your school, or the receiving school's evaluator, calculates."]},
 ];
 
 export const faqAnswerText = (item: FaqItem) => item.answer.map((part) => typeof part === "string" ? part : part.text).join("");
@@ -311,6 +322,7 @@ export const LAW_FAQ: FaqItem[] = [
 
 export const PAGE_FAQS: Record<string, FaqItem[]> = {
   "/": HOME_FAQ,
+  "/gpa-converter/": CONVERTER_FAQ,
   ...Object.fromEntries(Object.values(GUIDE_CONTENT).map((g) => [g.path, g.faq as FaqItem[]])),
   "/uc-gpa-calculator/": UC_FAQ,
   "/law-school-gpa-calculator/": LAW_FAQ,

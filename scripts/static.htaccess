@@ -26,7 +26,11 @@ RewriteRule ^(.*[^/])$ /$1/ [R=301,L]
 <IfModule mod_headers.c>
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "strict-origin-when-cross-origin"
-Header always set X-Frame-Options "SAMEORIGIN"
+# Embeddable calculators (/embed/) may be framed by any site; everything else only by us.
+SetEnvIf Request_URI "^/embed/" GCL_EMBED=1
+Header always set X-Frame-Options "SAMEORIGIN" env=!GCL_EMBED
+Header always set Content-Security-Policy "frame-ancestors *" env=GCL_EMBED
+Header always set X-Robots-Tag "noindex, follow" env=GCL_EMBED
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
 <FilesMatch "\.(html|xml|txt)$">

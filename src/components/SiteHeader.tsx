@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { GUIDES, PAGES, SUPPORT, type PageInfo } from "@/lib/site";
 
 const GROUPS = [
-  { id: "gpa", label: "GPA calculators", icon: GROUP_ICONS.gpa, items: [PAGES.home, PAGES.college, PAGES.highSchool, PAGES.cumulative] },
+  { id: "gpa", label: "GPA calculators", icon: GROUP_ICONS.gpa, items: [PAGES.home, PAGES.college, PAGES.highSchool, PAGES.cumulative, PAGES.converter] },
   { id: "grade", label: "Grade calculators", icon: GROUP_ICONS.grade, items: [PAGES.grade, PAGES.finalGrade, PAGES.semester, PAGES.percentage] },
   { id: "admissions", label: "Admissions", icon: GROUP_ICONS.admissions, items: [PAGES.uc, PAGES.law] },
 ];
