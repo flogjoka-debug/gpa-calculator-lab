@@ -1,6 +1,8 @@
+import copyConverterIntro from "@/lib/copy/converterIntro";
+import copyConverterMore from "@/lib/copy/converterMore";
 import { createFileRoute } from "@tanstack/react-router";
 import { CopyBlocks, InlineText } from "@/components/Guide";
-import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine, PageToc } from "@/components/PageSeo";
 import { ConverterTool } from "@/components/gpa/ConverterTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
 import copyConverter from "@/lib/copy/converter";
@@ -11,6 +13,18 @@ import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.converter;
 const copy = PAGE_META.converter;
+
+const TOC: (readonly [string, string])[] = [
+  ["how-to-use-the-gpa-converter", "How to use the GPA converter"],
+  ["how-to-convert-a-gpa-to-a-4-0-scale", "How to convert a GPA to a 4.0 scale"],
+  ["converting-from-4-0-to-another-scale", "Converting from 4.0 to another scale"],
+  ["when-a-straight-conversion-gives-the-wrong-answer", "When a straight conversion gives the wrong answer"],
+  ["how-colleges-handle-gpas-from-other-scales", "How colleges handle GPAs from other scales"],
+  ["common-gpa-scales", "Common GPA scales"],
+  ["the-same-gpa-on-different-scales", "The same GPA on different scales"],
+  ["when-the-converter-can-mislead-you", "When the converter can mislead you"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/gpa-converter")({
   head: () => pageHead(page),
@@ -26,9 +40,12 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg"><InlineText text={copy.lead} /></p>
       <UpdatedLine page={page} />
       <ConverterTool />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyConverterIntro} />
       {first ? <CopyBlocks blocks={[first]} /> : null}
       <LoadExampleButton />
       <CopyBlocks blocks={rest} />
+      <CopyBlocks blocks={copyConverterMore} />
       <FaqSection items={CONVERTER_FAQ} />
       <CalculatorFooter page={page} />
     </main>

@@ -1,6 +1,8 @@
+import copyFinalIntro from "@/lib/copy/finalIntro";
+import copyFinalMore from "@/lib/copy/finalMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyFinal from "@/lib/copy/final";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalTool } from "@/components/gpa/FinalTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,24 @@ import { PAGES, pageHead } from "@/lib/site";
 import { FINAL_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.finalGrade;
+
+const TOC: (readonly [string, string])[] = [
+  ["what-grade-do-i-need-on-my-final", "What grade do I need on my final?"],
+  ["how-to-use-the-final-grade-calculator", "How to use the final grade calculator"],
+  ["how", "How we calculated this"],
+  ["how-to-calculate-what-you-need-on-your-final", "How to calculate what you need on your final"],
+  ["example", "Example: 85% now, aiming for 90%, final worth 40%"],
+  ["final-exam-calculator-the-score-you-need-for-each-grade", "Final exam calculator: the score you need for each grade"],
+  ["over", "What if I need more than 100%?"],
+  ["before", "Is my current grade really \"before the final\"?"],
+  ["how-the-final-s-weight-changes-the-score-you-need", "How the final's weight changes the score you need"],
+  ["when-the-final-is-part-of-a-category", "When the final is part of a category"],
+  ["when-the-final-replaces-your-lowest-test", "When the final replaces your lowest test"],
+  ["can-i-still-get-an-a-b-or-c", "Can I still get an A, B or C?"],
+  ["if-i-fail-the-final-what-will-my-grade-be", "If I fail the final, what will my grade be?"],
+  ["how-much-does-the-final-exam-affect-your-grade", "How much does the final exam affect your grade?"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/final-grade-calculator")({
   head: () => pageHead(page),
@@ -25,6 +45,8 @@ function Page() {
       </p>
       <UpdatedLine page={page} />
       <FinalTool />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyFinalIntro} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">"Current grade" means your grade before the final. If the final is worth w of your grade, everything else is worth 1 − w. The score you need is (target − current × (1 − w)) ÷ w. We round it up to one decimal, so the number we show is always enough.</p>
@@ -60,6 +82,7 @@ function Page() {
         <p className="mt-2">Most online gradebooks show your grade with the work that's been graded so far, which usually doesn't include the final. If your final is in the same category as your tests, your teacher may weight it differently. Check the syllabus before you rely on the number.</p>
       </section>
       <CopyBlocks blocks={copyFinal} />
+      <CopyBlocks blocks={copyFinalMore} />
       <FaqSection items={FINAL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

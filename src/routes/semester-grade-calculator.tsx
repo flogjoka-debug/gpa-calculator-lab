@@ -1,6 +1,8 @@
+import copySemesterIntro from "@/lib/copy/semesterIntro";
+import copySemesterMore from "@/lib/copy/semesterMore";
 import { CopyBlocks } from "@/components/Guide";
 import copySemester from "@/lib/copy/semester";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SemesterTool } from "@/components/gpa/SemesterTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,26 @@ import { PAGES, pageHead } from "@/lib/site";
 import { SEMESTER_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.semester;
+
+const TOC: (readonly [string, string])[] = [
+  ["how-to-use-the-semester-grade-calculator", "How to use the semester grade calculator"],
+  ["how", "How we calculated this"],
+  ["how-to-calculate-your-semester-grade", "How to calculate your semester grade"],
+  ["example", "Example: 90, 80 and a 70 on the exam"],
+  ["semester-exam-calculator-what-you-need-on-the-exam", "Semester exam calculator: what you need on the exam"],
+  ["gpa", "Looking for your semester GPA?"],
+  ["weightings", "Common weightings"],
+  ["weightings-schools-actually-use", "Weightings schools actually use"],
+  ["three-grading-periods-and-an-exam", "Three grading periods and an exam"],
+  ["semester-grades-without-quarters", "Semester grades without quarters"],
+  ["passing-two-of-three", "Passing two of three"],
+  ["from-semester-grade-to-transcript", "From semester grade to transcript"],
+  ["when-the-exam-can-t-get-you-there", "When the exam can't get you there"],
+  ["your-semester-grade-before-the-exam", "Your semester grade before the exam"],
+  ["how-much-the-exam-weight-matters", "How much the exam weight matters"],
+  ["from-semester-grades-to-a-year-grade", "From semester grades to a year grade"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/semester-grade-calculator")({
   head: () => pageHead(page),
@@ -25,6 +47,8 @@ function Page() {
       </p>
       <UpdatedLine page={page} />
       <SemesterTool />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copySemesterIntro} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">Each grading period and the exam has a weight. We multiply every grade by its weight, written as a decimal, and add the results. With 40/40/20, each quarter counts 0.40 and the exam 0.20.</p>
@@ -58,6 +82,7 @@ function Page() {
         <p className="mt-2">Many high schools use 40/40/20: two quarters worth 40% each and a final worth 20%. Some use 45/45/10, and some have no semester exam at all. Use Custom if your school splits the term into three grading periods or weights the exam differently.</p>
       </section>
       <CopyBlocks blocks={copySemester} />
+      <CopyBlocks blocks={copySemesterMore} />
       <FaqSection items={SEMESTER_FAQ} />
       <CalculatorFooter page={page} />
     </main>

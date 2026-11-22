@@ -1,6 +1,8 @@
+import copyLawIntro from "@/lib/copy/lawIntro";
+import copyLawMore from "@/lib/copy/lawMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyLaw from "@/lib/copy/law";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { LawCalculator } from "@/components/gpa/LawCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,22 @@ import { PAGES, pageHead } from "@/lib/site";
 import { LAW_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.law;
+
+const TOC: (readonly [string, string])[] = [
+  ["how-to-use-the-lsac-gpa-calculator", "How to use the LSAC GPA calculator"],
+  ["how", "How LSAC calculates your GPA"],
+  ["lsac-grade-conversion-chart", "LSAC grade conversion chart"],
+  ["dual", "Dual enrollment and your application cycle"],
+  ["example", "Example: one class from high school"],
+  ["why-your-lsac-gpa-can-differ-from-your-college-gpa", "Why your LSAC GPA can differ from your college GPA"],
+  ["left-out", "What LSAC leaves out"],
+  ["already", "Already in law school?"],
+  ["what-changes-for-the-2027-2028-cycle", "What changes for the 2027–2028 cycle"],
+  ["quarter-hours-converted", "Quarter hours, converted"],
+  ["example-why-your-lsac-gpa-can-be-lower-than-your-college-gpa", "Example: why your LSAC GPA can be lower than your college GPA"],
+  ["how-to-check-your-transcripts-before-you-apply", "How to check your transcripts before you apply"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/law-school-gpa-calculator")({
   head: () => pageHead(page),
@@ -25,6 +43,8 @@ function Page() {
       </p>
       <UpdatedLine page={page} />
       <LawCalculator />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyLawIntro} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How LSAC calculates your GPA</h2>
         <p className="mt-2">LSAC converts every graded undergraduate class to its own 4.33 scale: A+ is 4.33, A is 4.00 and A− is 3.67. It counts every attempt at a repeated class that shows a grade and credits, even if your college replaced the old grade. Quarter hours are converted to semester hours by multiplying by 0.67. Work after your first bachelor's degree is left out.</p>
@@ -59,6 +79,7 @@ function Page() {
         <p className="mt-2">Your law school grades don't count toward the LSAC GPA. Law schools set their own grading scales, often with a curve, so this calculator won't match your JD GPA. Your school's registrar or student handbook explains how it's calculated.</p>
       </section>
       <CopyBlocks blocks={copyLaw} />
+      <CopyBlocks blocks={copyLawMore} />
       <FaqSection items={LAW_FAQ} />
       <CalculatorFooter page={page} />
     </main>

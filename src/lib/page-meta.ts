@@ -65,5 +65,19 @@ export const PAGE_META = {
   "highschoolIntro": {},
   "highschoolMore": {},
   "cumulativeIntro": {},
-  "cumulativeMore": {}
+  "cumulativeMore": {},
+  "gradeIntro": {},
+  "gradeMore": {},
+  "finalIntro": {},
+  "finalMore": {},
+  "semesterIntro": {},
+  "semesterMore": {},
+  "percentageIntro": {},
+  "percentageMore": {},
+  "ucIntro": {},
+  "ucMore": {},
+  "lawIntro": {},
+  "lawMore": {},
+  "converterIntro": {},
+  "converterMore": {}
 } satisfies Record<string, PageMeta>;

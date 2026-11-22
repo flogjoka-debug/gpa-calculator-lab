@@ -17,6 +17,8 @@ export const CONVERTER_FAQ: FaqItem[] = [
   {"question": "What is a 3.5 out of 5 on a 4.0 scale?", "answer": ["3.5 × 4 ÷ 5 = 2.80."]},
   {"question": "How do I convert a 10-point CGPA to a 4.0 GPA?", "answer": ["Multiply by 4 and divide by 10, so an 8.0 becomes 3.20. Treat it as an estimate: universities that admit students from 10-point systems usually ask for the transcript or an evaluation and convert it themselves."]},
   {"question": "Is a converted GPA official?", "answer": ["No. It's a proportional estimate. The official number is the one your school, or the receiving school's evaluator, calculates."]},
+  {"question": "How do I convert a GPA from a 4.5 scale?", "answer": ["Multiply by 4 and divide by 4.5. A 4.1 on a 4.5 scale is 3.64 on a 4.0 scale. If the 4.5 scale is a weighted high school scale, recalculate from your grades instead."]},
+  {"question": "Can I convert a percentage average to a 4.0 GPA?", "answer": ["Not with this formula. Find the letter first with the ", {"text": "percentage to letter grade calculator", "to": "/percentage-to-letter-grade/"}, ", then use that letter's grade points."]}
 ];
 
 export const faqAnswerText = (item: FaqItem) => item.answer.map((part) => typeof part === "string" ? part : part.text).join("");
@@ -179,7 +181,11 @@ export const GRADE_FAQ: FaqItem[] = [
       },
       "."
     ]
-  }
+  },
+  {"question": "What grade is 12 out of 15?", "answer": ["12 ÷ 15 = 0.80, or 80%. On the common scale that's a B−, and on a 10-point scale it's a B. Use the ", {"text": "percentage to letter grade calculator", "to": "/percentage-to-letter-grade/"}, " to check your school's cutoffs."]},
+  {"question": "How do I calculate my grade if I don't know the weights?", "answer": ["Check the syllabus or your school's online gradebook first; most list the categories and their weights. If the class simply adds up points, use the Points tab. Guessing equal weights can be far off when tests count much more than homework."]},
+  {"question": "Does extra credit count?", "answer": ["Extra credit usually adds to the points you earned without adding to the points possible. In the Points tab, add it to a score's earned points and leave its possible points as they were."]},
+  {"question": "Is a D a passing grade?", "answer": ["At many schools a D passes the class and earns credit. Some majors and prerequisites require a C or better, so check your program's rules before you count on it."]}
 ];
 
 export const FINAL_FAQ: FaqItem[] = [
@@ -206,7 +212,11 @@ export const FINAL_FAQ: FaqItem[] = [
     "answer": [
       "Teachers sometimes drop the lowest score, round, or weight the final differently. Use the exact weight and current grade from your gradebook, then check the syllabus for rounding rules."
     ]
-  }
+  },
+  {"question": "How do I calculate my grade after the final?", "answer": ["Multiply your current grade by the part of the course it covers, then add your final score times the final's weight. With an 85% before a final worth 30% and a 78% on it: 85 × 0.7 + 78 × 0.3 = 82.9%."]},
+  {"question": "Is 20% of your grade a lot for a final?", "answer": ["It's common, and it's enough to move you up to about a letter grade. With an 85% now, scores from 35% to 85% on a 20% final leave you anywhere from 75% to 85%."]},
+  {"question": "If I have a 95 and fail the final, what will my grade be?", "answer": ["It depends on the final's weight. With a 95 and a final worth 20%, a 50% on the final gives 95 × 0.8 + 50 × 0.2 = 86%, and a zero gives 76%."]},
+  {"question": "Can I get an A if I need more than 100% on the final?", "answer": ["Not on the exam alone. Ask whether there's extra credit, a curve or a way to replace a low score, and set a realistic target with the calculator."]}
 ];
 
 export const SEMESTER_FAQ: FaqItem[] = [
@@ -233,7 +243,10 @@ export const SEMESTER_FAQ: FaqItem[] = [
     "answer": [
       "Pick \"2 quarters, no exam (50/50)\" or set the exam weight to 0. The semester grade is then the weighted average of your quarters."
     ]
-  }
+  },
+  {"question": "How do you calculate a semester grade without the final?", "answer": ["Use your quarter grades alone: multiply each by its weight, add them and divide by the weights you used. Quarters of 90 and 80 at 40% each give (36 + 32) ÷ 0.8 = 85."]},
+  {"question": "What is a semester average?", "answer": ["It's your grade for the whole semester: the weighted average of your grading periods and, if your school has one, the semester exam."]},
+  {"question": "How do I calculate a year grade from two semesters?", "answer": ["If both semesters count equally, average them: an 88 and an 82 make an 85. If your school posts each semester separately, your transcript keeps two grades instead of one."]}
 ];
 
 export const PERCENTAGE_FAQ: FaqItem[] = [
@@ -260,7 +273,10 @@ export const PERCENTAGE_FAQ: FaqItem[] = [
     "answer": [
       "Many schools treat 60% as the lowest passing grade, but some courses and programs require 70% or more. Check your syllabus."
     ]
-  }
+  },
+  {"question": "What percentage is a B?", "answer": ["On the common scale, a B is 83 to under 87, a B+ is 87 to under 90 and a B− is 80 to under 83. On a straight 10-point scale, any score from 80 to 89.99 is a B."]},
+  {"question": "What percentage is an A?", "answer": ["On the common scale, an A is 93 and above and an A− is 90 to under 93. On a 10-point scale, 90 and above is an A."]},
+  {"question": "What letter grade is an 87?", "answer": ["A B+ on the common scale and a B on a 10-point scale."]}
 ];
 
 export const UC_FAQ: FaqItem[] = [
@@ -293,7 +309,10 @@ export const UC_FAQ: FaqItem[] = [
     "answer": [
       "Yes. A D is worth 1 point, but a D in an honors course doesn't earn an honors point."
     ]
-  }
+  },
+  {"question": "Does UC count 12th grade?", "answer": ["Not in the GPA. UC's GPA covers A-G courses from the summer after 9th grade through the summer after 11th grade. Your senior-year courses still matter in the rest of your application."]},
+  {"question": "How many honors points can count in the UC GPA?", "answer": ["Up to 8 in total, with no more than 4 from 10th grade. Each semester of an honors course UC accepts, with an A, B or C, earns one point."]},
+  {"question": "Is a 4.0 UC GPA good?", "answer": ["It clears the 3.0 minimum for California residents and the 3.4 for nonresidents. Admission is competitive at many campuses, so treat the minimum as the starting line, not the target."]}
 ];
 
 export const LAW_FAQ: FaqItem[] = [
@@ -326,7 +345,10 @@ export const LAW_FAQ: FaqItem[] = [
     "answer": [
       "No. LSAC calculates the official number from your transcripts after you register for the Credential Assembly Service. Use this estimate to check your math before you apply."
     ]
-  }
+  },
+  {"question": "Does an A+ help my LSAC GPA?", "answer": ["Yes. LSAC counts an A+ as 4.33, even if your college caps it at 4.0, so each A+ raises the LSAC GPA a little above your college GPA."]},
+  {"question": "Do retaken classes count twice for LSAC?", "answer": ["Each graded attempt counts once, so a class you took twice adds two grades. LSAC counts the earlier grade even when your college replaced it."]},
+  {"question": "Do AP credits count in the LSAC GPA?", "answer": ["No. AP test credit has no grade, so LSAC leaves it out."]}
 ];
 
 export const PAGE_FAQS: Record<string, FaqItem[]> = {

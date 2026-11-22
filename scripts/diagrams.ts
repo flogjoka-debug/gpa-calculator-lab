@@ -45,6 +45,17 @@ function pairBars(rows: [string, number, number][], max: number, legend: [string
       + `<rect x="${x0}" y="${y2}" width="${(b / max) * w}" height="${barH}" rx="6" fill="${C.primary}"/>` + t(x0 + (b / max) * w + 10, y2 + barH - 4, b.toFixed(1), 17, C.text, 650);
   }).join("");
 }
+/** One horizontal stacked bar of [label, value, fill] parts on a 0..100 scale, with labels under each part. */
+function stack(parts: [string, number, string][], y = 220, x0 = 64, w = 1072) {
+  let x = x0;
+  return parts.map(([label, v, fill]) => {
+    const pw = (v / 100) * w, out = `<rect x="${x}" y="${y}" width="${pw}" height="84" fill="${fill}"/>`
+      + t(x + pw / 2, y + 52, v.toFixed(v % 1 ? 1 : 0), 30, fill === C.primary ? "#FFFFFF" : C.text, 650, "middle")
+      + t(x + pw / 2, y + 120, label, 20, C.muted, 500, "middle");
+    x += pw; return out;
+  }).join("") + `<rect x="${x}" y="${y}" width="${x0 + w - x}" height="84" fill="${C.bg}"/>` + `<rect x="${x0}" y="${y}" width="${w}" height="84" rx="14" fill="none" stroke="${C.divider}" stroke-width="2"/>`;
+}
+
 const diagrams: Record<string, string> = {
   "average-gpa-1990-2019": frame(
     "Average U.S. high school GPA",
@@ -172,6 +183,134 @@ const diagrams: Record<string, string> = {
     bars([{ label: "15", value: 3.5, note: "credits so far" }, { label: "30", value: 3.33, note: "credits so far" }, { label: "60", value: 3.2, note: "credits so far" }, { label: "90", value: 3.14, note: "credits so far" }, { label: "120", value: 3.11, note: "credits so far" }], 3.6,
       { x0: 140, y0: 190, w: 920, h: 290, fmt: (v) => v.toFixed(2) }),
     "Math: (3.0 × credits so far + 4.0 × 15) ÷ (credits so far + 15)"),
+  "calc-grade-weighted-categories": frame(
+    "How weighted categories add up",
+    "Tests 82% (50%), homework 95% (20%), labs 88% (30%)",
+    stack([["Tests: 82 × 0.5", 41, C.primary], ["Homework: 95 × 0.2", 19, C.soft], ["Labs: 88 × 0.3", 26.4, C.accent]], 200)
+      + box(64, 400, 1072, 110, "Current grade", "41 + 19 + 26.4 = 86.4%", true),
+    "The empty end of the bar is the 13.6 points lost across the three categories."),
+  "calc-grade-missing-zero": frame(
+    "What one missing assignment costs",
+    "Ten equal homework assignments, homework worth 20% of the grade",
+    Array.from({ length: 10 }, (_, i) => {
+      const x = 64 + i * 107, miss = i === 9;
+      return `<rect x="${x}" y="190" width="95" height="95" rx="12" fill="${miss ? "#FFFFFF" : C.soft}" stroke="${miss ? C.primary : "none"}" stroke-width="3" ${miss ? 'stroke-dasharray="8 6"' : ""}/>`
+        + t(x + 47, 248, miss ? "0" : "100", 26, C.text, 650, "middle");
+    }).join("")
+      + box(64, 330, 520, 110, "Homework average", "900 ÷ 10 = 90%") + box(616, 330, 520, 110, "Effect on the class grade", "10 × 0.2 = −2 points", true),
+    "Turning in the missing assignment, even for partial credit, wins most of those points back."),
+  "calc-final-needed-by-target": frame(
+    "Score needed on the final for each grade",
+    "Current grade 85%, final worth 30%",
+    bars([{ label: "A (90%)", value: 101.7, note: "with extra credit only" }, { label: "B (80%)", value: 68.3, note: "possible" }, { label: "C (70%)", value: 35, note: "possible" }, { label: "D (60%)", value: 1.7, note: "possible" }], 112,
+      { x0: 140, y0: 200, w: 920, h: 270, fmt: (v) => `${v.toFixed(1)}%` })
+      + `<line x1="128" y1="${200 + 270 - (100 / 112) * 270}" x2="1072" y2="${200 + 270 - (100 / 112) * 270}" stroke="${C.primary}" stroke-width="2" stroke-dasharray="8 6"/>`
+      + t(1072, 200 + 270 - (100 / 112) * 270 - 10, "100%", 18, C.primary, 650, "end"),
+    "Math: (grade you want − 85 × 0.7) ÷ 0.3"),
+  "calc-final-weight-effect": frame(
+    "The same 60% final, at different weights",
+    "Current grade 85%; final grade after scoring 60% on the final",
+    bars([{ label: "10%", value: 82.5, note: "final weight" }, { label: "20%", value: 80, note: "final weight" }, { label: "30%", value: 77.5, note: "final weight" }, { label: "40%", value: 75, note: "final weight" }], 90,
+      { x0: 140, y0: 200, w: 920, h: 270, fmt: (v) => `${v.toFixed(1)}%` }),
+    "Math: 85 × (1 − weight) + 60 × weight"),
+  "calc-semester-weights": frame(
+    "How a 40/40/20 semester grade adds up",
+    "Quarter 1: 90. Quarter 2: 80. Semester exam: 70",
+    stack([["Quarter 1: 90 × 0.4", 36, C.primary], ["Quarter 2: 80 × 0.4", 32, C.soft], ["Exam: 70 × 0.2", 14, C.accent]], 200)
+      + box(64, 400, 1072, 110, "Semester grade", "36 + 32 + 14 = 82", true),
+    "Before the exam, the quarters alone average 85."),
+  "calc-semester-exam-weight": frame(
+    "How much the exam weight matters",
+    "Quarters of 90 and 80, then a 60 on the semester exam",
+    bars([{ label: "10%", value: 82.5, note: "exam weight" }, { label: "20%", value: 80, note: "exam weight" }, { label: "25%", value: 78.75, note: "exam weight" }], 90,
+      { x0: 200, y0: 200, w: 800, h: 270, fmt: (v) => v.toFixed(1) }),
+    "The quarters split the rest of the weight equally."),
+  "calc-percent-scale-band": frame(
+    "The common letter grade scale",
+    "Each letter runs from its cutoff up to the next one",
+    (() => {
+      const cuts: [string, number, number][] = [["D−", 60, 63], ["D", 63, 67], ["D+", 67, 70], ["C−", 70, 73], ["C", 73, 77], ["C+", 77, 80], ["B−", 80, 83], ["B", 83, 87], ["B+", 87, 90], ["A−", 90, 93], ["A", 93, 100]];
+      const x0 = 64, w = 1072, sx = (v: number) => x0 + ((v - 60) / 40) * w;
+      const shade = (l: string) => (l.startsWith("A") ? C.primary : l.startsWith("B") ? C.soft : l.startsWith("C") ? C.accent : C.bg);
+      return cuts.map(([l, a, b]) => `<rect x="${sx(a)}" y="210" width="${sx(b) - sx(a)}" height="120" fill="${shade(l)}" stroke="#FFFFFF" stroke-width="3"/>`
+        + t((sx(a) + sx(b)) / 2, 280, l, 28, l.startsWith("A") ? "#FFFFFF" : C.text, 650, "middle")
+        + t(sx(a), 364, String(a), 18, C.muted, 500, "middle")).join("")
+        + t(sx(100), 364, "100", 18, C.muted, 500, "middle")
+        + t(64, 440, "Below 60 is an F. On a straight 10-point scale, 90+ is an A, 80–89 a B, 70–79 a C, 60–69 a D.", 22, C.text);
+    })(),
+    "Cutoffs vary by school. Your syllabus has the final say."),
+  "calc-percent-points-to-gpa": frame(
+    "From a test score to GPA points",
+    "One test on its own, step by step",
+    [["Points", "42 of 50"], ["Percentage", "84%"], ["Letter", "B"], ["Grade points", "3.0"]].map(([l, v], i) => {
+      const x = 64 + i * 280;
+      return `<rect x="${x}" y="200" width="236" height="180" rx="18" fill="${i === 3 ? C.accent : C.bg}" stroke="${C.divider}"/>`
+        + t(x + 118, 250, l, 22, C.muted, 500, "middle") + t(x + 118, 330, v, 44, C.text, 650, "middle")
+        + (i < 3 ? `<path d="M${x + 246} 290 l22 0 m-8 -9 l9 9 l-9 9" stroke="${C.primary}" stroke-width="3" fill="none"/>` : "");
+    }).join("")
+      + t(64, 450, "Only the letter for the whole class goes into your GPA, not the letter for one test.", 24, C.text),
+    "42 ÷ 50 = 0.84. On the common scale, 83 to under 87 is a B, worth 3.0."),
+  "calc-uc-honors-cap": frame(
+    "UC counts at most 8 honors points",
+    "Ten honors semesters with an A or B: five in 10th grade, five in 11th",
+    [["10th grade", 5, 4], ["11th grade", 5, 4]].map(([l, n, keep], r) => {
+      const y = 200 + Number(r) * 130;
+      return t(64, y + 56, String(l), 26, C.text, 650)
+        + Array.from({ length: Number(n) }, (_, i) => {
+          const x = 280 + i * 120, on = i < Number(keep);
+          return `<rect x="${x}" y="${y}" width="100" height="90" rx="14" fill="${on ? C.primary : "#FFFFFF"}" stroke="${on ? "none" : C.divider}" stroke-width="2" ${on ? "" : 'stroke-dasharray="8 6"'}/>`
+            + t(x + 50, y + 56, on ? "+1" : "cut", 26, on ? "#FFFFFF" : C.muted, 650, "middle");
+        }).join("");
+    }).join("")
+      + box(64, 452, 1072, 110, "Honors points that count", "4 from 10th grade + 4 from 11th grade = 8", true),
+    "10th grade can add no more than 4. The total can't pass 8."),
+  "calc-uc-gpa-steps": frame(
+    "How UC calculates your GPA",
+    "From transcript to capped UC GPA in four steps",
+    [["1", "Keep A-G semesters", "summer after 9th to summer after 11th grade"], ["2", "Drop plus and minus", "A = 4, B = 3, C = 2, D = 1"], ["3", "Add honors points", "up to 8, no more than 4 from 10th grade"], ["4", "Divide, don't round", "grade + honors points ÷ semester grades"]].map(([n, h, d], i) => {
+      const y = 180 + i * 96;
+      return `<circle cx="100" cy="${y + 36}" r="30" fill="${C.primary}"/>` + t(100, y + 46, n, 28, "#FFFFFF", 650, "middle")
+        + t(156, y + 30, h, 28, C.text, 650) + t(156, y + 62, d, 22, C.muted);
+    }).join(""),
+    "Source: UC Admissions, GPA requirement."),
+  "calc-law-gpa-gap": frame(
+    "Same transcript, two GPAs",
+    "A+, A, an F retaken for a B; every class 3 credits",
+    box(64, 190, 520, 290, "College GPA", "33 ÷ 9 = 3.67")
+      + t(92, 280, "A+ capped at 4.0", 24, C.text) + t(92, 318, "F replaced by the retake", 24, C.text) + t(92, 356, "3 classes count", 24, C.text)
+      + box(616, 190, 520, 290, "LSAC GPA", "33.99 ÷ 12 = 2.83", true)
+      + t(644, 280, "A+ worth 4.33", 24, C.text) + t(644, 318, "F counts as 0.00", 24, C.text) + t(644, 356, "all 4 grades count", 24, C.text),
+    "LSAC counts every graded attempt, even when your college replaced it."),
+  "calc-law-scale-compare": frame(
+    "LSAC's 4.33 scale vs. a common college scale",
+    "Where the two scales differ at the top",
+    [["", "LSAC", "Common college scale"], ["A+", "4.33", "4.0 (4.33 at some)"], ["A", "4.00", "4.0"], ["A−", "3.67", "3.7 or 3.67"], ["B+", "3.33", "3.3 or 3.33"]]
+      .map((row, r) => row.map((cell, c) => {
+        const x = 64 + [0, 250, 560][c]!, wd = [238, 298, 512][c]!, y = 180 + r * 74;
+        return `<rect x="${x}" y="${y}" width="${wd}" height="62" rx="12" fill="${r === 0 ? C.accent : c === 1 ? "#E6F6F1" : C.bg}" stroke="${C.divider}"/>`
+          + t(x + wd / 2, y + 41, cell, 26, C.text, r === 0 || c === 0 ? 650 : 500, "middle");
+      }).join("")).join(""),
+    "Source: LSAC, Transcript summarization. College values vary by school."),
+  "calc-converter-proportional": frame(
+    "One GPA on three scales",
+    "A proportional conversion keeps the same place on each scale",
+    [["4.0 scale", 4, 3.6], ["5.0 scale", 5, 4.5], ["10-point scale", 10, 9]].map(([l, max, v], i) => {
+      const y = 200 + i * 100, x0 = 300, w = 760, px = x0 + (Number(v) / Number(max)) * w;
+      return t(64, y + 34, String(l), 24, C.text, 650)
+        + `<rect x="${x0}" y="${y + 10}" width="${w}" height="30" rx="15" fill="${C.bg}" stroke="${C.divider}"/>`
+        + `<rect x="${x0}" y="${y + 10}" width="${px - x0}" height="30" rx="15" fill="${C.soft}"/>`
+        + `<circle cx="${px}" cy="${y + 25}" r="18" fill="${C.primary}"/>`
+        + t(px, y + 76, `${Number(v).toFixed(2)} of ${max}`, 20, C.text, 650, "middle");
+    }).join(""),
+    "Math: your GPA × target scale ÷ your scale. An estimate, not an official conversion."),
+  "calc-converter-weighted-trap": frame(
+    "Why a weighted GPA doesn't convert cleanly",
+    "A 4.5 on a weighted 5.0 high school scale",
+    box(64, 190, 520, 220, "Divide the total", "4.5 × 4 ÷ 5 = 3.60")
+      + t(92, 290, "Bonus points stay inside the number,", 22, C.text) + t(92, 322, "scaled down with everything else.", 22, C.text)
+      + box(616, 190, 520, 220, "Recalculate from your grades", "Unweighted GPA", true)
+      + t(644, 290, "Take each class at its base value", 22, C.text) + t(644, 322, "(A = 4.0) and leave out the bonus.", 22, C.text),
+    "For a weighted GPA, use the high school GPA calculator instead of the converter."),
 };
 
 for (const [name, svg] of Object.entries(diagrams)) {

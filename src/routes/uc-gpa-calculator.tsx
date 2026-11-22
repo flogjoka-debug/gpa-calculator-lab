@@ -1,6 +1,8 @@
+import copyUcIntro from "@/lib/copy/ucIntro";
+import copyUcMore from "@/lib/copy/ucMore";
 import { CopyBlocks } from "@/components/Guide";
 import copyUc from "@/lib/copy/uc";
-import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine, PageToc } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { UcCalculator } from "@/components/gpa/UcCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -9,6 +11,21 @@ import { PAGES, pageHead } from "@/lib/site";
 import { UC_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.uc;
+
+const TOC: (readonly [string, string])[] = [
+  ["how-to-use-the-uc-gpa-calculator", "How to use the UC GPA calculator"],
+  ["how", "How UC calculates your GPA"],
+  ["how-to-calculate-your-uc-gpa-step-by-step", "How to calculate your UC GPA step by step"],
+  ["example", "Example: 12 A's, all honors"],
+  ["honors", "Which classes earn honors points"],
+  ["minimum-gpa-for-the-university-of-california", "Minimum GPA for the University of California"],
+  ["official", "Why this isn't your official UC GPA"],
+  ["uc-gpa-rules-at-a-glance", "UC GPA rules at a glance"],
+  ["example-a-full-10th-and-11th-grade-transcript", "Example: a full 10th and 11th grade transcript"],
+  ["why-your-school-gpa-and-your-uc-gpa-differ", "Why your school GPA and your UC GPA differ"],
+  ["report-your-grades-exactly-as-they-appear", "Report your grades exactly as they appear"],
+  ["faq", "FAQ"],
+];
 
 export const Route = createFileRoute("/uc-gpa-calculator")({
   head: () => pageHead(page),
@@ -25,6 +42,8 @@ function Page() {
       </p>
       <UpdatedLine page={page} />
       <UcCalculator />
+      <PageToc items={TOC} />
+      <CopyBlocks blocks={copyUcIntro} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How UC calculates your GPA</h2>
         <p className="mt-2">
@@ -62,6 +81,7 @@ function Page() {
         <p className="mt-2">UC calculates the official number from the grades you report in your application. Use this result to check your math and to see which honors points are being cut by the limits.</p>
       </section>
       <CopyBlocks blocks={copyUc} />
+      <CopyBlocks blocks={copyUcMore} />
       <FaqSection items={UC_FAQ} />
       <CalculatorFooter page={page} />
     </main>
