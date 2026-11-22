@@ -44,8 +44,8 @@ export const PAGE_META = {
   "homeTarget": {},
   "converter": {
     "title": "GPA Converter – Convert Your GPA to a 4.0 Scale",
-    "meta": "Convert a GPA from a 4.5, 5.0, 10 or 20-point scale to the 4.0 scale, or back. See the formula, worked examples and when the result is only an estimate.",
-    "lead": "Convert a GPA from any scale to the 4.0 scale, or from 4.0 to another one. Enter your GPA and the top of your school's scale, and you'll get the converted GPA with the math shown."
+    "meta": "Free GPA converter: turn a GPA on a 4.5, 5.0, 10 or 20-point scale into a 4.0 GPA, or back, with the formula, worked examples and when it's only an estimate.",
+    "lead": "Use this GPA converter to move a GPA from any scale to the 4.0 scale, or from 4.0 to another one. Enter your GPA and the top of your school's scale, and you'll get the converted GPA with the math shown."
   },
   "forSchools": {
     "title": "Free GPA Calculator for Your School Website – GPA Calculator Lab",
