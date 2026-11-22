@@ -10,33 +10,206 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CollegeGpaCalculatorRouteImport } from './routes/college-gpa-calculator'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CumulativeGpaCalculatorRouteImport } from './routes/cumulative-gpa-calculator'
+import { Route as FinalGradeCalculatorRouteImport } from './routes/final-grade-calculator'
+import { Route as GradeCalculatorRouteImport } from './routes/grade-calculator'
+import { Route as HighSchoolGpaCalculatorRouteImport } from './routes/high-school-gpa-calculator'
+import { Route as LawSchoolGpaCalculatorRouteImport } from './routes/law-school-gpa-calculator'
+import { Route as MethodologyRouteImport } from './routes/methodology'
+import { Route as PercentageToLetterGradeRouteImport } from './routes/percentage-to-letter-grade'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as SemesterGradeCalculatorRouteImport } from './routes/semester-grade-calculator'
+import { Route as UcGpaCalculatorRouteImport } from './routes/uc-gpa-calculator'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollegeGpaCalculatorRoute = CollegeGpaCalculatorRouteImport.update({
+  id: '/college-gpa-calculator',
+  path: '/college-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CumulativeGpaCalculatorRoute = CumulativeGpaCalculatorRouteImport.update({
+  id: '/cumulative-gpa-calculator',
+  path: '/cumulative-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FinalGradeCalculatorRoute = FinalGradeCalculatorRouteImport.update({
+  id: '/final-grade-calculator',
+  path: '/final-grade-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GradeCalculatorRoute = GradeCalculatorRouteImport.update({
+  id: '/grade-calculator',
+  path: '/grade-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HighSchoolGpaCalculatorRoute = HighSchoolGpaCalculatorRouteImport.update({
+  id: '/high-school-gpa-calculator',
+  path: '/high-school-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LawSchoolGpaCalculatorRoute = LawSchoolGpaCalculatorRouteImport.update({
+  id: '/law-school-gpa-calculator',
+  path: '/law-school-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MethodologyRoute = MethodologyRouteImport.update({
+  id: '/methodology',
+  path: '/methodology',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PercentageToLetterGradeRoute = PercentageToLetterGradeRouteImport.update({
+  id: '/percentage-to-letter-grade',
+  path: '/percentage-to-letter-grade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SemesterGradeCalculatorRoute = SemesterGradeCalculatorRouteImport.update({
+  id: '/semester-grade-calculator',
+  path: '/semester-grade-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UcGpaCalculatorRoute = UcGpaCalculatorRouteImport.update({
+  id: '/uc-gpa-calculator',
+  path: '/uc-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/college-gpa-calculator': typeof CollegeGpaCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
+  '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/grade-calculator': typeof GradeCalculatorRoute
+  '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
+  '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/methodology': typeof MethodologyRoute
+  '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
+  '/privacy': typeof PrivacyRoute
+  '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/college-gpa-calculator': typeof CollegeGpaCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
+  '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/grade-calculator': typeof GradeCalculatorRoute
+  '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
+  '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/methodology': typeof MethodologyRoute
+  '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
+  '/privacy': typeof PrivacyRoute
+  '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/college-gpa-calculator': typeof CollegeGpaCalculatorRoute
+  '/contact': typeof ContactRoute
+  '/cumulative-gpa-calculator': typeof CumulativeGpaCalculatorRoute
+  '/final-grade-calculator': typeof FinalGradeCalculatorRoute
+  '/grade-calculator': typeof GradeCalculatorRoute
+  '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
+  '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/methodology': typeof MethodologyRoute
+  '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
+  '/privacy': typeof PrivacyRoute
+  '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/college-gpa-calculator'
+    | '/contact'
+    | '/cumulative-gpa-calculator'
+    | '/final-grade-calculator'
+    | '/grade-calculator'
+    | '/high-school-gpa-calculator'
+    | '/law-school-gpa-calculator'
+    | '/methodology'
+    | '/percentage-to-letter-grade'
+    | '/privacy'
+    | '/semester-grade-calculator'
+    | '/uc-gpa-calculator'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/college-gpa-calculator'
+    | '/contact'
+    | '/cumulative-gpa-calculator'
+    | '/final-grade-calculator'
+    | '/grade-calculator'
+    | '/high-school-gpa-calculator'
+    | '/law-school-gpa-calculator'
+    | '/methodology'
+    | '/percentage-to-letter-grade'
+    | '/privacy'
+    | '/semester-grade-calculator'
+    | '/uc-gpa-calculator'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/college-gpa-calculator'
+    | '/contact'
+    | '/cumulative-gpa-calculator'
+    | '/final-grade-calculator'
+    | '/grade-calculator'
+    | '/high-school-gpa-calculator'
+    | '/law-school-gpa-calculator'
+    | '/methodology'
+    | '/percentage-to-letter-grade'
+    | '/privacy'
+    | '/semester-grade-calculator'
+    | '/uc-gpa-calculator'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CollegeGpaCalculatorRoute: typeof CollegeGpaCalculatorRoute
+  ContactRoute: typeof ContactRoute
+  CumulativeGpaCalculatorRoute: typeof CumulativeGpaCalculatorRoute
+  FinalGradeCalculatorRoute: typeof FinalGradeCalculatorRoute
+  GradeCalculatorRoute: typeof GradeCalculatorRoute
+  HighSchoolGpaCalculatorRoute: typeof HighSchoolGpaCalculatorRoute
+  LawSchoolGpaCalculatorRoute: typeof LawSchoolGpaCalculatorRoute
+  MethodologyRoute: typeof MethodologyRoute
+  PercentageToLetterGradeRoute: typeof PercentageToLetterGradeRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SemesterGradeCalculatorRoute: typeof SemesterGradeCalculatorRoute
+  UcGpaCalculatorRoute: typeof UcGpaCalculatorRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +221,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/college-gpa-calculator': {
+      id: '/college-gpa-calculator'
+      path: '/college-gpa-calculator'
+      fullPath: '/college-gpa-calculator'
+      preLoaderRoute: typeof CollegeGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cumulative-gpa-calculator': {
+      id: '/cumulative-gpa-calculator'
+      path: '/cumulative-gpa-calculator'
+      fullPath: '/cumulative-gpa-calculator'
+      preLoaderRoute: typeof CumulativeGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/final-grade-calculator': {
+      id: '/final-grade-calculator'
+      path: '/final-grade-calculator'
+      fullPath: '/final-grade-calculator'
+      preLoaderRoute: typeof FinalGradeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/grade-calculator': {
+      id: '/grade-calculator'
+      path: '/grade-calculator'
+      fullPath: '/grade-calculator'
+      preLoaderRoute: typeof GradeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/high-school-gpa-calculator': {
+      id: '/high-school-gpa-calculator'
+      path: '/high-school-gpa-calculator'
+      fullPath: '/high-school-gpa-calculator'
+      preLoaderRoute: typeof HighSchoolGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/law-school-gpa-calculator': {
+      id: '/law-school-gpa-calculator'
+      path: '/law-school-gpa-calculator'
+      fullPath: '/law-school-gpa-calculator'
+      preLoaderRoute: typeof LawSchoolGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/methodology': {
+      id: '/methodology'
+      path: '/methodology'
+      fullPath: '/methodology'
+      preLoaderRoute: typeof MethodologyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/percentage-to-letter-grade': {
+      id: '/percentage-to-letter-grade'
+      path: '/percentage-to-letter-grade'
+      fullPath: '/percentage-to-letter-grade'
+      preLoaderRoute: typeof PercentageToLetterGradeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/semester-grade-calculator': {
+      id: '/semester-grade-calculator'
+      path: '/semester-grade-calculator'
+      fullPath: '/semester-grade-calculator'
+      preLoaderRoute: typeof SemesterGradeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uc-gpa-calculator': {
+      id: '/uc-gpa-calculator'
+      path: '/uc-gpa-calculator'
+      fullPath: '/uc-gpa-calculator'
+      preLoaderRoute: typeof UcGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CollegeGpaCalculatorRoute: CollegeGpaCalculatorRoute,
+  ContactRoute: ContactRoute,
+  CumulativeGpaCalculatorRoute: CumulativeGpaCalculatorRoute,
+  FinalGradeCalculatorRoute: FinalGradeCalculatorRoute,
+  GradeCalculatorRoute: GradeCalculatorRoute,
+  HighSchoolGpaCalculatorRoute: HighSchoolGpaCalculatorRoute,
+  LawSchoolGpaCalculatorRoute: LawSchoolGpaCalculatorRoute,
+  MethodologyRoute: MethodologyRoute,
+  PercentageToLetterGradeRoute: PercentageToLetterGradeRoute,
+  PrivacyRoute: PrivacyRoute,
+  SemesterGradeCalculatorRoute: SemesterGradeCalculatorRoute,
+  UcGpaCalculatorRoute: UcGpaCalculatorRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,3 +1,5 @@
+Read docs/PROJECT_BRIEF.md before changing anything. All user-facing copy comes from the phase prompt. Never invent copy, ratings or sources.
+
 <!-- LOVABLE:BEGIN -->
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting
