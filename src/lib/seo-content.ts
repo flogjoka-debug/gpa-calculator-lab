@@ -126,8 +126,131 @@ export const CUMULATIVE_FAQ: FaqItem[] = [
   }
 ];
 
+export const GRADE_FAQ: FaqItem[] = [
+  {
+    "question": "How much will one assignment change my grade?",
+    "answer": [
+      "In a points-based class, it depends on how many points are already in the gradebook. With 48 out of 60 points (80%), scoring 10 out of 20 on a quiz brings you to 58 out of 80, which is 72.5%. Later in the term, the same quiz would move your grade less."
+    ]
+  },
+  {
+    "question": "What's the difference between points-based and weighted grading?",
+    "answer": [
+      "With points, a 100-point test counts five times as much as a 20-point quiz. With weighted categories, each category gets its share of the grade, so ten small quizzes can count as much as one big test."
+    ]
+  },
+  {
+    "question": "Can I use this for a college class?",
+    "answer": [
+      "Yes. Use the weights from your course syllabus. The math is the same in high school and college."
+    ]
+  },
+  {
+    "question": "What should I do next with my grade?",
+    "answer": [
+      "If a final exam is coming up, ",
+      {
+        "text": "use this grade to plan your final",
+        "to": "/final-grade-calculator/"
+      },
+      ". To see the letter for a percentage on your teacher's scale, ",
+      {
+        "text": "convert a percentage to a letter grade",
+        "to": "/percentage-to-letter-grade/"
+      },
+      "."
+    ]
+  }
+];
+
+export const FINAL_FAQ: FaqItem[] = [
+  {
+    "question": "What do I need on my final to pass?",
+    "answer": [
+      "Set the grade you want to your class's passing cutoff, often 60% or 70%. With an 85% current grade and a final worth 40%, passing at 60% takes a 22.5% on the final."
+    ]
+  },
+  {
+    "question": "What happens if I get a 0 on my final?",
+    "answer": [
+      "Your course grade becomes your current grade times 1 minus the final's weight. With 85% and a final worth 40%, that's 85 × 0.60 = 51%."
+    ]
+  },
+  {
+    "question": "How do I find my final exam's weight?",
+    "answer": [
+      "Your syllabus usually lists it. If the final counts as one of your tests instead of its own category, use the Grade Calculator to test a few possible final scores instead."
+    ]
+  },
+  {
+    "question": "Why is my teacher's number different from this result?",
+    "answer": [
+      "Teachers sometimes drop the lowest score, round, or weight the final differently. Use the exact weight and current grade from your gradebook, then check the syllabus for rounding rules."
+    ]
+  }
+];
+
+export const SEMESTER_FAQ: FaqItem[] = [
+  {
+    "question": "Is a semester grade the same as a final grade?",
+    "answer": [
+      "Often, yes. At many high schools the semester grade is the grade that goes on your transcript and into your GPA. The quarter grades are steps along the way."
+    ]
+  },
+  {
+    "question": "How much is a semester exam usually worth?",
+    "answer": [
+      "Many high schools on a quarter system count it as 10% to 20% of the semester grade. Your school's grading policy has the exact number."
+    ]
+  },
+  {
+    "question": "Can I use three grading periods?",
+    "answer": [
+      "Yes. Choose Custom, add a grading period, and enter each period's weight. The weights need to add up to 100%."
+    ]
+  },
+  {
+    "question": "What if my school doesn't have a semester exam?",
+    "answer": [
+      "Pick \"2 quarters, no exam (50/50)\" or set the exam weight to 0. The semester grade is then the weighted average of your quarters."
+    ]
+  }
+];
+
+export const PERCENTAGE_FAQ: FaqItem[] = [
+  {
+    "question": "What letter grade is an 85?",
+    "answer": [
+      "On the common scale an 85 is a B, because a B runs from 83 to under 87. On a 10-point scale it's also a B."
+    ]
+  },
+  {
+    "question": "What letter grade is a 79.5?",
+    "answer": [
+      "On the common scale a 79.5 is a C+, because a C+ runs from 77 to under 80. If your teacher rounds to the nearest whole number, it becomes an 80, which is a B−."
+    ]
+  },
+  {
+    "question": "Is a 69 a D?",
+    "answer": [
+      "On the common scale a 69 is a D+, which runs from 67 to under 70. On a 10-point scale it's a D."
+    ]
+  },
+  {
+    "question": "What percentage is a passing grade?",
+    "answer": [
+      "Many schools treat 60% as the lowest passing grade, but some courses and programs require 70% or more. Check your syllabus."
+    ]
+  }
+];
+
 export const PAGE_FAQS: Record<string, FaqItem[]> = {
   "/": HOME_FAQ,
+  "/grade-calculator/": GRADE_FAQ,
+  "/final-grade-calculator/": FINAL_FAQ,
+  "/semester-grade-calculator/": SEMESTER_FAQ,
+  "/percentage-to-letter-grade/": PERCENTAGE_FAQ,
+
   "/college-gpa-calculator/": COLLEGE_FAQ,
   "/high-school-gpa-calculator/": HIGH_SCHOOL_FAQ,
   "/cumulative-gpa-calculator/": CUMULATIVE_FAQ,

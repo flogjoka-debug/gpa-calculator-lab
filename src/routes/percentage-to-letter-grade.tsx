@@ -1,8 +1,10 @@
-import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PercentageTool } from "@/components/gpa/PercentageTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
 import { PAGES, pageHead } from "@/lib/site";
+
+import { PERCENTAGE_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.percentage;
 
@@ -24,9 +26,18 @@ function Page() {
         <h2 id="a" className="text-2xl">Does 89.99% count as an A?</h2>
         <p className="mt-2">On the common scale, no. An A− starts at 90, so 89.99% is a B+. We don't round before looking up the letter, because many teachers don't either. If your syllabus says grades are rounded, or that an A− starts at 89.5, switch to Custom and enter that cutoff. Both the result and the table will follow your scale.</p>
       </section>
+      <section className="mt-12" aria-labelledby="letter-grade-percentage-chart">
+        <h2 id="letter-grade-percentage-chart" className="text-2xl">Letter grade percentage chart</h2>
+        <p className="mt-2">The common US scale below is what the calculator starts with. The full table under the calculator follows whichever scale you pick, including your own cutoffs.</p>
+        <ContentTable caption="Letter grade percentage chart" columns={["Letter grade", "Percentage", "GPA points"]} rows={[["A", "93 to 100", "4.0"], ["A−", "90 to under 93", "3.7"], ["B+", "87 to under 90", "3.3"], ["B", "83 to under 87", "3.0"], ["B−", "80 to under 83", "2.7"], ["C+", "77 to under 80", "2.3"], ["C", "73 to under 77", "2.0"], ["C−", "70 to under 73", "1.7"], ["D+", "67 to under 70", "1.3"], ["D", "63 to under 67", "1.0"], ["D−", "60 to under 63", "0.7"], ["F", "below 60", "0.0"]]} />
+      </section>
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we converted your percentage</h2>
         <p className="mt-2">We compare your exact percentage with the cutoffs of the scale you picked. Each letter covers everything from its own cutoff up to, but not including, the next one. So on the common scale a B+ is 87 to under 90, and 87.00 is already a B+.</p>
+      </section>
+      <section className="mt-12" aria-labelledby="how-to-turn-points-into-a-percentage">
+        <h2 id="how-to-turn-points-into-a-percentage" className="text-2xl">How to turn points into a percentage</h2>
+        <p className="mt-2">Divide the points you earned by the points possible, then multiply by 100. 42 out of 50 is 42 ÷ 50 = 0.84, or 84%. Switch the calculator to points and it does this step for you.</p>
       </section>
       <section className="mt-12" aria-labelledby="example">
         <h2 id="example" className="text-2xl">Example: 42 out of 50</h2>
@@ -37,6 +48,7 @@ function Page() {
         <h2 id="scales" className="text-2xl">Common scale vs. 10-point scale</h2>
         <p className="mt-2">Many US schools split each letter into plus, plain and minus, with an A at 93 and above. Others use a straight 10-point scale where 90 to 100 is an A and there are no pluses or minuses. Your syllabus decides. The scale you choose here controls both the table and the result.</p>
       </section>
+      <FaqSection items={PERCENTAGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>
   );

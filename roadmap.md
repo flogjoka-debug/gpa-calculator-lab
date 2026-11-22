@@ -1,6 +1,6 @@
-# SEO phase 2
-- [x] Preserve the three calculators, existing sections and metadata; add approved content, tables and visible FAQs.
-- [x] Generate FAQPage from shared visible-answer data alongside existing breadcrumbs.
-- [x] Run all tests and check the production build signal: 63/63 tests pass; build OK.
-- [x] Verify 360×640 layout, initial server HTML, schemas and example arithmetic through the calculators.
-- [x] Report expected versus actual in docs/SEO_PHASE_2_QA.md; do not publish.
+# SEO phase 3
+- [x] Preserve four calculators, retained sections, links and metadata; add approved expanded copy and FAQs.
+- [x] Add approved Final and Percentage tables and shared FAQPage schemas.
+- [x] Apply the user's scale decision: keep the calculator unchanged and use 93/83/73/63 with 125/75/25/Already reached in the Semester table.
+- [x] Run full tests (92/92 pass), verify production build (build OK), server HTML, visible schemas and 360×640 layouts.
+- [x] Verify new numeric examples through the calculators and report expected versus actual in docs/SEO_PHASE_3_QA.md; do not publish.

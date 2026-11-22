@@ -1,8 +1,10 @@
-import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalTool } from "@/components/gpa/FinalTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
 import { PAGES, pageHead } from "@/lib/site";
+
+import { FINAL_FAQ } from "@/lib/seo-content";
 
 const page = PAGES.finalGrade;
 
@@ -24,11 +26,27 @@ function Page() {
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">"Current grade" means your grade before the final. If the final is worth w of your grade, everything else is worth 1 − w. The score you need is (target − current × (1 − w)) ÷ w. We round it up to one decimal, so the number we show is always enough.</p>
       </section>
+      <section className="mt-12" aria-labelledby="how-to-calculate-what-you-need-on-your-final">
+        <h2 id="how-to-calculate-what-you-need-on-your-final" className="text-2xl">How to calculate what you need on your final</h2>
+        <ol className="mt-3 list-decimal space-y-2 pl-6">
+          <li>Find your current grade, meaning your grade before the final.</li>
+          <li>Find the final exam's weight in your syllabus and write it as a decimal (40% is 0.40).</li>
+          <li>Multiply your current grade by 1 minus the weight. That's what the rest of the class contributes.</li>
+          <li>Subtract that from the grade you want.</li>
+          <li>Divide by the final's weight. The result is the score you need on the final.</li>
+        </ol>
+      </section>
       <section className="mt-12" aria-labelledby="example">
         <h2 id="example" className="text-2xl">Example: 85% now, aiming for 90%, final worth 40%</h2>
         <p className="mt-2">(90 − 85 × 0.60) ÷ 0.40 = (90 − 51) ÷ 0.40 = 97.5.</p>
         <p className="mt-2">You need 97.5% on the final. With a perfect 100% you'd finish with 91%.</p>
         <LoadExampleButton />
+      </section>
+      <section className="mt-12" aria-labelledby="final-exam-calculator-the-score-you-need-for-each-grade">
+        <h2 id="final-exam-calculator-the-score-you-need-for-each-grade" className="text-2xl">Final exam calculator: the score you need for each grade</h2>
+        <p className="mt-2">With an 85% current grade and a final worth 40%, here's what each target takes. The calculator above does the same for your own numbers.</p>
+        <ContentTable caption="Final exam calculator: the score you need for each grade" columns={["Grade you want", "Score you need on the final"]} rows={[["A (90%)", "97.5%"], ["B (80%)", "72.5%"], ["C (70%)", "47.5%"], ["D (60%)", "22.5%"]]} />
+        <p className="mt-2">A 0 on the final would leave this student with 51%.</p>
       </section>
       <section className="mt-12" aria-labelledby="over">
         <h2 id="over" className="text-2xl">What if I need more than 100%?</h2>
@@ -38,6 +56,7 @@ function Page() {
         <h2 id="before" className="text-2xl">Is my current grade really "before the final"?</h2>
         <p className="mt-2">Most online gradebooks show your grade with the work that's been graded so far, which usually doesn't include the final. If your final is in the same category as your tests, your teacher may weight it differently. Check the syllabus before you rely on the number.</p>
       </section>
+      <FaqSection items={FINAL_FAQ} />
       <CalculatorFooter page={page} />
     </main>
   );
