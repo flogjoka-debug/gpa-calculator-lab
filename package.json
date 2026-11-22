@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build:static": "STATIC_EXPORT=1 vite build && node scripts/static-export.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1",

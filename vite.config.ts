@@ -9,10 +9,15 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// STATIC_EXPORT=1 (npm run build:static) builds a Node server that scripts/static-export.mjs
+// renders to plain HTML for static hosting (Hostinger). The default build used by Lovable is unchanged.
+const STATIC_EXPORT = process.env.STATIC_EXPORT === "1";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  ...(STATIC_EXPORT ? { nitro: { preset: "node-server" } } : {}),
 });
