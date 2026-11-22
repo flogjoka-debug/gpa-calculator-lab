@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection } from "@/components/PageSeo";
+import copyUc from "@/lib/copy/uc";
+import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { UcCalculator } from "@/components/gpa/UcCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,6 +23,7 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your A-G semester grades from 10th and 11th grade and pick your residency. You'll get your unweighted and capped UC GPA, plus a list of which honors points counted and why.
       </p>
+      <UpdatedLine page={page} />
       <UcCalculator />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How UC calculates your GPA</h2>
@@ -60,7 +61,7 @@ function Page() {
         <h2 id="official" className="text-2xl">Why this isn't your official UC GPA</h2>
         <p className="mt-2">UC calculates the official number from the grades you report in your application. Use this result to check your math and to see which honors points are being cut by the limits.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.uc.blocks} />
+      <CopyBlocks blocks={copyUc} />
       <FaqSection items={UC_FAQ} />
       <CalculatorFooter page={page} />
     </main>

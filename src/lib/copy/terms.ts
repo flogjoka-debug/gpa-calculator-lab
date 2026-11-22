@@ -1,0 +1,105 @@
+// Generated page copy. Edit the copy in seo/v2, then regenerate.
+import type { GuideBlock } from "../guides-content";
+
+const blocks: GuideBlock[] = [
+  {
+    "t": "h2",
+    "text": "The calculators give estimates",
+    "id": "the-calculators-give-estimates"
+  },
+  {
+    "t": "p",
+    "text": "Results are estimates based on the grades, credits and settings you enter and on the published rules we cite. They are not an official GPA. Your school, a university, LSAC or another organization calculates the number that counts, and its result wins if the two differ. Don't rely on a result here alone for a decision about admission, financial aid, eligibility or graduation."
+  },
+  {
+    "t": "h2",
+    "text": "No professional advice",
+    "id": "no-professional-advice"
+  },
+  {
+    "t": "p",
+    "text": "The site gives general information about grades and GPA. It isn't academic, admissions, financial or legal advice. For your own situation, talk to your school counselor, your registrar or the organization involved."
+  },
+  {
+    "t": "h2",
+    "text": "Using the site",
+    "id": "using-the-site"
+  },
+  {
+    "t": "p",
+    "text": "You may use the calculators and guides for free, for personal and educational purposes. Please don't try to disrupt the site, scrape it in a way that overloads it, or present our content as your own."
+  },
+  {
+    "t": "h2",
+    "text": "Embedding and linking",
+    "id": "embedding-and-linking"
+  },
+  {
+    "t": "p",
+    "text": "You may link to any page on the site. Schools, teachers and other educational sites may embed the calculator with the code on our [for schools](/for-schools/) page, as long as the credit link stays visible and the calculator isn't changed. We may update or retire the embedded version at any time."
+  },
+  {
+    "t": "h2",
+    "text": "Content and accuracy",
+    "id": "content-and-accuracy"
+  },
+  {
+    "t": "p",
+    "text": "We check every rule against its source and date each check, but policies change and mistakes happen. If you find an error, [contact us](/contact/) and we'll correct it. The guides, calculators, text and graphics on the site belong to GPA Calculator Lab unless a source is credited."
+  },
+  {
+    "t": "h2",
+    "text": "No warranty",
+    "id": "no-warranty"
+  },
+  {
+    "t": "p",
+    "text": "The site is provided \"as is\" and \"as available\". We don't promise that it will always be online, free of errors or up to date."
+  },
+  {
+    "t": "h2",
+    "text": "Limit of liability",
+    "id": "limit-of-liability"
+  },
+  {
+    "t": "p",
+    "text": "To the extent the law allows, GPA Calculator Lab and FloPixels aren't liable for any loss or damage that comes from using the site or relying on its results."
+  },
+  {
+    "t": "h2",
+    "text": "Links to other sites",
+    "id": "links-to-other-sites"
+  },
+  {
+    "t": "p",
+    "text": "We link to schools, universities and other organizations as sources. We don't control those sites and aren't responsible for their content."
+  },
+  {
+    "t": "h2",
+    "text": "Privacy",
+    "id": "privacy"
+  },
+  {
+    "t": "p",
+    "text": "How we handle data is explained in our [privacy policy](/privacy/)."
+  },
+  {
+    "t": "h2",
+    "text": "Changes to these terms",
+    "id": "changes-to-these-terms"
+  },
+  {
+    "t": "p",
+    "text": "We may update these terms. When we do, we'll change the effective date at the top of this page. Using the site after a change means you accept the updated terms."
+  },
+  {
+    "t": "h2",
+    "text": "Contact",
+    "id": "contact"
+  },
+  {
+    "t": "p",
+    "text": "Questions about these terms? Email [info@gpacalculatorlab.com](mailto:info@gpacalculatorlab.com)."
+  }
+];
+export default blocks;

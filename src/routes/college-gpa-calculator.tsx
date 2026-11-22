@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copyCollege from "@/lib/copy/college";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CollegeCalculator } from "@/components/gpa/CollegeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,7 +23,9 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Add your classes with credit hours and plus/minus grades. You'll see your semester GPA, the quality points behind it, and what a retake would change.
       </p>
+      <UpdatedLine page={page} />
       <CollegeCalculator />
+      <EducatorsBanner />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">
@@ -79,7 +81,7 @@ function Page() {
           <p>On the quarter system, enter quarter units as your credits. The math is the same.</p>
         </div>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.college.blocks} />
+      <CopyBlocks blocks={copyCollege} />
       <FaqSection items={COLLEGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

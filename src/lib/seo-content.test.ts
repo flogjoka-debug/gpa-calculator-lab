@@ -2,6 +2,12 @@ import { describe, expect, it } from "vitest";
 import { PAGE_FAQS, breadcrumbSchema, faqSchema } from "./seo-content";
 import { GUIDE_LIST, PAGES, ROUTES, SITE_URL, pageHead } from "./site";
 import { GUIDE_CONTENT } from "./guides-content";
+import goodGpa from "./guides/goodGpa";
+import raise from "./guides/raise";
+import scale from "./guides/scale";
+import weighted from "./guides/weighted";
+
+const BODIES: Record<string, unknown> = { goodGpa, raise, scale, weighted };
 
 describe("SEO structured data rules", () => {
   it("makes breadcrumb items with absolute canonical trailing-slash URLs for each non-home page", () => {
@@ -46,9 +52,11 @@ describe("SEO structured data rules", () => {
       expect((article?.["author"] as Record<string, unknown>)["name"]).toBe("FloPixels");
       expect((article?.["publisher"] as Record<string, unknown>)["@id"]).toBe("https://gpacalculatorlab.com/#organization");
       expect(pageHead(guide).meta).toContainEqual({ property: "og:type", content: "article" });
-      const content = Object.values(GUIDE_CONTENT).find((c) => c.path === guide.path);
+      const entry = Object.entries(GUIDE_CONTENT).find(([, c]) => c.path === guide.path);
+      const content = entry?.[1];
       expect(content?.faq.length).toBeGreaterThanOrEqual(3);
-      const text = JSON.stringify(content);
+      expect(BODIES[entry?.[0] ?? ""]).toBeDefined();
+      const text = JSON.stringify(content) + JSON.stringify(BODIES[entry?.[0] ?? ""]);
       for (const [, href] of text.matchAll(/\]\((\/[^)]*)\)/g)) expect(known.has(href ?? "")).toBe(true);
       for (const item of content?.faq ?? []) for (const part of item.answer) if (typeof part !== "string") expect(known.has(part.to)).toBe(true);
     }

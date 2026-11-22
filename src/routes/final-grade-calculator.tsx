@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copyFinal from "@/lib/copy/final";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalTool } from "@/components/gpa/FinalTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,6 +23,7 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your current grade, the grade you want, and how much the final counts. You'll see the score you need on the final and the highest grade you can still get.
       </p>
+      <UpdatedLine page={page} />
       <FinalTool />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
@@ -58,7 +59,7 @@ function Page() {
         <h2 id="before" className="text-2xl">Is my current grade really "before the final"?</h2>
         <p className="mt-2">Most online gradebooks show your grade with the work that's been graded so far, which usually doesn't include the final. If your final is in the same category as your tests, your teacher may weight it differently. Check the syllabus before you rely on the number.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.final.blocks} />
+      <CopyBlocks blocks={copyFinal} />
       <FaqSection items={FINAL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

@@ -1,11 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Breadcrumbs } from "@/components/PageSeo";
 import { CopyBlocks, InlineText } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
+import copyContact from "@/lib/copy/contact";
+import { PAGE_META } from "@/lib/page-meta";
+import blocks from "@/lib/copy/contact";
 import { SUPPORT, pageHead } from "@/lib/site";
 
 const page = SUPPORT.contact;
-const copy = PAGE_COPY.contact;
+const copy = PAGE_META.contact;
 
 export const Route = createFileRoute("/contact")({
   head: () => pageHead(page),
@@ -18,7 +20,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
       <p className="mt-2 text-text-muted sm:text-lg"><InlineText text={copy.lead} /></p>
-      <CopyBlocks blocks={copy.blocks} />
+      <CopyBlocks blocks={blocks} />
     </main>
   );
 }

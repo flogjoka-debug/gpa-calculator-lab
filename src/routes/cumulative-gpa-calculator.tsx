@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection } from "@/components/PageSeo";
+import copyCumulative from "@/lib/copy/cumulative";
+import { Breadcrumbs, CalculatorFooter, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CumulativeCalculator } from "@/components/gpa/CumulativeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,7 +23,9 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter the GPA credits and quality points you already have, then add your new semester. You'll see your updated cumulative GPA and how far the new grades moved it.
       </p>
+      <UpdatedLine page={page} />
       <CumulativeCalculator />
+      <EducatorsBanner />
       <section className="mt-12" aria-labelledby="what-is-a-cumulative-gpa">
         <h2 id="what-is-a-cumulative-gpa" className="text-2xl">What is a cumulative GPA?</h2>
         <p className="mt-2">Your cumulative GPA is the average of every graded class you've taken at a school, weighted by credits. A semester GPA covers one term; the cumulative GPA covers all of them together.</p>
@@ -66,7 +68,7 @@ function Page() {
         <h2 id="twice" className="text-2xl">Don't count a semester twice</h2>
         <p className="mt-2">If a semester is already part of the GPA and credits you entered, leave it out of the new semesters.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.cumulative.blocks} />
+      <CopyBlocks blocks={copyCumulative} />
       <FaqSection items={CUMULATIVE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

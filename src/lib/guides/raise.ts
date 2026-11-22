@@ -1,0 +1,168 @@
+// Generated guide body. Edit the copy in seo/guides, then regenerate.
+import type { GuideBody } from "../guides-content";
+
+const body: GuideBody = {
+  "lead": "Your GPA is an average weighted by credits, so every new grade is diluted by all the credits you already have. That's why it moves quickly early on and slowly later. To raise it, earn your best grades in the classes with the most credits, use your school's retake policy when it replaces grades, and start as early as you can.",
+  "blocks": [
+    {
+      "t": "h2",
+      "text": "Why your GPA gets harder to move",
+      "id": "why-your-gpa-gets-harder-to-move"
+    },
+    {
+      "t": "p",
+      "text": "Say you have a 3.0 after 15 credits and then earn a 4.0 in a 15-credit semester. Your GPA jumps to (45 + 60) ÷ 30 = 3.50. A student with the same 3.0 after 90 credits who earns the same 4.0 semester only reaches (270 + 60) ÷ 105 = 3.14. Same grades, very different results."
+    },
+    {
+      "t": "h2",
+      "text": "How much can one semester raise your GPA?",
+      "id": "how-much-can-one-semester-raise-your-gpa"
+    },
+    {
+      "t": "p",
+      "text": "These examples start from a 2.8 GPA and add one 15-credit semester."
+    },
+    {
+      "t": "table",
+      "caption": "How much can one semester raise your GPA?",
+      "columns": [
+        "Credits so far",
+        "New semester at 3.5",
+        "New semester at 4.0"
+      ],
+      "rows": [
+        [
+          "30 credits",
+          "3.03",
+          "3.20"
+        ],
+        [
+          "60 credits",
+          "2.94",
+          "3.04"
+        ],
+        [
+          "90 credits",
+          "2.90",
+          "2.97"
+        ]
+      ]
+    },
+    {
+      "t": "img",
+      "src": "/guides/raise-gpa-by-credits.webp",
+      "alt": "Bar chart of a 2.8 GPA after one 15-credit semester of A's: 3.40 with 15 credits already earned, falling to 2.93 with 120",
+      "caption": "The more credits you already have, the less one strong semester moves your GPA.",
+      "width": 1200,
+      "height": 675
+    },
+    {
+      "t": "p",
+      "text": "To run your own numbers, enter your current GPA and credits in the [cumulative GPA calculator](/cumulative-gpa-calculator/) and add the semester you're planning."
+    },
+    {
+      "t": "h2",
+      "text": "Work backward from a target",
+      "id": "work-backward-from-a-target"
+    },
+    {
+      "t": "p",
+      "text": "The semester GPA you need is: (target GPA × total credits after the semester − quality points you have now) ÷ credits this semester."
+    },
+    {
+      "t": "p",
+      "text": "Example: you have a 2.8 after 45 credits, which is 126 quality points, and you want a 3.0 after a 15-credit semester. You need (3.0 × 60 − 126) ÷ 15 = 54 ÷ 15 = 3.6 this semester. If the answer is above 4.0, the target isn't reachable in one term, and you'll need to spread it over two."
+    },
+    {
+      "t": "h2",
+      "text": "Put your effort where the credits are",
+      "id": "put-your-effort-where-the-credits-are"
+    },
+    {
+      "t": "p",
+      "text": "A class's weight in your GPA depends on its credits. An A in a 4-credit class adds 16 quality points, while an A in a 1-credit class adds 4. When you're short on time, the bigger classes deserve it first. Inside each class, the [final grade calculator](/final-grade-calculator/) tells you what you need on the final to reach the next letter grade."
+    },
+    {
+      "t": "h2",
+      "text": "Retake a class if your school replaces the grade",
+      "id": "retake-a-class-if-your-school-replaces-the-grade"
+    },
+    {
+      "t": "p",
+      "text": "Schools handle retakes in two ways. Some replace the old grade with the new one. Others average both attempts. Say you have a 2.6 over 30 credits, including an F in a 3-credit class, and you retake it for a B."
+    },
+    {
+      "t": "ul",
+      "items": [
+        "With grade replacement, the F's zero points are swapped for the B's 9, giving 87 ÷ 30 = 2.90.",
+        "With both attempts counted, you add 9 points and 3 credits, giving 87 ÷ 33 = 2.64."
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Check your college's policy before you register, and compare both outcomes in the [college GPA calculator](/college-gpa-calculator/). If you're headed to law school, LSAC counts every attempt either way."
+    },
+    {
+      "t": "h2",
+      "text": "What doesn't change your GPA",
+      "id": "what-doesn-t-change-your-gpa"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "Withdrawals: at most schools a W stays on your transcript but adds no grade points or GPA credits. It also stops a failing grade from counting.",
+        "Pass/fail classes: a passing grade usually adds credits but no grade points, so it can't raise your GPA. A failing grade in a pass/fail class counts as an F at some schools.",
+        "Incompletes: they don't count until the final grade is posted."
+      ]
+    },
+    {
+      "t": "p",
+      "text": "Your school's rules decide each of these, and withdrawals can affect financial aid progress even when they don't touch your GPA."
+    },
+    {
+      "t": "h2",
+      "text": "In high school: weighted classes",
+      "id": "in-high-school-weighted-classes"
+    },
+    {
+      "t": "p",
+      "text": "On a weighted scale, an A in an AP or Honors class can lift your weighted GPA above what the same grade would do in a regular class. It doesn't change your unweighted GPA, and colleges such as the University of California cap how many honors points count. The [high school GPA calculator](/high-school-gpa-calculator/) shows both numbers."
+    },
+    {
+      "t": "h2",
+      "text": "How real colleges handle retakes",
+      "id": "how-real-colleges-handle-retakes"
+    },
+    {
+      "t": "p",
+      "text": "Grade replacement always comes with limits. UCLA counts only the newest grade for the first 16 units you repeat, and only for classes where you earned a C− or lower. UC Berkeley allows a repeat after a D+ or lower and replaces the grade for the first 12 graded units. The University of Cincinnati requires a request and caps replacements at 18 semester credit hours."
+    },
+    {
+      "t": "p",
+      "text": "Sources: [UCLA Registrar](https://catalog.registrar.ucla.edu/Policies-and-Regulations/Academic-Policies/Repetition-of-Courses), [UC Berkeley Registrar](https://www.registrar.berkeley.edu/faculty-staff/grading/grading-policies-reports), [University of Cincinnati](https://www.uc.edu/about/registrar/record-updates/grade-replacements.html)."
+    },
+    {
+      "t": "p",
+      "text": "So a retake is worth the most when it removes an F or D in a class with many credits, and when you still have replacement units left."
+    },
+    {
+      "t": "h2",
+      "text": "W and WF are not the same",
+      "id": "w-and-wf-are-not-the-same"
+    },
+    {
+      "t": "p",
+      "text": "At the University of Utah, a W is recorded on your transcript but isn't used to calculate your GPA. At USC Union, a University of South Carolina campus, a W isn't calculated either, but a WF after the deadline is treated as an F. Know your last day to withdraw before you decide. Sources: [University of Utah Registrar: Withdrawal policy](https://registrar.utah.edu/handbook/withdrawal.php), [USC Union Registrar: Withdrawal](https://www.union.sc.edu/about/offices_and_divisions/registrar/registration/withdrawal/index.php)."
+    },
+    {
+      "t": "h2",
+      "text": "Plan your next semester in two minutes",
+      "id": "plan-your-next-semester-in-two-minutes"
+    },
+    {
+      "t": "p",
+      "text": "Open the [cumulative GPA calculator](/cumulative-gpa-calculator/) and enter the GPA credits and quality points from your transcript. Add next semester's classes with the grades you're aiming for. You'll see your new cumulative GPA right away, and you can change one grade at a time to find out which class moves it most."
+    }
+  ]
+};
+export default body;

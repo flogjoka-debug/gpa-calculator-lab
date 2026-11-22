@@ -4,8 +4,6 @@ export interface FaqItem { question: string; answer: (string | FaqLink)[] }
 
 export const HOME_FAQ: FaqItem[] = [
   { question: "What is a GPA?", answer: ["A grade point average turns your letter grades into one number, usually on a 4.0 scale. Each class is weighted by its credits, so a class that meets more often or carries more credit counts more."] },
-  { question: "Can a GPA be higher than 4.0?", answer: ["An unweighted GPA tops out at 4.0. A weighted GPA can go higher because Honors, AP and IB classes earn bonus points. You can ", { text: "compare weighted and unweighted GPA", to: "/high-school-gpa-calculator/" }, " for your own classes."] },
-  { question: "Is a 3.0 GPA good?", answer: ["A 3.0 is a B average on the 4.0 scale. Whether it's good enough depends on the goal: scholarships, honor societies and college programs each set their own minimums. Check the exact requirement for the one you care about."] },
   { question: "Does an F count in my GPA?", answer: ["Yes. An F adds zero quality points, but its credits stay in the total, so it pulls the GPA down. An A and an F in two 3-credit classes give 12 ÷ 6 = 2.00."] },
   { question: "Do pass/fail classes affect my GPA?", answer: ["Usually not. A passing grade in a pass/fail class adds credits to your transcript but no grade points. Some schools count a failed pass/fail class as an F, so check your school's policy."] },
   {"question": "What's my GPA with all A's and one B?", "answer": ["If every class carries the same credits, four A's and one B give (4 × 4.0 + 3.0) ÷ 5 = 3.80. If the B is in a class with more credits than the others, it pulls the GPA down further, so enter your real credits above."]},

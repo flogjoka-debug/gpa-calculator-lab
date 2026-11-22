@@ -1,6 +1,7 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copyHighschool from "@/lib/copy/highschool";
+import copyHighschoolWeighted from "@/lib/copy/highschoolWeighted";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { HighSchoolCalculator } from "@/components/gpa/HighSchoolCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,8 +24,10 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your classes and mark each one Regular, Honors, AP, or IB. You'll see your unweighted and weighted GPA side by side.
       </p>
+      <UpdatedLine page={page} />
       <HighSchoolCalculator />
-      <CopyBlocks blocks={PAGE_COPY.highschoolWeighted.blocks} />
+      <EducatorsBanner />
+      <CopyBlocks blocks={copyHighschoolWeighted} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">
@@ -72,7 +75,7 @@ function Page() {
           <p>Plus and minus grades use the example scale unless you edit it.</p>
         </div>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.highschool.blocks} />
+      <CopyBlocks blocks={copyHighschool} />
       <FaqSection items={HIGH_SCHOOL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

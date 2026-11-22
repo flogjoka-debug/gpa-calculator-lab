@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
 import { eyebrowFor, iconFor } from "@/lib/icons";
-import { GUIDES, PAGES, SUPPORT, type PageInfo } from "@/lib/site";
+import { GUIDES, PAGES, SUPPORT, lastModified, type PageInfo } from "@/lib/site";
 import { type FaqItem } from "@/lib/seo-content";
 
 export function Eyebrow({ path }: { path: string }) {
@@ -118,5 +118,30 @@ export function ContentTable({ caption, columns, rows }: { caption: string; colu
         <tbody>{rows.map((row) => <tr key={row[0]}>{row.map((cell, i) => i === 0 ? <th key={i} scope="row" className="border-b border-divider px-4 py-3 font-medium">{cell}</th> : <td key={i} className="border-b border-divider px-4 py-3">{cell}</td>)}</tr>)}</tbody>
       </table>
     </div>
+  );
+}
+
+const longDate = (iso: string) =>
+  new Date(`${iso}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" });
+
+/** Visible "last checked" line under a calculator's H1, matching dateModified in its schema. */
+export function UpdatedLine({ page }: { page: PageInfo }) {
+  const d = lastModified(page);
+  return (
+    <p className="mt-2 text-sm text-text-muted">
+      Updated <time dateTime={d}>{longDate(d)}</time> · <a href="/methodology/">How we calculate</a>
+    </p>
+  );
+}
+
+/** "For educators" call-out under a GPA calculator, linking to the embed page. */
+export function EducatorsBanner() {
+  return (
+    <a href="/for-schools/" className="educators-banner">
+      <span className="icon-chip icon-chip-sm" aria-hidden="true"><GraduationCap /></span>
+      <span className="educators-badge">For educators</span>
+      <span className="educators-text">Add this calculator to your website for free</span>
+      <span className="educators-arrow" aria-hidden="true"><ArrowRight /></span>
+    </a>
   );
 }

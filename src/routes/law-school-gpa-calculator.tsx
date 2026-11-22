@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copyLaw from "@/lib/copy/law";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { LawCalculator } from "@/components/gpa/LawCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,6 +23,7 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Choose your application cycle, then enter your undergraduate grades. You'll see an estimate of your LSAC GPA, the GPA law schools see on your CAS report, with every included and excluded class listed.
       </p>
+      <UpdatedLine page={page} />
       <LawCalculator />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How LSAC calculates your GPA</h2>
@@ -57,7 +58,7 @@ function Page() {
         <h2 id="already" className="text-2xl">Already in law school?</h2>
         <p className="mt-2">Your law school grades don't count toward the LSAC GPA. Law schools set their own grading scales, often with a curve, so this calculator won't match your JD GPA. Your school's registrar or student handbook explains how it's calculated.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.law.blocks} />
+      <CopyBlocks blocks={copyLaw} />
       <FaqSection items={LAW_FAQ} />
       <CalculatorFooter page={page} />
     </main>

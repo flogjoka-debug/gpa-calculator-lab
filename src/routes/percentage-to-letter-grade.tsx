@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copyPercentage from "@/lib/copy/percentage";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PercentageTool } from "@/components/gpa/PercentageTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,6 +23,7 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter a percentage, or your points earned and possible, to get the letter grade, its range, and how far you are from the next one. Use the common scale or the cutoffs from your syllabus.
       </p>
+      <UpdatedLine page={page} />
       <PercentageTool />
       <section className="mt-12" aria-labelledby="a">
         <h2 id="a" className="text-2xl">Does 89.99% count as an A?</h2>
@@ -50,7 +51,7 @@ function Page() {
         <h2 id="scales" className="text-2xl">Common scale vs. 10-point scale</h2>
         <p className="mt-2">Many US schools split each letter into plus, plain and minus, with an A at 93 and above. Others use a straight 10-point scale where 90 to 100 is an A and there are no pluses or minuses. Your syllabus decides. The scale you choose here controls both the table and the result.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.percentage.blocks} />
+      <CopyBlocks blocks={copyPercentage} />
       <FaqSection items={PERCENTAGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

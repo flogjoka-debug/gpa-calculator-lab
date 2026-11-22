@@ -1,4 +1,9 @@
-import { PAGE_COPY } from "@/lib/page-copy";
+import copyHomeDefinition from "@/lib/copy/homeDefinition";
+import copyHomeGood from "@/lib/copy/homeGood";
+import copyHomeTarget from "@/lib/copy/homeTarget";
+import copyHomeTerms from "@/lib/copy/homeTerms";
+import copyHomeTranscript from "@/lib/copy/homeTranscript";
+import { PAGE_META } from "@/lib/page-meta";
 import { CopyBlocks } from "@/components/Guide";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
@@ -8,9 +13,9 @@ import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CalculatorFooter, Eyebrow, FaqSection } from "@/components/PageSeo";
+import { CalculatorFooter, Eyebrow, FaqSection, UpdatedLine, EducatorsBanner } from "@/components/PageSeo";
 import { iconFor } from "@/lib/icons";
-import { HOME_FAQ, HOME_SCALE_ROWS } from "@/lib/seo-content";
+import { HOME_FAQ } from "@/lib/seo-content";
 import { PAGES, TOOL_GROUPS, pageHead } from "@/lib/site";
 
 const page = PAGES.home;
@@ -32,11 +37,13 @@ function Home() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter each grade and its credits for one term or several. Add your GPA so far for a cumulative GPA, or switch to high school for weighted and unweighted GPA.
       </p>
+      <UpdatedLine page={page} />
 
       <HomeCalculator onResult={onResult} />
+      <EducatorsBanner />
       <section className="mt-10" aria-labelledby="what-gpa-means">
         <h2 id="what-gpa-means" className="text-2xl">What GPA means</h2>
-        <p className="mt-2">{PAGE_COPY.homeDefinition.lead}</p>
+        <p className="mt-2">{PAGE_META.homeDefinition.lead}</p>
       </section>
 
       <section className="mt-12" aria-labelledby="how">
@@ -84,26 +91,13 @@ function Home() {
         <p className="mt-3">With an A in a 3-credit class and a B in a 4-credit class, that's 12 + 12 = 24 quality points over 7 credits, so 24 ÷ 7 = 3.43.</p>
       </section>
 
-      <CopyBlocks blocks={PAGE_COPY.homeTerms.blocks} />
-      <CopyBlocks blocks={PAGE_COPY.homeTarget.blocks} />
+      <CopyBlocks blocks={copyHomeTerms} />
+      <CopyBlocks blocks={copyHomeTarget} />
 
       <section className="mt-12" aria-labelledby="gpa-scale">
-        <h2 id="gpa-scale" className="text-2xl">GPA scale: letter grades, percentages and grade points</h2>
-        <p className="mt-2">This is the scale the calculator starts with. Your school may use different cutoffs or point values, so treat it as an example and edit the scale above if yours differs.</p>
-        <div className="mt-4 overflow-x-auto content-table">
-          <table className="w-full min-w-[420px] text-left tabular">
-            <caption className="sr-only">GPA scale: letter grades, percentages and grade points</caption>
-            <thead className="border-b border-divider bg-background"><tr>
-              <th scope="col" className="px-4 py-3">Letter grade</th>
-              <th scope="col" className="px-4 py-3">Percentage</th>
-              <th scope="col" className="px-4 py-3">Grade points</th>
-            </tr></thead>
-            <tbody>{HOME_SCALE_ROWS.map(([letter, percentage, points]) => <tr key={letter} className="border-b border-divider last:border-0">
-              <td className="px-4 py-2">{letter}</td><td className="px-4 py-2">{percentage}</td><td className="px-4 py-2">{points}</td>
-            </tr>)}</tbody>
-          </table>
-        </div>
-        <p className="mt-3">Have a percentage and need the letter? <Link to="/percentage-to-letter-grade/">Convert a percentage to a letter grade</Link>.</p>
+        <h2 id="gpa-scale" className="text-2xl">The grade scale this calculator uses</h2>
+        <p className="mt-2">The calculator starts with the common 4.0 scale: A = 4.0, A− = 3.7, B+ = 3.3, B = 3.0, B− = 2.7, C+ = 2.3, C = 2.0, C− = 1.7, D+ = 1.3, D = 1.0, D− = 0.7 and F = 0. Your school may use other values, so edit the grade scale above if yours differs.</p>
+        <p className="mt-2">For the percentage range behind each letter, see the full chart in <Link to="/guides/gpa-scale/">the 4.0 GPA scale guide</Link>, or <Link to="/percentage-to-letter-grade/">convert a percentage to a letter grade</Link>.</p>
       </section>
 
       <section className="mt-12" aria-labelledby="without-credits">
@@ -123,8 +117,8 @@ function Home() {
         </div>
       </section>
 
-      <CopyBlocks blocks={PAGE_COPY.homeTranscript.blocks} />
-      <CopyBlocks blocks={PAGE_COPY.homeGood.blocks} />
+      <CopyBlocks blocks={copyHomeTranscript} />
+      <CopyBlocks blocks={copyHomeGood} />
 
       <FaqSection items={HOME_FAQ} />
 

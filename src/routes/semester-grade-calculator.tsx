@@ -1,6 +1,6 @@
 import { CopyBlocks } from "@/components/Guide";
-import { PAGE_COPY } from "@/lib/page-copy";
-import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
+import copySemester from "@/lib/copy/semester";
+import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable, UpdatedLine } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SemesterTool } from "@/components/gpa/SemesterTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -23,6 +23,7 @@ function Page() {
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your quarter grades, your final exam score, and how much each one counts. You'll get your semester grade and the math behind it.
       </p>
+      <UpdatedLine page={page} />
       <SemesterTool />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
@@ -56,7 +57,7 @@ function Page() {
         <h2 id="weightings" className="text-2xl">Common weightings</h2>
         <p className="mt-2">Many high schools use 40/40/20: two quarters worth 40% each and a final worth 20%. Some use 45/45/10, and some have no semester exam at all. Use Custom if your school splits the term into three grading periods or weights the exam differently.</p>
       </section>
-      <CopyBlocks blocks={PAGE_COPY.semester.blocks} />
+      <CopyBlocks blocks={copySemester} />
       <FaqSection items={SEMESTER_FAQ} />
       <CalculatorFooter page={page} />
     </main>
