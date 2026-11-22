@@ -187,6 +187,7 @@ export function CollegeCalculator() {
                 onChange={(e) => {
                   const v = e.target.value;
                   setSemesters((ss) => ss.map((x) => (x.id === s.id ? { ...x, name: v } : x)));
+                  changed();
                 }}
               />
               {si === 0 ? (
