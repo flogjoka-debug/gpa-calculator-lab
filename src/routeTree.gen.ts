@@ -18,6 +18,7 @@ import { Route as FinalGradeCalculatorRouteImport } from './routes/final-grade-c
 import { Route as GradeCalculatorRouteImport } from './routes/grade-calculator'
 import { Route as HighSchoolGpaCalculatorRouteImport } from './routes/high-school-gpa-calculator'
 import { Route as LawSchoolGpaCalculatorRouteImport } from './routes/law-school-gpa-calculator'
+import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as PercentageToLetterGradeRouteImport } from './routes/percentage-to-letter-grade'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -74,6 +75,11 @@ const HighSchoolGpaCalculatorRoute = HighSchoolGpaCalculatorRouteImport.update({
 const LawSchoolGpaCalculatorRoute = LawSchoolGpaCalculatorRouteImport.update({
   id: '/law-school-gpa-calculator',
   path: '/law-school-gpa-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
+  id: '/llms.txt',
+  path: '/llms.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MethodologyRoute = MethodologyRouteImport.update({
@@ -148,6 +154,7 @@ export interface FileRoutesByFullPath {
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/grade-calculator': typeof GradeCalculatorRoute
   '/high-school-gpa-calculator': typeof HighSchoolGpaCalculatorRoute
   '/law-school-gpa-calculator': typeof LawSchoolGpaCalculatorRoute
+  '/llms.txt': typeof LlmsDottxtRoute
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
@@ -220,6 +229,7 @@ export interface FileRouteTypes {
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
+    | '/llms.txt'
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
@@ -243,6 +253,7 @@ export interface FileRouteTypes {
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
+    | '/llms.txt'
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
@@ -266,6 +277,7 @@ export interface FileRouteTypes {
     | '/grade-calculator'
     | '/high-school-gpa-calculator'
     | '/law-school-gpa-calculator'
+    | '/llms.txt'
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
@@ -290,6 +302,7 @@ export interface RootRouteChildren {
   GradeCalculatorRoute: typeof GradeCalculatorRoute
   HighSchoolGpaCalculatorRoute: typeof HighSchoolGpaCalculatorRoute
   LawSchoolGpaCalculatorRoute: typeof LawSchoolGpaCalculatorRoute
+  LlmsDottxtRoute: typeof LlmsDottxtRoute
   MethodologyRoute: typeof MethodologyRoute
   PercentageToLetterGradeRoute: typeof PercentageToLetterGradeRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -367,6 +380,13 @@ declare module '@tanstack/react-router' {
       path: '/law-school-gpa-calculator'
       fullPath: '/law-school-gpa-calculator'
       preLoaderRoute: typeof LawSchoolGpaCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/llms.txt': {
+      id: '/llms.txt'
+      path: '/llms.txt'
+      fullPath: '/llms.txt'
+      preLoaderRoute: typeof LlmsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/methodology': {
@@ -466,6 +486,7 @@ const rootRouteChildren: RootRouteChildren = {
   GradeCalculatorRoute: GradeCalculatorRoute,
   HighSchoolGpaCalculatorRoute: HighSchoolGpaCalculatorRoute,
   LawSchoolGpaCalculatorRoute: LawSchoolGpaCalculatorRoute,
+  LlmsDottxtRoute: LlmsDottxtRoute,
   MethodologyRoute: MethodologyRoute,
   PercentageToLetterGradeRoute: PercentageToLetterGradeRoute,
   PrivacyRoute: PrivacyRoute,

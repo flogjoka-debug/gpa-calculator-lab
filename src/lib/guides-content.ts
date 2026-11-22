@@ -3,6 +3,8 @@ import type { FaqItem } from "./seo-content";
 
 export type GuideBlock =
   | { t: "h2"; text: string; id: string }
+  | { t: "h3"; text: string }
+  | { t: "img"; src: string; alt: string; caption: string; width: number; height: number }
   | { t: "p"; text: string }
   | { t: "ol" | "ul"; items: string[] }
   | { t: "table"; caption: string; columns: string[]; rows: string[][] };
@@ -91,6 +93,14 @@ export const GUIDE_CONTENT = {
         "text": "Source: [NCES High School Transcript Study](https://nces.ed.gov/nationsreportcard/hsts/)."
       },
       {
+        "t": "img",
+        "src": "/guides/average-gpa-1990-2019.webp",
+        "alt": "Bar chart of the average U.S. high school graduate's GPA: 2.68 in 1990, 3.00 in 2009 and 3.11 in 2019",
+        "caption": "Average GPA of U.S. high school graduates, from the NAEP High School Transcript Study.",
+        "width": 1200,
+        "height": 675
+      },
+      {
         "t": "h2",
         "text": "Is a 3.0 GPA good?",
         "id": "is-a-3-0-gpa-good"
@@ -156,6 +166,49 @@ export const GUIDE_CONTENT = {
       {
         "t": "p",
         "text": "Your GPA depends on credits as well as grades, so two students with the same letters can end up with different numbers. Enter your classes in the [GPA calculator](/) for a quick answer, the [high school GPA calculator](/high-school-gpa-calculator/) to see weighted and unweighted side by side, or the [college GPA calculator](/college-gpa-calculator/) for credit hours and retakes."
+      },
+      {
+        "t": "h2",
+        "text": "What GPA do scholarships ask for?",
+        "id": "what-gpa-do-scholarships-ask-for"
+      },
+      {
+        "t": "p",
+        "text": "Merit scholarships publish exact cutoffs, and they're often higher than college admission minimums. Florida's Bright Futures program is a clear example. The Florida Academic Scholars award requires a 3.5 weighted GPA in 16 college-prep credits, and renewing it in college takes a 3.0 cumulative GPA. The Florida Medallion Scholars award starts at a 3.0 weighted GPA. Bright Futures recalculates that GPA itself, adding 0.5 for Honors, AP, IB and dual enrollment courses."
+      },
+      {
+        "t": "p",
+        "text": "Sources: [Florida Statutes 1009.534](https://www.flsenate.gov/Laws/Statutes/2024/1009.534), [Collier County Public Schools: Bright Futures](https://www.collierschools.com/students-families/counseling/college-preparedness/bright-futures), [Broward County Public Schools: Bright Futures requirements](https://www.browardschools.com/cms/lib/FL01803656/Centricity/Domain/7831/BF%20Requirements%202020-2021.pdf)."
+      },
+      {
+        "t": "p",
+        "text": "Check whether a scholarship wants a weighted or an unweighted GPA, and whether it uses your school's number or recalculates it."
+      },
+      {
+        "t": "h2",
+        "text": "What GPA do you need for graduate school?",
+        "id": "what-gpa-do-you-need-for-graduate-school"
+      },
+      {
+        "t": "p",
+        "text": "Many graduate programs list 3.0 as the floor. UC Berkeley's Graduate Division, for example, asks for a satisfactory average, usually at least a 3.0 (B) on a 4.0 scale. Individual departments can set higher bars, and a minimum is where a program starts reading, not the GPA most admitted students have. Source: [UC Berkeley Graduate Division: Admissions requirements](https://grad.berkeley.edu/admissions/requirements/)."
+      },
+      {
+        "t": "p",
+        "text": "For law school the number that matters is the LSAC GPA, which counts every attempt at a repeated class and gives an A+ 4.33. The [law school GPA calculator](/law-school-gpa-calculator/) shows how yours compares with your college GPA."
+      },
+      {
+        "t": "h2",
+        "text": "How to read a college's GPA profile",
+        "id": "how-to-read-a-college-s-gpa-profile"
+      },
+      {
+        "t": "p",
+        "text": "Most colleges publish a Common Data Set each year. Section C11 shows what share of the incoming class had GPAs in each band, and C12 gives their average high school GPA. These are the best numbers to compare yourself with, but read them carefully. Colleges don't all report the same kind of GPA: Auburn University's 2024 Common Data Set lists an average of 4.09, which can only be a weighted figure. Source: [Auburn University Common Data Set 2024, Section C](https://auburn.edu/administration/ir/common-data-set/2024/section-c.html)."
+      },
+      {
+        "t": "p",
+        "text": "Before you compare, check whether the college's number is weighted, and compare it with the same kind of GPA from your own transcript."
       }
     ],
     "faq": [
@@ -278,6 +331,14 @@ export const GUIDE_CONTENT = {
         "text": "Example: the same four grades, where both A's are in AP classes and the B is in an Honors class. With +1.0 for AP and +0.5 for Honors you get (5 + 5 + 3.5 + 2) ÷ 4 = 15.5 ÷ 4 = 3.875, which is a 3.88 weighted GPA next to a 3.25 unweighted one."
       },
       {
+        "t": "img",
+        "src": "/guides/weighted-vs-unweighted-example.webp",
+        "alt": "Chart of four grades, two AP A's, an Honors B and a regular C, that give a 3.25 unweighted GPA and a 3.88 weighted GPA",
+        "caption": "The example above: AP and Honors bonuses lift the same grades from 3.25 to 3.88.",
+        "width": 1200,
+        "height": 675
+      },
+      {
         "t": "p",
         "text": "To see both numbers for your own classes, use the [high school GPA calculator](/high-school-gpa-calculator/). You can set your school's bonus points there."
       },
@@ -307,6 +368,28 @@ export const GUIDE_CONTENT = {
       {
         "t": "p",
         "text": "Take out the bonus points and average the base grades again. An A in AP goes back to 4.0 and a B in Honors to 3.0. You can't do it from the final weighted number alone, because you need to know which classes earned a bonus."
+      },
+      {
+        "t": "h2",
+        "text": "Which GPA goes on the Common App?",
+        "id": "which-gpa-goes-on-the-common-app"
+      },
+      {
+        "t": "p",
+        "text": "The Common App asks for one cumulative GPA, its scale and whether it's weighted. Its guidance for schools says that when a school calculates both a weighted and an unweighted GPA, students should report the weighted one. The scale menu runs from 4 to 20, plus 100, so you can enter your school's real scale instead of converting. Source: [Common App: High school details information sheet](https://www.commonapp.org/static/b63899f072e0d59185516e46b40cd98a/Resource_FY_HighSchoolDetails_ENG_2025.06.24.pdf)."
+      },
+      {
+        "t": "h2",
+        "text": "Colleges often recalculate it anyway",
+        "id": "colleges-often-recalculate-it-anyway"
+      },
+      {
+        "t": "p",
+        "text": "What you type isn't always what an admissions office uses. The University of Michigan tells applicants they can report either their cumulative or academic weighted GPA, and that it recalculates the GPA and uses its own number in review. Source: [University of Michigan Admissions: Self-reporting your GPA](https://teamdynamix.umich.edu/TDClient/154/Portal/KB/Article/7499/Self-reporting-Your-GPA). UC does the same with its own A-G rules, and Florida's Bright Futures scholarship recalculates a weighted GPA with a 0.5 bonus instead of a full point."
+      },
+      {
+        "t": "p",
+        "text": "That's why you shouldn't spend energy comparing weighted GPAs from different schools. Look at the unweighted number and the courses behind it, which is roughly what recalculation does."
       }
     ],
     "faq": [
@@ -423,6 +506,14 @@ export const GUIDE_CONTENT = {
         "text": "The percentages are a common example, not a national rule. Many schools use 90/80/70/60 cutoffs instead, and your syllabus has the final say. An A+ is usually worth 4.0, though some colleges give it 4.33."
       },
       {
+        "t": "img",
+        "src": "/guides/gpa-scale-chart.webp",
+        "alt": "4.0 GPA scale chart with each letter grade from A to F, its grade points and a common percentage range",
+        "caption": "The same scale as a chart you can save. Your school's cutoffs may differ.",
+        "width": 1200,
+        "height": 675
+      },
+      {
         "t": "h2",
         "text": "How the scale turns grades into a GPA",
         "id": "how-the-scale-turns-grades-into-a-gpa"
@@ -528,6 +619,28 @@ export const GUIDE_CONTENT = {
           "4.33 scale: some colleges give an A+ 4.33. LSAC uses it for every law school applicant, which you can try in the [law school GPA calculator](/law-school-gpa-calculator/).",
           "100-point scale: some schools report averages as percentages and never convert them."
         ]
+      },
+      {
+        "t": "h2",
+        "text": "Why your school's chart might differ",
+        "id": "why-your-school-s-chart-might-differ"
+      },
+      {
+        "t": "p",
+        "text": "College Board's BigFuture uses the same pattern as the chart above: 93 to 96 is an A worth 4.0, and 90 to 92 is an A− worth 3.7. It also notes that the way letter grades convert to percentages can vary slightly between colleges, and even between departments in the same college. Source: [College Board BigFuture: How to convert your GPA to a 4.0 scale](https://bigfuture.collegeboard.org/help-center/what-average-gpa). Treat any chart, including ours, as a guide and your syllabus as the rule."
+      },
+      {
+        "t": "h2",
+        "text": "How to convert a GPA from another scale",
+        "id": "how-to-convert-a-gpa-from-another-scale"
+      },
+      {
+        "t": "p",
+        "text": "If your school reports GPA on a 5.0, 6.0 or 10-point scale, the quick conversion is your GPA × 4 ÷ your school's scale. A 4.1 on a 4.5 scale becomes 4.1 × 4 ÷ 4.5 = 3.64. A 7.16 on a 10-point scale becomes 2.86. Universities use this formula as an estimate, not an official conversion. Sources: [UT Arlington: GPA converter](https://uta.edu/student-success/resources/student-resources/gpa-converter), [University of Arizona Graduate College: GPA calculator](https://grad.arizona.edu/gpacalculator/)."
+      },
+      {
+        "t": "p",
+        "text": "For a weighted high school GPA, this shortcut doesn't give you an unweighted GPA. Remove the bonus points class by class instead."
       }
     ],
     "faq": [
@@ -603,6 +716,14 @@ export const GUIDE_CONTENT = {
         ]
       },
       {
+        "t": "img",
+        "src": "/guides/raise-gpa-by-credits.webp",
+        "alt": "Bar chart of a 2.8 GPA after one 15-credit semester of A's: 3.40 with 15 credits already earned, falling to 2.93 with 120",
+        "caption": "The more credits you already have, the less one strong semester moves your GPA.",
+        "width": 1200,
+        "height": 675
+      },
+      {
         "t": "p",
         "text": "To run your own numbers, enter your current GPA and credits in the [cumulative GPA calculator](/cumulative-gpa-calculator/) and add the semester you're planning."
       },
@@ -673,6 +794,41 @@ export const GUIDE_CONTENT = {
       {
         "t": "p",
         "text": "On a weighted scale, an A in an AP or Honors class can lift your weighted GPA above what the same grade would do in a regular class. It doesn't change your unweighted GPA, and colleges such as the University of California cap how many honors points count. The [high school GPA calculator](/high-school-gpa-calculator/) shows both numbers."
+      },
+      {
+        "t": "h2",
+        "text": "How real colleges handle retakes",
+        "id": "how-real-colleges-handle-retakes"
+      },
+      {
+        "t": "p",
+        "text": "Grade replacement always comes with limits. UCLA counts only the newest grade for the first 16 units you repeat, and only for classes where you earned a C− or lower. UC Berkeley allows a repeat after a D+ or lower and replaces the grade for the first 12 graded units. The University of Cincinnati requires a request and caps replacements at 18 semester credit hours."
+      },
+      {
+        "t": "p",
+        "text": "Sources: [UCLA Registrar](https://catalog.registrar.ucla.edu/Policies-and-Regulations/Academic-Policies/Repetition-of-Courses), [UC Berkeley Registrar](https://www.registrar.berkeley.edu/faculty-staff/grading/grading-policies-reports), [University of Cincinnati](https://www.uc.edu/about/registrar/record-updates/grade-replacements.html)."
+      },
+      {
+        "t": "p",
+        "text": "So a retake is worth the most when it removes an F or D in a class with many credits, and when you still have replacement units left."
+      },
+      {
+        "t": "h2",
+        "text": "W and WF are not the same",
+        "id": "w-and-wf-are-not-the-same"
+      },
+      {
+        "t": "p",
+        "text": "At the University of Utah, a W is recorded on your transcript but isn't used to calculate your GPA. At USC Union, a University of South Carolina campus, a W isn't calculated either, but a WF after the deadline is treated as an F. Know your last day to withdraw before you decide. Sources: [University of Utah Registrar: Withdrawal policy](https://registrar.utah.edu/handbook/withdrawal.php), [USC Union Registrar: Withdrawal](https://www.union.sc.edu/about/offices_and_divisions/registrar/registration/withdrawal/index.php)."
+      },
+      {
+        "t": "h2",
+        "text": "Plan your next semester in two minutes",
+        "id": "plan-your-next-semester-in-two-minutes"
+      },
+      {
+        "t": "p",
+        "text": "Open the [cumulative GPA calculator](/cumulative-gpa-calculator/) and enter the GPA credits and quality points from your transcript. Add next semester's classes with the grades you're aiming for. You'll see your new cumulative GPA right away, and you can change one grade at a time to find out which class moves it most."
       }
     ],
     "faq": [

@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { GradeTool } from "@/components/gpa/GradeTool";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/grade-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -61,6 +63,7 @@ function Page() {
         <h2 id="weights" className="text-2xl">When your weights don't add up to 100%</h2>
         <p className="mt-2">If the categories you entered add up to less than 100%, the result is your grade so far. If they add up to more than 100%, check your syllabus. One of the weights is probably wrong.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.grade.blocks} />
       <FaqSection items={GRADE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

@@ -11,7 +11,7 @@ const BASE = `http://localhost:${PORT}`;
 
 // Pages come from the live sitemap, so every indexable route is exported and nothing drifts.
 let PAGES = [];
-const FILES = ["/robots.txt", "/sitemap.xml"];
+const FILES = ["/robots.txt", "/sitemap.xml", "/llms.txt"];
 
 const server = spawn("node", [".output/server/index.mjs"], {
   env: { ...process.env, PORT: String(PORT), HOST: "127.0.0.1", NITRO_PORT: String(PORT) },

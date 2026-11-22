@@ -103,7 +103,7 @@ export function SiteHeader() {
       <nav id="nav-mobile" aria-label="Mobile primary" hidden={open !== "mobile"} className="header-panel header-mobile-panel">
         {GROUPS.map((group) => (
           <div key={group.id}>
-            <h2 className="flex items-center gap-2 px-3 pt-3 text-sm text-text-muted"><group.icon aria-hidden="true" className="size-4 text-primary" />{group.label}</h2>
+            <p className="flex items-center gap-2 px-3 pt-3 text-sm font-semibold text-text-muted"><group.icon aria-hidden="true" className="size-4 text-primary" />{group.label}</p>
             <ul>{group.items.map((page) => <li key={page.path}>{navLink(page)}</li>)}</ul>
           </div>
         ))}

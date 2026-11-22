@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalTool } from "@/components/gpa/FinalTool";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/final-grade-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Final Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -56,6 +58,7 @@ function Page() {
         <h2 id="before" className="text-2xl">Is my current grade really "before the final"?</h2>
         <p className="mt-2">Most online gradebooks show your grade with the work that's been graded so far, which usually doesn't include the final. If your final is in the same category as your tests, your teacher may weight it differently. Check the syllabus before you rely on the number.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.final.blocks} />
       <FaqSection items={FINAL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

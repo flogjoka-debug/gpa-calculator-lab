@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CollegeCalculator } from "@/components/gpa/CollegeCalculator";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/college-gpa-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">College GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -77,6 +79,7 @@ function Page() {
           <p>On the quarter system, enter quarter units as your credits. The math is the same.</p>
         </div>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.college.blocks} />
       <FaqSection items={COLLEGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

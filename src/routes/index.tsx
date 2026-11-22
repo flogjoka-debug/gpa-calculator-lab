@@ -1,3 +1,4 @@
+import { PAGE_COPY } from "@/lib/page-copy";
 import { createFileRoute } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 import { EXAMPLE_RESULT, GpaCalculator } from "@/components/gpa/GpaCalculator";
@@ -23,7 +24,7 @@ function Home() {
   const shown = live ?? EXAMPLE_RESULT;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Eyebrow path={page.path} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -31,6 +32,10 @@ function Home() {
       </p>
 
       <GpaCalculator onResult={onResult} />
+      <section className="mt-10" aria-labelledby="what-gpa-means">
+        <h2 id="what-gpa-means" className="text-2xl">What GPA means</h2>
+        <p className="mt-2">{PAGE_COPY.homeDefinition.lead}</p>
+      </section>
 
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>

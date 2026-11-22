@@ -1,8 +1,11 @@
-import { Breadcrumbs } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
+import { Breadcrumbs } from "@/components/PageSeo";
+import { CopyBlocks, InlineText } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { SUPPORT, pageHead } from "@/lib/site";
 
 const page = SUPPORT.privacy;
+const copy = PAGE_COPY.privacy;
 
 export const Route = createFileRoute("/privacy")({
   head: () => pageHead(page),
@@ -11,14 +14,11 @@ export const Route = createFileRoute("/privacy")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
-      <h1 className="text-[2rem] leading-tight sm:text-4xl">Privacy</h1>
-      <p className="mt-3">The calculators work entirely in your browser. The grades, classes and credits you type aren't sent to our servers.</p>
-      <p className="mt-3">Nothing is saved unless you click "Save on this device". That stores your entries in this browser only. "Clear saved data" removes them. Clearing your browser data removes them too.</p>
-      <p className="mt-3">When you click a link such as "use this grade to plan your final", we keep just that one percentage in your browser so the next page can fill it in. It's deleted after it's used or after 30 minutes.</p>
-      <p className="mt-3">We don't put your grades in page addresses, and we don't send them to analytics.</p>
-      <p className="mt-3">Questions about privacy? <a href="/contact/">Contact us</a>.</p>
+      <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
+      <p className="mt-2 text-text-muted sm:text-lg"><InlineText text={copy.lead} /></p>
+      <CopyBlocks blocks={copy.blocks} />
     </main>
   );
 }

@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { HighSchoolCalculator } from "@/components/gpa/HighSchoolCalculator";
@@ -15,22 +17,14 @@ export const Route = createFileRoute("/high-school-gpa-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">High School GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your classes and mark each one Regular, Honors, AP, or IB. You'll see your unweighted and weighted GPA side by side.
       </p>
       <HighSchoolCalculator />
-      <section className="mt-12" aria-labelledby="weighted">
-        <h2 id="weighted" className="text-2xl">Weighted vs. unweighted GPA</h2>
-        <p className="mt-2">
-          An unweighted GPA treats every class the same. An A is 4.0 whether the class is regular or AP. A weighted GPA adds bonus points for harder classes, which is how it can go above 4.0.
-        </p>
-        <p className="mt-2">
-          Schools choose their own bonuses. Adding 0.5 for Honors and 1.0 for AP or IB is common, but it isn't a rule. Your school profile or student handbook has the real numbers.
-        </p>
-      </section>
+      <CopyBlocks blocks={PAGE_COPY.highschoolWeighted.blocks} />
       <section className="mt-12" aria-labelledby="how">
         <h2 id="how" className="text-2xl">How we calculated this</h2>
         <p className="mt-2">
@@ -78,6 +72,7 @@ function Page() {
           <p>Plus and minus grades use the example scale unless you edit it.</p>
         </div>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.highschool.blocks} />
       <FaqSection items={HIGH_SCHOOL_FAQ} />
       <CalculatorFooter page={page} />
     </main>

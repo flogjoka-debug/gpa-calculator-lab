@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { UcCalculator } from "@/components/gpa/UcCalculator";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/uc-gpa-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">UC GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -52,12 +54,13 @@ function Page() {
       </section>
       <section className="mt-12" aria-labelledby="minimum-gpa-for-the-university-of-california">
         <h2 id="minimum-gpa-for-the-university-of-california" className="text-2xl">Minimum GPA for the University of California</h2>
-        <p className="mt-2">California residents need at least a 3.0 GPA in A-G courses, and nonresidents need at least a 3.4. UC calculates the GPA you're measured against from the grades you report on your application. Source: <a href="https://admission.universityofcalifornia.edu/admission-requirements/first-year-requirements/gpa-requirement.html">UC Admissions: GPA requirement</a>.</p>
+        <p className="mt-2">California residents need at least a 3.0 GPA in A-G courses, and nonresidents need at least a 3.4. UC calculates the GPA you're measured against from the grades you report on your application. Source: <a href="https://admission.universityofcalifornia.edu/admission-requirements/first-year-requirements/gpa-requirement.html" rel="noopener">UC Admissions: GPA requirement</a>.</p>
       </section>
       <section className="mt-12" aria-labelledby="official">
         <h2 id="official" className="text-2xl">Why this isn't your official UC GPA</h2>
         <p className="mt-2">UC calculates the official number from the grades you report in your application. Use this result to check your math and to see which honors points are being cut by the limits.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.uc.blocks} />
       <FaqSection items={UC_FAQ} />
       <CalculatorFooter page={page} />
     </main>

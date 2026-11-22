@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CumulativeCalculator } from "@/components/gpa/CumulativeCalculator";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/cumulative-gpa-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Cumulative GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -64,6 +66,7 @@ function Page() {
         <h2 id="twice" className="text-2xl">Don't count a semester twice</h2>
         <p className="mt-2">If a semester is already part of the GPA and credits you entered, leave it out of the new semesters.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.cumulative.blocks} />
       <FaqSection items={CUMULATIVE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

@@ -1,5 +1,6 @@
 import { GUIDES, GUIDE_LIST, PAGES, SUPPORT, TOOL_GROUPS } from "@/lib/site";
 import { GROUP_ICONS } from "@/lib/icons";
+import { OPEN_CONSENT_EVENT } from "@/components/ConsentBanner";
 
 const GROUP_ICON = { GPA: GROUP_ICONS.gpa, Grades: GROUP_ICONS.grade, Admissions: GROUP_ICONS.admissions } as Record<string, typeof GROUP_ICONS.gpa>;
 
@@ -33,6 +34,7 @@ export function SiteFooter() {
             <li><a href={SUPPORT.methodology.path}>Methodology</a></li>
             <li><a href={SUPPORT.privacy.path}>Privacy</a></li>
             <li><a href={SUPPORT.contact.path}>Contact</a></li>
+            <li><button type="button" className="footer-link-button" onClick={() => window.dispatchEvent(new Event(OPEN_CONSENT_EVENT))}>Cookie settings</button></li>
           </ul>
         </nav>
         <p className="mt-4">GPA Calculator Lab gives estimates. Your school's transcript is the official record.</p>

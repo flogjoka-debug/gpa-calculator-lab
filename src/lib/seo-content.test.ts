@@ -20,16 +20,21 @@ describe("SEO structured data rules", () => {
   it("scopes identity schemas to home and FAQPage to pages with visible FAQs", () => {
     for (const page of ROUTES) {
       const types = pageHead(page).scripts.map((script) => (JSON.parse(script.children) as Record<string, unknown>)["@type"]);
-      expect(types).toEqual(page.path === "/" ? ["WebSite", "Organization", "FAQPage"] : [...(page.article ? ["Article"] : []), "BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
+      const calculator = Object.values(PAGES).some((p) => p.path === page.path);
+      const extra: Record<string, string> = { "/guides/": "CollectionPage", "/about/": "AboutPage", "/contact/": "ContactPage", "/methodology/": "TechArticle" };
+      expect(types).toEqual(page.path === "/"
+        ? ["WebSite", "Organization", "WebApplication", "FAQPage"]
+        : [...(page.article ? ["Article"] : []), ...(calculator ? ["WebApplication"] : []), ...(extra[page.path] ? [extra[page.path]] : []), "BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
     }
   });
   it("uses the approved organization URL, logo and contact email", () => {
     const organization = pageHead(PAGES.home).scripts.map((s) => JSON.parse(s.children) as Record<string, unknown>).find((s) => s["@type"] === "Organization");
     expect(organization?.["url"]).toBe("https://gpacalculatorlab.com/");
-    expect(organization?.["logo"]).toBe("https://gpacalculatorlab.com/icon-512.png");
+    expect((organization?.["logo"] as Record<string, unknown>)["url"]).toBe("https://gpacalculatorlab.com/icon-512.png");
+    expect(organization?.["@id"]).toBe("https://gpacalculatorlab.com/#organization");
     expect(organization?.["email"]).toBe("info@gpacalculatorlab.com");
   });
-  it("gives every guide a unique title, an Article dated by the site, visible FAQs and only known internal links", () => {
+  it("gives every guide a unique title, an Article by FloPixels, og:type article, visible FAQs and only known internal links", () => {
     const known = new Set(ROUTES.map((r) => r.path));
     const titles = new Set(ROUTES.map((r) => r.title));
     expect(titles.size).toBe(ROUTES.length);
@@ -38,7 +43,9 @@ describe("SEO structured data rules", () => {
       expect(guide.description.length).toBeLessThanOrEqual(160);
       const article = pageHead(guide).scripts.map((s) => JSON.parse(s.children) as Record<string, unknown>).find((s) => s["@type"] === "Article");
       expect(article?.["headline"]).toBe(guide.h1);
-      expect((article?.["author"] as Record<string, unknown>)["name"]).toBe("GPA Calculator Lab");
+      expect((article?.["author"] as Record<string, unknown>)["name"]).toBe("FloPixels");
+      expect((article?.["publisher"] as Record<string, unknown>)["@id"]).toBe("https://gpacalculatorlab.com/#organization");
+      expect(pageHead(guide).meta).toContainEqual({ property: "og:type", content: "article" });
       const content = Object.values(GUIDE_CONTENT).find((c) => c.path === guide.path);
       expect(content?.faq.length).toBeGreaterThanOrEqual(3);
       const text = JSON.stringify(content);

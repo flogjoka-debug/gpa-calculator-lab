@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { PercentageTool } from "@/components/gpa/PercentageTool";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/percentage-to-letter-grade")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Percentage to Letter Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -48,6 +50,7 @@ function Page() {
         <h2 id="scales" className="text-2xl">Common scale vs. 10-point scale</h2>
         <p className="mt-2">Many US schools split each letter into plus, plain and minus, with an A at 93 and above. Others use a straight 10-point scale where 90 to 100 is an A and there are no pluses or minuses. Your syllabus decides. The scale you choose here controls both the table and the result.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.percentage.blocks} />
       <FaqSection items={PERCENTAGE_FAQ} />
       <CalculatorFooter page={page} />
     </main>

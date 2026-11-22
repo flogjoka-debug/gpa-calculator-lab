@@ -22,19 +22,41 @@ export function InlineText({ text }: { text: string }) {
   return <>{parts.map((p, i) => <Fragment key={i}>{p}</Fragment>)}</>;
 }
 
-function Block({ block }: { block: GuideBlock }) {
+export function Block({ block }: { block: GuideBlock }) {
   switch (block.t) {
     case "h2":
       return <h2 id={block.id} className="mt-12 text-2xl">{block.text}</h2>;
+    case "h3":
+      return <h3 className="mt-5 text-lg">{block.text}</h3>;
     case "p":
       return <p className="mt-3"><InlineText text={block.text} /></p>;
     case "ol":
       return <ol className="mt-3 list-decimal space-y-2 pl-6">{block.items.map((item) => <li key={item}><InlineText text={item} /></li>)}</ol>;
     case "ul":
       return <ul className="mt-3 list-disc space-y-2 pl-6">{block.items.map((item) => <li key={item}><InlineText text={item} /></li>)}</ul>;
+    case "img":
+      return (
+        <figure className="my-8">
+          <img
+            src={block.src}
+            alt={block.alt}
+            width={block.width}
+            height={block.height}
+            loading="lazy"
+            decoding="async"
+            className="card h-auto w-full"
+          />
+          <figcaption className="mt-2 text-sm text-text-muted">{block.caption}</figcaption>
+        </figure>
+      );
     case "table":
       return <ContentTable caption={block.caption} columns={block.columns} rows={block.rows} />;
   }
+}
+
+/** Renders approved copy blocks (headings, paragraphs, lists, tables) inside a page. */
+export function CopyBlocks({ blocks }: { blocks: readonly GuideBlock[] }) {
+  return <>{blocks.map((block, i) => <Block key={i} block={block} />)}</>;
 }
 
 const formatDate = (iso?: string) =>
@@ -43,12 +65,12 @@ const formatDate = (iso?: string) =>
 export function GuideArticle({ page, content }: { page: PageInfo; content: GuideContent }) {
   const others = GUIDE_LIST.filter((g) => g.path !== page.path);
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <article>
         <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
         <p className="mt-2 text-sm text-text-muted">
-          By GPA Calculator Lab · Updated <time dateTime={page.article?.updated}>{formatDate(page.article?.updated)}</time>
+          By <a href="https://flopixels.net/" rel="noopener" className="underline">FloPixels</a> · Updated <time dateTime={page.article?.updated}>{formatDate(page.article?.updated)}</time>
         </p>
         <p className="mt-4 text-text-muted sm:text-lg">{content.lead}</p>
         {content.blocks.map((block, i) => <Block key={i} block={block} />)}

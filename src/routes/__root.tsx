@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
+import { ConsentBanner } from "../components/ConsentBanner";
 
 function NotFoundComponent() {
   return (
@@ -86,7 +87,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "GPA Calculator Lab" },
       { name: "theme-color", content: "#075F57" },
       { property: "og:site_name", content: "GPA Calculator Lab" },
-      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -123,9 +123,11 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <a href="#main" className="skip-link">Skip to content</a>
       <SiteHeader />
       <Outlet />
       <SiteFooter />
+      <ConsentBanner />
     </QueryClientProvider>
   );
 }

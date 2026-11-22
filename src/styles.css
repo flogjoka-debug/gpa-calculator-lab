@@ -283,3 +283,14 @@
 
 /* Soft page backdrop: a faint brand glow behind the top of every page. */
 body { background-image: radial-gradient(1200px 420px at 50% -120px, rgba(184, 236, 221, 0.55), transparent 70%); background-repeat: no-repeat; }
+
+/* Skip link: hidden until focused with the keyboard. */
+.skip-link { position: absolute; left: 0.75rem; top: -3rem; z-index: 50; padding: 0.6rem 1rem; border-radius: 999px; background: var(--primary-brand); color: var(--primary-fg); font-weight: 650; text-decoration: none; transition: top 150ms var(--ease); }
+.skip-link:focus { top: 0.75rem; color: var(--primary-fg); }
+main:focus { outline: none; }
+
+/* Cookie choice for Google Analytics: fixed bottom card, nothing loads until Accept. */
+.consent-banner { position: fixed; z-index: 40; left: 1rem; right: 1rem; bottom: 1rem; margin-inline: auto; max-width: 40rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; padding: 1rem 1.15rem; background: var(--surface); border: 1px solid var(--divider); border-radius: 18px; box-shadow: var(--shadow-lg); font-size: 15px; animation: rise 300ms var(--ease) both; }
+.consent-banner p { flex: 1 1 18rem; margin: 0; }
+.consent-actions { display: flex; gap: 0.5rem; margin-left: auto; }
+.footer-link-button { color: var(--primary-brand); text-decoration: underline; text-underline-offset: 3px; background: none; border: 0; padding: 0; cursor: pointer; font-size: inherit; }

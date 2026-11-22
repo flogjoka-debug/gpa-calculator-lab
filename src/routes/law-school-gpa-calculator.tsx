@@ -1,3 +1,5 @@
+import { CopyBlocks } from "@/components/Guide";
+import { PAGE_COPY } from "@/lib/page-copy";
 import { Breadcrumbs, CalculatorFooter, FaqSection, ContentTable } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { LawCalculator } from "@/components/gpa/LawCalculator";
@@ -15,7 +17,7 @@ export const Route = createFileRoute("/law-school-gpa-calculator")({
 
 function Page() {
   return (
-    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+    <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
@@ -30,7 +32,7 @@ function Page() {
         <h2 id="lsac-grade-conversion-chart" className="text-2xl">LSAC grade conversion chart</h2>
         <p className="mt-2">LSAC converts letter grades from every undergraduate school to the same 4.33 scale.</p>
         <ContentTable caption="LSAC grade conversion chart" columns={["Grade", "LSAC value", "Grade", "LSAC value"]} rows={[["A+", "4.33", "C+", "2.33"], ["A", "4.00", "C", "2.00"], ["A−", "3.67", "C−", "1.67"], ["AB", "3.50", "CD", "1.50"], ["B+", "3.33", "D+", "1.33"], ["B", "3.00", "D", "1.00"], ["B−", "2.67", "D−", "0.67"], ["BC", "2.50", "DE or DF", "0.50"], ["", "", "E and F", "0.00"]]} />
-        <p className="mt-2">Source: <a href="https://www.lsac.org/applying-law-school/jd-application-process/cas/requesting/transcript-summarization">LSAC: Transcript summarization</a>, checked November 22, 2026.</p>
+        <p className="mt-2">Source: <a href="https://www.lsac.org/applying-law-school/jd-application-process/cas/requesting/transcript-summarization" rel="noopener">LSAC: Transcript summarization</a>, checked November 22, 2026.</p>
       </section>
       <section className="mt-12" aria-labelledby="dual">
         <h2 id="dual" className="text-2xl">Dual enrollment and your application cycle</h2>
@@ -55,6 +57,7 @@ function Page() {
         <h2 id="already" className="text-2xl">Already in law school?</h2>
         <p className="mt-2">Your law school grades don't count toward the LSAC GPA. Law schools set their own grading scales, often with a curve, so this calculator won't match your JD GPA. Your school's registrar or student handbook explains how it's calculated.</p>
       </section>
+      <CopyBlocks blocks={PAGE_COPY.law.blocks} />
       <FaqSection items={LAW_FAQ} />
       <CalculatorFooter page={page} />
     </main>
