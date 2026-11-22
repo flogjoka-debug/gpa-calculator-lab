@@ -41,7 +41,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Final Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter your current grade, the grade you want, and how much the final counts. You'll see the score you need on the final and the highest grade you can still get.
+        Enter your current grade, the grade you want and how much the final counts in this final grade calculator. You'll see the score you need on the final and the highest grade you can still get.
       </p>
       <UpdatedLine page={page} />
       <FinalTool />

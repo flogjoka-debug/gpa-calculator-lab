@@ -58,7 +58,7 @@ function Home() {
       <Eyebrow path={page.path} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter each grade and its credits for one term or several. Add your GPA so far for a cumulative GPA, or switch to high school for weighted and unweighted GPA.
+        This GPA calculator works for one term or several: enter each grade and its credits. Add your GPA so far for a cumulative GPA, or switch to high school for weighted and unweighted GPA.
       </p>
       <UpdatedLine page={page} />
 

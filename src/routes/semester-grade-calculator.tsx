@@ -43,7 +43,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Semester Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter your quarter grades, your final exam score, and how much each one counts. You'll get your semester grade and the math behind it.
+        Enter your quarter grades, your exam score and how much each one counts, and this semester grade calculator does the rest. You'll get your semester grade and the math behind it.
       </p>
       <UpdatedLine page={page} />
       <SemesterTool />

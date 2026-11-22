@@ -45,7 +45,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">High School GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter your classes and mark each one Regular, Honors, AP, or IB. You'll see your unweighted and weighted GPA side by side.
+        Enter your classes in this high school GPA calculator and mark each one Regular, Honors, AP or IB. You'll see your unweighted and weighted GPA side by side.
       </p>
       <UpdatedLine page={page} />
       <HighSchoolCalculator />

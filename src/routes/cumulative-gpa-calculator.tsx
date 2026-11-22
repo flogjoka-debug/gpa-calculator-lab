@@ -45,7 +45,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Cumulative GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter the GPA credits and quality points you already have, then add your new semester. You'll see your updated cumulative GPA and how far the new grades moved it.
+        Start this cumulative GPA calculator with the GPA credits and quality points you already have, then add your new semester. You'll see your updated cumulative GPA and how far the new grades moved it.
       </p>
       <UpdatedLine page={page} />
       <CumulativeCalculator />

@@ -41,7 +41,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">College GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Add your classes with credit hours and plus/minus grades. You'll see your semester GPA, the quality points behind it, and what a retake would change.
+        Add your classes to this college GPA calculator with their credit hours and plus/minus grades. You'll see your semester GPA, the quality points behind it, and what a retake would change.
       </p>
       <UpdatedLine page={page} />
       <CollegeCalculator />

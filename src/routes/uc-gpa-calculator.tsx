@@ -38,7 +38,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">UC GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter your A-G semester grades from 10th and 11th grade and pick your residency. You'll get your unweighted and capped UC GPA, plus a list of which honors points counted and why.
+        This UC GPA calculator uses your A-G semester grades from 10th and 11th grade and your residency. You'll get your unweighted and capped UC GPA, plus a list of which honors points counted and why.
       </p>
       <UpdatedLine page={page} />
       <UcCalculator />

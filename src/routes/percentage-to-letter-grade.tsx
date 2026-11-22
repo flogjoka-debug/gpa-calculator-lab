@@ -41,7 +41,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Percentage to Letter Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Enter a percentage, or your points earned and possible, to get the letter grade, its range, and how far you are from the next one. Use the common scale or the cutoffs from your syllabus.
+        Enter a percentage, or your points earned and possible, and this percentage to letter grade calculator shows the letter, its range and how far you are from the next one. Use the common scale or the cutoffs from your syllabus.
       </p>
       <UpdatedLine page={page} />
       <PercentageTool />

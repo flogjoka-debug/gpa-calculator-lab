@@ -4,8 +4,8 @@ import type { GuideBlock } from "../guides-content";
 const blocks: GuideBlock[] = [
   {
     "t": "h2",
-    "text": "How to use the LSAC GPA calculator",
-    "id": "how-to-use-the-lsac-gpa-calculator"
+    "text": "How to use the law school GPA calculator",
+    "id": "how-to-use-the-law-school-gpa-calculator"
   },
   {
     "t": "ol",

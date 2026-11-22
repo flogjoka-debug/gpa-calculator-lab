@@ -13,7 +13,7 @@ import { LAW_FAQ } from "@/lib/seo-content";
 const page = PAGES.law;
 
 const TOC: (readonly [string, string])[] = [
-  ["how-to-use-the-lsac-gpa-calculator", "How to use the LSAC GPA calculator"],
+  ["how-to-use-the-law-school-gpa-calculator", "How to use the law school GPA calculator"],
   ["how", "How LSAC calculates your GPA"],
   ["lsac-grade-conversion-chart", "LSAC grade conversion chart"],
   ["dual", "Dual enrollment and your application cycle"],
@@ -41,7 +41,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Choose your application cycle, then enter your undergraduate grades. You'll see an estimate of your LSAC GPA, the GPA law schools see on your CAS report, with every included and excluded class listed.
+        This law school GPA calculator starts with your application cycle, then your undergraduate grades. You'll see an estimate of your LSAC GPA, the GPA law schools see on your CAS report, with every included and excluded class listed.
       </p>
       <UpdatedLine page={page} />
       <LawCalculator />

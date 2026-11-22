@@ -41,7 +41,7 @@ function Page() {
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
-        Add your assignment scores, or your category averages and their weights, to see your current grade in a class. Blank scores stay out of the math; a zero counts as a real score.
+        Add your assignment scores, or your category averages and their weights, and this grade calculator shows your current grade in the class. Blank scores stay out of the math; a zero counts as a real score.
       </p>
       <UpdatedLine page={page} />
       <GradeTool />
