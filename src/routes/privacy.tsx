@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SUPPORT, pageHead } from "@/lib/site";
 
@@ -11,6 +12,7 @@ export const Route = createFileRoute("/privacy")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Privacy</h1>
       <p className="mt-3">The calculators work entirely in your browser. The grades, classes and credits you type aren't sent to our servers.</p>
       <p className="mt-3">Nothing is saved unless you click "Save on this device". That stores your entries in this browser only. "Clear saved data" removes them. Clearing your browser data removes them too.</p>

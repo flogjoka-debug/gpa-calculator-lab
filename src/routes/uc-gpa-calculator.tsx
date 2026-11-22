@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { UcCalculator } from "@/components/gpa/UcCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/uc-gpa-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">UC GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your A-G semester grades from 10th and 11th grade and pick your residency. You'll get your unweighted and capped UC GPA, plus a list of which honors points counted and why.
@@ -41,6 +43,7 @@ function Page() {
         <h2 id="official" className="text-2xl">Why this isn't your official UC GPA</h2>
         <p className="mt-2">UC calculates the official number from the grades you report in your application. Use this result to check your math and to see which honors points are being cut by the limits.</p>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

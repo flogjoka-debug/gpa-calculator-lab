@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SUPPORT, pageHead } from "@/lib/site";
 
@@ -11,6 +12,7 @@ export const Route = createFileRoute("/methodology")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">How our calculators work</h1>
       <p className="mt-3">This page lists the formula behind each calculator and the source for every outside rule. When a rule changes, we update the calculator and the date below.</p>
       <section className="mt-10" aria-labelledby="gpa">

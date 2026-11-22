@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SUPPORT, pageHead } from "@/lib/site";
 
@@ -11,6 +12,7 @@ export const Route = createFileRoute("/about")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">About GPA Calculator Lab</h1>
       <p className="mt-3">GPA Calculator Lab is a set of free calculators for US high school students, college students and applicants. Each one shows its math: which grades counted, which didn't, and why.</p>
       <p className="mt-3">The calculators run in your browser. You don't need an account, and your grades aren't sent to us.</p>

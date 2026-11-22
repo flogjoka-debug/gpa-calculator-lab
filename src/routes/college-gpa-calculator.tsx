@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CollegeCalculator } from "@/components/gpa/CollegeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/college-gpa-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">College GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Add your classes with credit hours and plus/minus grades. You'll see your semester GPA, the quality points behind it, and what a retake would change.
@@ -57,6 +59,7 @@ function Page() {
           <p>On the quarter system, enter quarter units as your credits. The math is the same.</p>
         </div>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

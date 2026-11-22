@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { HighSchoolCalculator } from "@/components/gpa/HighSchoolCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/high-school-gpa-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">High School GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your classes and mark each one Regular, Honors, AP, or IB. You'll see your unweighted and weighted GPA side by side.
@@ -53,6 +55,7 @@ function Page() {
           <p>Plus and minus grades use the example scale unless you edit it.</p>
         </div>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

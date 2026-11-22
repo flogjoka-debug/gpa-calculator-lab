@@ -181,3 +181,20 @@
 @utility ledger-total {
   & > * { border-top: 2px solid var(--text); border-bottom: 4px double var(--text); }
 }
+
+/* Navigation panels stay in the server HTML, including when closed. */
+.site-header { position: relative; z-index: 20; }
+.header-desktop { display: none; align-items: center; gap: 0.25rem; }
+.header-group { position: relative; }
+.header-trigger { min-height: 44px; height: 44px; padding-inline: 0.75rem; font-size: 16px; color: var(--text); }
+.header-trigger:focus-visible { outline: 3px solid var(--focus-color); outline-offset: 2px; }
+.header-panel { background: var(--surface); border: 1px solid var(--divider); border-radius: var(--radius); padding: 0.5rem; }
+.header-panel[hidden] { display: none; }
+.header-dropdown { position: absolute; top: calc(100% + 0.5rem); right: 0; width: 20rem; }
+.header-link { display: flex; align-items: center; min-height: 44px; padding: 0.5rem 0.75rem; text-decoration: none; border-radius: 10px; }
+.header-link:hover, .header-link[aria-current="page"] { background: var(--accent-fill); color: var(--text); }
+.header-mobile-panel { position: absolute; inset-inline: 0; top: 100%; max-height: calc(100dvh - 61px); overflow-y: auto; border-radius: 0; }
+@media (min-width: 900px) {
+  .header-desktop { display: flex; }
+  .header-mobile-trigger, .header-mobile-panel { display: none; }
+}

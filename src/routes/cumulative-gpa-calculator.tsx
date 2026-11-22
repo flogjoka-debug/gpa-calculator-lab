@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { CumulativeCalculator } from "@/components/gpa/CumulativeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/cumulative-gpa-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Cumulative GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter the GPA credits and quality points you already have, then add your new semester. You'll see your updated cumulative GPA and how far the new grades moved it.
@@ -42,6 +44,7 @@ function Page() {
         <h2 id="twice" className="text-2xl">Don't count a semester twice</h2>
         <p className="mt-2">If a semester is already part of the GPA and credits you entered, leave it out of the new semesters.</p>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

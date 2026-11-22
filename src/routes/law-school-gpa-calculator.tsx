@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { LawCalculator } from "@/components/gpa/LawCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,7 +14,8 @@ export const Route = createFileRoute("/law-school-gpa-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
-      <h1 className="text-[2rem] leading-tight sm:text-4xl">Law School GPA Calculator</h1>
+      <Breadcrumbs page={page} />
+      <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Choose your application cycle, then enter your undergraduate grades. You'll see an estimate of your LSAC GPA, the GPA law schools see on your CAS report, with every included and excluded class listed.
       </p>
@@ -41,6 +43,7 @@ function Page() {
         <h2 id="left-out" className="text-2xl">What LSAC leaves out</h2>
         <p className="mt-2">Withdrawals and incompletes your school doesn't treat as failing, passing grades in pass/fail classes, remedial classes, AP test credit, and anything after your first bachelor's degree. A failing grade counts as 0.00, and so does a withdrawal your school treats as failing.</p>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

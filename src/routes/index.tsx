@@ -3,20 +3,16 @@ import { useCallback, useState } from "react";
 import { EXAMPLE_RESULT, GpaCalculator } from "@/components/gpa/GpaCalculator";
 import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
-import { PAGES, SITE_NAME, SITE_URL, TOOL_GROUPS, pageHead } from "@/lib/site";
+import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
+import { CalculatorFooter, FaqSection } from "@/components/PageSeo";
+import { HOME_FAQ, HOME_SCALE_ROWS } from "@/lib/seo-content";
+import { PAGES, TOOL_GROUPS, pageHead } from "@/lib/site";
 
 const page = PAGES.home;
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    ...pageHead(page),
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: `${SITE_URL}/` }),
-      },
-    ],
-  }),
+  head: () => pageHead(page),
   component: Home,
 });
 
@@ -55,7 +51,7 @@ function Home() {
         <p className="mt-2">
           The answer isn't 3.5. The B carries more credits, so it pulls the GPA down more than the A lifts it.
         </p>
-        <button
+        <Button variant="outline"
           type="button"
           className="btn mt-4"
           onClick={() => {
@@ -63,7 +59,45 @@ function Home() {
           }}
         >
           Load this example
-        </button>
+        </Button>
+      </section>
+
+      <section className="mt-12" aria-labelledby="by-hand">
+        <h2 id="by-hand" className="text-2xl">How to calculate your GPA by hand</h2>
+        <p className="mt-2">To calculate a GPA, turn each letter grade into grade points, multiply by the class's credits, and divide the total by the credits that count.</p>
+        <ol className="mt-3 list-decimal space-y-2 pl-6">
+          <li>Convert each grade to grade points. On the common 4.0 scale an A is 4.0, a B is 3.0, a C is 2.0, a D is 1.0 and an F is 0.</li>
+          <li>Multiply each class's grade points by its credits. That gives the class's quality points.</li>
+          <li>Add up the quality points for all your classes.</li>
+          <li>Add up the credits of the classes that count toward GPA.</li>
+          <li>Divide the quality points by the credits. The result is your GPA.</li>
+        </ol>
+        <p className="mt-3">With an A in a 3-credit class and a B in a 4-credit class, that's 12 + 12 = 24 quality points over 7 credits, so 24 ÷ 7 = 3.43.</p>
+      </section>
+
+      <section className="mt-12" aria-labelledby="gpa-scale">
+        <h2 id="gpa-scale" className="text-2xl">GPA scale: letter grades, percentages and grade points</h2>
+        <p className="mt-2">This is the scale the calculator starts with. Your school may use different cutoffs or point values, so treat it as an example and edit the scale above if yours differs.</p>
+        <div className="mt-4 overflow-x-auto rounded-[12px] border border-divider bg-surface">
+          <table className="w-full min-w-[420px] text-left tabular">
+            <caption className="sr-only">GPA scale: letter grades, percentages and grade points</caption>
+            <thead className="border-b border-divider bg-background"><tr>
+              <th scope="col" className="px-4 py-3">Letter grade</th>
+              <th scope="col" className="px-4 py-3">Percentage</th>
+              <th scope="col" className="px-4 py-3">Grade points</th>
+            </tr></thead>
+            <tbody>{HOME_SCALE_ROWS.map(([letter, percentage, points]) => <tr key={letter} className="border-b border-divider last:border-0">
+              <td className="px-4 py-2">{letter}</td><td className="px-4 py-2">{percentage}</td><td className="px-4 py-2">{points}</td>
+            </tr>)}</tbody>
+          </table>
+        </div>
+        <p className="mt-3">Have a percentage and need the letter? <Link to="/percentage-to-letter-grade/">Convert a percentage to a letter grade</Link>.</p>
+      </section>
+
+      <section className="mt-12" aria-labelledby="without-credits">
+        <h2 id="without-credits" className="text-2xl">GPA calculator without credits</h2>
+        <p className="mt-2">Some report cards don't list credits. Turn on "All classes count equally" and every class gets the same weight. Your GPA is then the plain average of your grade points: an A, a B and a C give (4 + 3 + 2) ÷ 3 = 3.00.</p>
+        <p className="mt-2">If your classes do carry different credits, leave the option off. A plain average gives a 1-credit elective the same pull as a 4-credit core class.</p>
       </section>
 
       <section className="mt-12" aria-labelledby="counts">
@@ -76,6 +110,8 @@ function Home() {
           <p>If your report card has no credits, turn on "All classes count equally" and each class gets the same weight.</p>
         </div>
       </section>
+
+      <FaqSection items={HOME_FAQ} />
 
       <section className="mt-12" aria-labelledby="picker">
         <h2 id="picker" className="text-2xl">Pick the calculator that fits</h2>
@@ -98,6 +134,7 @@ function Home() {
           ))}
         </div>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }

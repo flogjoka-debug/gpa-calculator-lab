@@ -1,3 +1,4 @@
+import { Breadcrumbs, CalculatorFooter } from "@/components/PageSeo";
 import { createFileRoute } from "@tanstack/react-router";
 import { SemesterTool } from "@/components/gpa/SemesterTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/semester-grade-calculator")({
 function Page() {
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">Semester Grade Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter your quarter grades, your final exam score, and how much each one counts. You'll get your semester grade and the math behind it.
@@ -36,6 +38,7 @@ function Page() {
         <h2 id="weightings" className="text-2xl">Common weightings</h2>
         <p className="mt-2">Many high schools use 40/40/20: two quarters worth 40% each and a final worth 20%. Some use 45/45/10, and some have no semester exam at all. Use Custom if your school splits the term into three grading periods or weights the exam differently.</p>
       </section>
+      <CalculatorFooter page={page} />
     </main>
   );
 }
