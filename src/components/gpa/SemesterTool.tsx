@@ -193,7 +193,7 @@ export function SemesterTool() {
               {fresh.rows.map((r) => (
                 <tr key={r.letter} className="border-b border-divider">
                   <th scope="row" className="py-2 pr-3">{r.letter} ({fmtNum(r.target)}%)</th>
-                  <td className="py-2 text-right">{r.reachable ? `${fmtPct1(r.needed)}%` : "Not reachable"}</td>
+                  <td className="py-2 text-right">{!r.reachable ? "Not reachable" : r.needed <= 0 ? "Already reached" : `${fmtPct1(r.needed)}%`}</td>
                 </tr>
               ))}
             </tbody>

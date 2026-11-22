@@ -1,10 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { StubPage } from "@/components/StubPage";
-import { PAGES, stubHead } from "@/lib/site";
+import { UcCalculator } from "@/components/gpa/UcCalculator";
+import { LoadExampleButton } from "@/components/gpa/shared";
+import { PAGES, toolHead } from "@/lib/site";
 
 const page = PAGES.uc;
 
 export const Route = createFileRoute("/uc-gpa-calculator")({
-  head: () => stubHead(page.title, page.path, page.description),
-  component: () => <StubPage h1={page.h1} />,
+  head: () => toolHead(page, "uc.png", "UC GPA calculator showing a 4.66 capped GPA with 8 of 12 honors points counted"),
+  component: Page,
 });
+
+function Page() {
+  return (
+    <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <h1 className="text-[2rem] leading-tight sm:text-4xl">UC GPA Calculator</h1>
+      <p className="mt-2 text-text-muted sm:text-lg">
+        Enter your A-G semester grades from 10th and 11th grade and pick your residency. You'll get your unweighted and capped UC GPA, plus a list of which honors points counted and why.
+      </p>
+      <UcCalculator />
+      <section className="mt-12" aria-labelledby="how">
+        <h2 id="how" className="text-2xl">How UC calculates your GPA</h2>
+        <p className="mt-2">
+          UC uses only A-G courses taken from the summer after 9th grade through the summer after 11th grade. Each semester grade is worth A = 4, B = 3, C = 2 and D = 1, and pluses and minuses are dropped. Then UC adds one extra point for each semester of an approved honors course with an A, B or C, up to 8 points in total and no more than 4 from 10th grade. UC doesn't round the result, so we don't either.
+        </p>
+      </section>
+      <section className="mt-12" aria-labelledby="example">
+        <h2 id="example" className="text-2xl">Example: 12 A's, all honors</h2>
+        <p className="mt-2">A California resident has six honors A's in 10th grade and six in 11th. The 12 grades add up to 48 points, so the unweighted GPA is 48 ÷ 12 = 4.00.</p>
+        <p className="mt-2">All 12 classes could earn an honors point, but only 8 count. Four come from 10th grade, the most UC allows, and four from 11th. The capped GPA is 56 ÷ 12 = 4.66.</p>
+        <p className="mt-2">If the same student had only the six 10th-grade A's, just 4 honors points would count.</p>
+        <LoadExampleButton />
+      </section>
+      <section className="mt-12" aria-labelledby="honors">
+        <h2 id="honors" className="text-2xl">Which classes earn honors points</h2>
+        <p className="mt-2">For California residents: AP, IB Higher Level, designated IB Standard Level, UC-transferable college courses, and honors courses certified by UC on your school's course list.</p>
+        <p className="mt-2">For nonresidents: only AP and IB courses, with an A, B or C. School-designated honors classes don't earn UC honors points, though they can still be considered in the rest of your application.</p>
+        <p className="mt-2">Your school weights classes its own way. You can <a href="/high-school-gpa-calculator/">compare your school's weighted GPA</a> with this one.</p>
+      </section>
+      <section className="mt-12" aria-labelledby="official">
+        <h2 id="official" className="text-2xl">Why this isn't your official UC GPA</h2>
+        <p className="mt-2">UC calculates the official number from the grades you report in your application. Use this result to check your math and to see which honors points are being cut by the limits.</p>
+      </section>
+    </main>
+  );
+}

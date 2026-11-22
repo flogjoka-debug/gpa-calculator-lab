@@ -58,7 +58,7 @@ Math lives in pure TypeScript functions under src/lib/calc/, with no UI imports.
 - Semester Grade = Σ(period grade × weight), weights as fractions summing to 1 (UI shows 20%, formula uses 0.20). Presets: 40/40/20, 50/50 no exam, custom.
 - Final Grade: needed = (target − current × (1 − w)) ÷ w. Max course grade = current × (1 − w) + 100 × w. "Current grade" excludes the final. Handle w = 0, w = 1, target already reached, and needed > 100 (show the max reachable grade and the formula with the student's numbers). Round the needed score UP at the displayed precision.
 - Percentage to Letter: the active scale profile is the only source for both the table and the result. Ranges cover 0–100 with no gaps or overlaps. Look up the letter from the full-precision value before formatting.
-- UC and LSAC rules live in their own modules (src/lib/calc/uc.ts, lsac.ts), never in the generic GPA functions. Details arrive in the Phase 4 policy brief.
+- UC and LSAC rules live in their own modules (src/lib/calc/uc.ts, lsac.ts), never in the generic GPA functions. Rules: docs/policy-uc-lsac.md (dated policy brief, phase 4).
 
 ## 5. Acceptance tests (automated + checked through the UI)
 | Case | Input | Expected |
