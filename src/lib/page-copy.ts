@@ -601,6 +601,22 @@ export const PAGE_COPY = {
       },
       {
         "t": "h2",
+        "text": "Find the right page for your question",
+        "id": "find-the-right-page-for-your-question"
+      },
+      {
+        "t": "ul",
+        "items": [
+          "\"Is a 3.5 GPA good?\" Read [what is a good GPA](/guides/what-is-a-good-gpa/).",
+          "\"What letter grade is an 87?\" Use the [percentage to letter grade calculator](/percentage-to-letter-grade/).",
+          "\"What do I need on my final?\" Use the [final grade calculator](/final-grade-calculator/).",
+          "\"Will colleges look at my weighted GPA?\" Read [weighted vs unweighted GPA](/guides/weighted-vs-unweighted-gpa/).",
+          "\"Can one good semester fix my GPA?\" Read [how to raise your GPA](/guides/how-to-raise-your-gpa/), then try your numbers in the [cumulative GPA calculator](/cumulative-gpa-calculator/).",
+          "\"What is a 3.5 as a percentage?\" Read [the 4.0 GPA scale](/guides/gpa-scale/)."
+        ]
+      },
+      {
+        "t": "h2",
         "text": "How we write these guides",
         "id": "how-we-write-these-guides"
       },
@@ -623,6 +639,15 @@ export const PAGE_COPY = {
       {
         "t": "p",
         "text": "GPA Calculator Lab is built and maintained by [FloPixels](https://flopixels.net/), a web design and SEO studio. We launched the site in November 2026. We're not a school, a counseling service or an admissions office. Our job is to turn published grading rules into calculators that get the arithmetic right and explain every step."
+      },
+      {
+        "t": "h2",
+        "text": "Who the calculators are for",
+        "id": "who-the-calculators-are-for"
+      },
+      {
+        "t": "p",
+        "text": "We built the site for four kinds of visitors: high school students comparing their weighted and unweighted GPA before applications, college students planning a semester or a retake, applicants checking the UC or LSAC number before they submit, and parents or counselors who want to double-check a figure. If you're none of these and the site still helped, we'd like to hear what you used it for."
       },
       {
         "t": "h2",
