@@ -70,6 +70,7 @@ try {
   console.log("404 /404.html");
 
   await save(".htaccess", await readFile("scripts/static.htaccess", "utf8"));
+  await save("embed/.htaccess", await readFile("scripts/embed.htaccess", "utf8"));
   console.log(`Static site written to ${OUT}/`);
 } finally {
   server.kill();
