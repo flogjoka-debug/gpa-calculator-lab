@@ -58,7 +58,7 @@ export function LawCalculator() {
 
   return (
     <>
-      <form noValidate aria-label="Law school GPA calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Law school GPA calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(rows, cycle); }}>
         <fieldset aria-describedby={`lsac-cycle-help${out?.kind === "no-cycle" ? " lsac-cycle-err" : ""}`}>
           <legend className="mb-1 font-semibold">Application cycle</legend>
@@ -79,7 +79,7 @@ export function LawCalculator() {
             const err = out?.kind === "error" && out.index === i + 1 ? out : null;
             const flaggable = row.grade === "W" || row.grade === "WF" || row.grade === "I";
             return (
-              <li key={row.id} className="rounded-[10px] border border-divider p-3">
+              <li key={row.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <div className="grid grid-cols-3 gap-2 sm:grid-cols-[1fr_6rem_5.5rem_8rem_44px]">
                   <div className="col-span-3 sm:col-span-1">
                     <label htmlFor={`name-${row.id}`} className="mb-1 block text-sm">Class (optional)</label>

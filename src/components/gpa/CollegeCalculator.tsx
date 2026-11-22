@@ -167,7 +167,7 @@ export function CollegeCalculator() {
       <form
         noValidate
         aria-label="College GPA calculator"
-        className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+        className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => {
           e.preventDefault();
           run(semesters);
@@ -205,7 +205,7 @@ export function CollegeCalculator() {
                       .map((er, eri) => ({ id: er.id, label: optionLabel(esi, eri, er) })),
                   );
                   return (
-                    <li key={row.id} className="rounded-[10px] border border-divider p-3">
+                    <li key={row.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                       <div className="grid grid-cols-[1fr_6.5rem_44px] gap-2 sm:grid-cols-[1fr_7.5rem_6.5rem_44px]">
                         <div className="col-span-3 sm:col-span-1">
                           <label htmlFor={`name-${row.id}`} className="mb-1 block text-sm">Class (optional)</label>
@@ -273,7 +273,7 @@ export function CollegeCalculator() {
             {multi ? (
               <ul className="grid gap-2 sm:grid-cols-2">
                 {fresh.sem.semesters.map((o, i) => (
-                  <li key={semesters[i]?.id ?? i} className="rounded-[10px] border border-divider p-3">
+                  <li key={semesters[i]?.id ?? i} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                     <p className="text-text-muted">{names[i]}</p>
                     <p className="tabular text-2xl font-semibold">{o.kind === "result" ? formatGpa(o.value) : "—"}</p>
                   </li>
@@ -305,7 +305,7 @@ export function CollegeCalculator() {
 
 function PolicyResult({ title, r }: { title: string; r: GpaResult }) {
   return (
-    <div className="rounded-[10px] border border-divider p-3">
+    <div className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
       <p className="font-semibold">{title}</p>
       <p className="tabular mt-1 text-4xl leading-none font-semibold">{formatGpa(r.value)}</p>
       <p className="tabular mt-2 text-[15px]">

@@ -124,14 +124,14 @@ export function HighSchoolCalculator() {
 
   return (
     <>
-      <form noValidate aria-label="High school GPA calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="High school GPA calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(rows); }}>
         <ol className="space-y-3">
           {rows.map((row, i) => {
             const err = errors.find((e) => e.index === i + 1);
             const errId = `err-${row.id}`;
             return (
-              <li key={row.id} className="rounded-[10px] border border-divider p-3">
+              <li key={row.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-[1fr_6.5rem_9rem_5.5rem_44px]">
                   <div className="col-span-2 sm:col-span-1">
                     <label htmlFor={`name-${row.id}`} className="mb-1 block text-sm">Class (optional)</label>
@@ -216,11 +216,11 @@ export function HighSchoolCalculator() {
         {fresh ? (
           <div className="space-y-4">
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[10px] border border-divider p-3">
+              <div className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <p className="text-text-muted">Unweighted GPA</p>
                 <p className="tabular text-5xl leading-none font-semibold">{formatGpa(fresh.unweighted.value)}</p>
               </div>
-              <div className="rounded-[10px] border border-divider p-3">
+              <div className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <p className="text-text-muted">Weighted GPA</p>
                 <p className="tabular text-5xl leading-none font-semibold">{formatGpa(fresh.weighted.value)}</p>
               </div>

@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Breadcrumbs, ContentTable, FaqSection } from "@/components/PageSeo";
+import { Breadcrumbs, ContentTable, FaqSection, LinkCardGrid } from "@/components/PageSeo";
 import { GUIDE_LIST, SUPPORT, type PageInfo } from "@/lib/site";
 import type { GuideBlock, GuideContent } from "@/lib/guides-content";
 
@@ -60,9 +60,7 @@ export function GuideArticle({ page, content }: { page: PageInfo; content: Guide
         </p>
         <section className="mt-6" aria-labelledby="more-guides">
           <h2 id="more-guides" className="text-2xl">More GPA guides</h2>
-          <ul className="mt-2 space-y-1">
-            {others.map((g) => <li key={g.path}><Link to={g.path} className="inline-flex min-h-11 items-center">{g.h1}</Link></li>)}
-          </ul>
+          <LinkCardGrid items={others} />
         </section>
       </div>
     </main>

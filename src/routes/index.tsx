@@ -5,7 +5,8 @@ import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { CalculatorFooter, FaqSection } from "@/components/PageSeo";
+import { CalculatorFooter, Eyebrow, FaqSection } from "@/components/PageSeo";
+import { iconFor } from "@/lib/icons";
 import { HOME_FAQ, HOME_SCALE_ROWS } from "@/lib/seo-content";
 import { PAGES, TOOL_GROUPS, pageHead } from "@/lib/site";
 
@@ -23,6 +24,7 @@ function Home() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
+      <Eyebrow path={page.path} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">GPA Calculator</h1>
       <p className="mt-2 text-text-muted sm:text-lg">
         Enter each grade and its credits. You'll get your GPA, your total quality points, and the credits that counted.
@@ -36,7 +38,7 @@ function Home() {
           Every letter grade is worth a set number of grade points. We multiply those points by the class's credits to
           get quality points, add them up, and divide by the credits that count toward your GPA.
         </p>
-        <div className="mt-4 rounded-[14px] border border-divider bg-surface p-4">
+        <div className="mt-4 card p-4">
           <LedgerTable result={shown} caption={live ? undefined : "Example"} />
           <div className="mt-3"><FormulaLine result={shown} /></div>
         </div>
@@ -78,7 +80,7 @@ function Home() {
       <section className="mt-12" aria-labelledby="gpa-scale">
         <h2 id="gpa-scale" className="text-2xl">GPA scale: letter grades, percentages and grade points</h2>
         <p className="mt-2">This is the scale the calculator starts with. Your school may use different cutoffs or point values, so treat it as an example and edit the scale above if yours differs.</p>
-        <div className="mt-4 overflow-x-auto rounded-[12px] border border-divider bg-surface">
+        <div className="mt-4 overflow-x-auto content-table">
           <table className="w-full min-w-[420px] text-left tabular">
             <caption className="sr-only">GPA scale: letter grades, percentages and grade points</caption>
             <thead className="border-b border-divider bg-background"><tr>
@@ -121,14 +123,17 @@ function Home() {
         </p>
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           {TOOL_GROUPS.map((g) => (
-            <nav key={g.label} aria-label={g.label} className="rounded-[14px] border border-divider bg-surface p-4">
+            <nav key={g.label} aria-label={g.label} className="card p-4">
               <h3 className="text-sm tracking-wide text-text-muted uppercase">{g.label}</h3>
               <ul className="mt-2 space-y-1">
-                {g.items.map((p) => (
-                  <li key={p.path}>
-                    <a href={p.path} className="inline-flex min-h-11 items-center">{p.h1}</a>
-                  </li>
-                ))}
+                {g.items.map((p) => {
+                  const Icon = iconFor(p.path);
+                  return (
+                    <li key={p.path}>
+                      <a href={p.path} className="picker-link"><span className="icon-chip icon-chip-sm" aria-hidden="true"><Icon /></span>{p.h1}</a>
+                    </li>
+                  );
+                })}
               </ul>
             </nav>
           ))}

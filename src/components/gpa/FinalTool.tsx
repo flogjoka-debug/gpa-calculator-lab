@@ -56,7 +56,7 @@ export function FinalTool() {
   return (
     <>
       {notice}
-      <form noValidate aria-label="Final grade calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Final grade calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(); }}>
         <div className="grid gap-3 sm:grid-cols-3">
           {field("current", "Current grade (%)", current, setCurrent, (

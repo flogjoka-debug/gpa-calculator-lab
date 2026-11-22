@@ -81,7 +81,7 @@ export function PercentageTool() {
   return (
     <>
       {notice}
-      <form noValidate aria-label="Percentage to letter grade" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Percentage to letter grade" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(); }}>
         <div role="radiogroup" aria-label="Enter" className="flex flex-wrap gap-x-5">
           {([["percent", "Enter a percentage"], ["points", "Enter points"]] as const).map(([v, l]) => (
@@ -152,7 +152,7 @@ export function PercentageTool() {
         Turning letters into a GPA? You can <a href="/college-gpa-calculator/">use this letter grade in your college GPA</a>.
       </p>
 
-      <div className="mt-6 overflow-x-auto rounded-[14px] border border-divider bg-surface p-3 sm:p-4">
+      <div className="mt-6 overflow-x-auto card p-3 sm:p-4">
         <table className="tabular w-full border-collapse text-left text-[15px]">
           <caption className="mb-2 text-left font-semibold">{profile.name}</caption>
           <thead>

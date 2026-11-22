@@ -78,7 +78,7 @@ export function GradeTool() {
 
   return (
     <>
-      <form noValidate aria-label="Grade calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Grade calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(); }}>
         <div role="tablist" aria-label="Mode" className="flex flex-wrap gap-2">
           {tabBtn("points", "Points")}
@@ -90,7 +90,7 @@ export function GradeTool() {
               {prows.map((r, i) => {
                 const err = errors.find((e) => e.index === i + 1);
                 return (
-                  <li key={r.id} className="rounded-[10px] border border-divider p-3">
+                  <li key={r.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                     <div className="grid grid-cols-[1fr_1fr_44px] gap-2 sm:grid-cols-[1fr_7rem_7rem_44px]">
                       <div className="col-span-3 sm:col-span-1">
                         <label htmlFor={`name-${r.id}`} className="mb-1 block text-sm">Assignment (optional)</label>
@@ -125,7 +125,7 @@ export function GradeTool() {
               {crows.map((r, i) => {
                 const err = errors.find((e) => e.index === i + 1);
                 return (
-                  <li key={r.id} className="rounded-[10px] border border-divider p-3">
+                  <li key={r.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                     <div className="grid grid-cols-[1fr_1fr_44px] gap-2 sm:grid-cols-[1fr_8rem_7rem_44px]">
                       <div className="col-span-3 sm:col-span-1">
                         <label htmlFor={`name-${r.id}`} className="mb-1 block text-sm">Category (optional)</label>

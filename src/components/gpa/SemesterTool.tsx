@@ -84,7 +84,7 @@ export function SemesterTool() {
 
   return (
     <>
-      <form noValidate aria-label="Semester grade calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Semester grade calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(); }}>
         <div className="max-w-sm">
           <label htmlFor="preset" className="mb-1 block text-sm">Weighting</label>
@@ -96,7 +96,7 @@ export function SemesterTool() {
           {periods.map((p, i) => {
             const err = errFor(i + 1);
             return (
-              <li key={p.id} className="rounded-[10px] border border-divider p-3">
+              <li key={p.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <div className={`grid gap-2 ${custom ? "grid-cols-[1fr_1fr_44px] sm:grid-cols-[1fr_7rem_7rem_44px]" : "grid-cols-2 sm:grid-cols-[1fr_7rem_7rem]"}`}>
                   <div className={custom ? "col-span-3 sm:col-span-1" : "col-span-2 sm:col-span-1"}>
                     <label htmlFor={`name-${p.id}`} className="mb-1 block text-sm">Grading period</label>
@@ -142,7 +142,7 @@ export function SemesterTool() {
           </div>
         ) : null}
         {hasExam ? (
-          <div className="mt-3 rounded-[10px] border border-divider p-3">
+          <div className="mt-3 rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
             <div className="grid grid-cols-2 gap-2 sm:max-w-sm">
               <div>
                 <label htmlFor="exam" className="mb-1 block text-sm">Final exam (%)</label>

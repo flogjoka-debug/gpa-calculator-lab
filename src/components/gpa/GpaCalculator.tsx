@@ -184,7 +184,7 @@ export function GpaCalculator({ onResult }: { onResult?: (r: GpaResult | null) =
           e.preventDefault();
           runCalc(rows);
         }}
-        className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+        className="mt-5 card p-3 sm:p-5"
         aria-label="GPA calculator"
       >
         <ol className="space-y-3">
@@ -195,7 +195,7 @@ export function GpaCalculator({ onResult }: { onResult?: (r: GpaResult | null) =
             const gradeBad = err?.code === "grade";
             const creditsBad = err?.code === "credits";
             return (
-              <li key={row.id} className="rounded-[10px] border border-divider p-3">
+              <li key={row.id} className="rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <div className="grid grid-cols-[1fr_6.5rem_44px] gap-x-2 gap-y-2 sm:grid-cols-[1fr_8rem_7rem_44px]">
                   <div className="col-span-3 sm:col-span-1">
                     <label htmlFor={`name-${row.id}`} className="mb-1 block text-sm">Class (optional)</label>
@@ -349,7 +349,7 @@ export function GpaCalculator({ onResult }: { onResult?: (r: GpaResult | null) =
       <div
         ref={resultRef}
         aria-live="polite"
-        className="mt-5 scroll-mb-4 rounded-[14px] border border-divider bg-surface p-4 sm:p-5"
+        className="mt-5 scroll-mb-4 card p-4 sm:p-5"
       >
         {result ? (
           <div className="space-y-4">
@@ -371,7 +371,7 @@ export function GpaCalculator({ onResult }: { onResult?: (r: GpaResult | null) =
       <dialog
         ref={dialogRef}
         aria-labelledby="replace-title"
-        className="m-auto w-[min(92vw,26rem)] rounded-[14px] border border-divider bg-surface p-5 text-text backdrop:bg-text/40"
+        className="m-auto w-[min(92vw,26rem)] card p-5 text-text backdrop:bg-text/40"
       >
         <p id="replace-title" className="text-lg font-semibold">Replace your classes with the example?</p>
         <div className="mt-4 flex gap-2">

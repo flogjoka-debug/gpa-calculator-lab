@@ -131,7 +131,7 @@ export function CumulativeCalculator() {
 
   return (
     <>
-      <form noValidate aria-label="Cumulative GPA calculator" className="mt-5 rounded-[14px] border border-divider bg-surface p-3 sm:p-5"
+      <form noValidate aria-label="Cumulative GPA calculator" className="mt-5 card p-3 sm:p-5"
         onSubmit={(e) => { e.preventDefault(); run(prior, sems); }}>
         <fieldset>
           <legend className="text-lg font-semibold">What you have so far</legend>
@@ -180,7 +180,7 @@ export function CumulativeCalculator() {
             const gErr = fErr("semesterGpa", n);
             const cErr = fErr("semesterCredits", n);
             return (
-              <div key={s.id} className="mt-3 rounded-[10px] border border-divider p-3">
+              <div key={s.id} className="mt-3 rounded-[12px] border border-divider bg-[#FBFDFC] p-3">
                 <div className="flex items-center justify-between gap-2">
                   <p className="font-semibold">Semester {n}</p>
                   {sems.length > 1 ? (

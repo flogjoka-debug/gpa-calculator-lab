@@ -1,16 +1,46 @@
 import { Link } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { eyebrowFor, iconFor } from "@/lib/icons";
 import { GUIDES, PAGES, SUPPORT, type PageInfo } from "@/lib/site";
 import { type FaqItem } from "@/lib/seo-content";
 
+export function Eyebrow({ path }: { path: string }) {
+  const { label, icon: Icon } = eyebrowFor(path);
+  return <p className="eyebrow"><span className="icon-chip" aria-hidden="true"><Icon /></span>{label}</p>;
+}
+
+/** Card link with the page's icon, its name and an optional one-line note. */
+export function LinkCard({ page, note }: { page: PageInfo; note?: string }) {
+  const Icon = iconFor(page.path);
+  return (
+    <Link to={page.path} className="link-card">
+      <span className="icon-chip" aria-hidden="true"><Icon /></span>
+      <span>{page.h1}{note ? <small>{note}</small> : null}</span>
+      <ArrowRight className="arrow" aria-hidden="true" />
+    </Link>
+  );
+}
+
+export function LinkCardGrid({ items, notes = false }: { items: PageInfo[]; notes?: boolean }) {
+  return (
+    <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+      {items.map((item) => <li key={item.path}>{notes ? <LinkCard page={item} note={item.description} /> : <LinkCard page={item} />}</li>)}
+    </ul>
+  );
+}
+
 export function Breadcrumbs({ page }: { page: PageInfo }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-3 text-sm text-text-muted">
+    <>
+    <nav aria-label="Breadcrumb" className="mb-4 text-sm text-text-muted">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
         <li><Link to="/">Home</Link><span aria-hidden="true" className="ml-2">›</span></li>
         {page.parent ? <li><Link to={page.parent.path}>{page.parent.h1}</Link><span aria-hidden="true" className="ml-2">›</span></li> : null}
         <li aria-current="page">{page.h1}</li>
       </ol>
     </nav>
+    <Eyebrow path={page.path} />
+    </>
   );
 }
 
@@ -40,11 +70,9 @@ export const RELATED_GUIDES: Record<string, PageInfo[]> = {
 export function RelatedGuides({ items }: { items: PageInfo[] | undefined }) {
   if (!items?.length) return null;
   return (
-    <section className="mt-6" aria-labelledby="related-guides">
+    <section className="mt-8" aria-labelledby="related-guides">
       <h2 id="related-guides" className="text-2xl">Related guides</h2>
-      <ul className="mt-2 space-y-1">
-        {items.map((item) => <li key={item.path}><Link to={item.path} className="inline-flex min-h-11 items-center">{item.h1}</Link></li>)}
-      </ul>
+      <LinkCardGrid items={items} />
     </section>
   );
 }
@@ -57,9 +85,7 @@ export function CalculatorFooter({ page }: { page: PageInfo }) {
       {related ? (
         <section className="mt-6" aria-labelledby="related-calculators">
           <h2 id="related-calculators" className="text-2xl">Related calculators</h2>
-          <ul className="mt-2 space-y-1">
-            {related.map((item) => <li key={item.path}><Link to={item.path} className="inline-flex min-h-11 items-center">{item.h1}</Link></li>)}
-          </ul>
+          <LinkCardGrid items={related} />
         </section>
       ) : null}
       <RelatedGuides items={RELATED_GUIDES[page.path]} />
@@ -71,9 +97,9 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
   return (
     <section className="mt-12" aria-labelledby="faq">
       <h2 id="faq" className="text-2xl">Frequently asked questions</h2>
-      <div className="mt-4 space-y-6">
+      <div className="mt-4 space-y-3">
         {items.map((item) => (
-          <div key={item.question}>
+          <div key={item.question} className="faq-item">
             <h3 className="text-lg">{item.question}</h3>
             <p className="mt-2">{item.answer.map((part, i) => typeof part === "string" ? part : <Link key={i} to={part.to}>{part.text}</Link>)}</p>
           </div>
@@ -85,7 +111,7 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
 
 export function ContentTable({ caption, columns, rows }: { caption: string; columns: string[]; rows: string[][] }) {
   return (
-    <div className="mt-4 overflow-x-auto rounded-[12px] border border-divider bg-surface">
+    <div className="mt-4 overflow-x-auto content-table">
       <table className="w-full min-w-[420px] text-left tabular">
         <caption className="sr-only">{caption}</caption>
         <thead><tr>{columns.map((column, i) => <th key={i} scope="col" className="border-b border-divider px-4 py-3">{column}</th>)}</tr></thead>

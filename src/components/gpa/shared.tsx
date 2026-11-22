@@ -77,7 +77,7 @@ export function useReplaceConfirm() {
     <dialog
       ref={ref}
       aria-labelledby="replace-title"
-      className="m-auto w-[min(92vw,26rem)] rounded-[14px] border border-divider bg-surface p-5 text-text backdrop:bg-text/40"
+      className="m-auto w-[min(92vw,26rem)] card p-5 text-text backdrop:bg-text/40"
     >
       <p id="replace-title" className="text-lg font-semibold">Replace your classes with the example?</p>
       <div className="mt-4 flex gap-2">
@@ -180,7 +180,7 @@ export function ScalePanel({
 }
 
 export const ResultBox = ({ children, boxRef }: { children: ReactNode; boxRef?: React.Ref<HTMLDivElement> }) => (
-  <div ref={boxRef} aria-live="polite" className="mt-5 scroll-mb-4 rounded-[14px] border border-divider bg-surface p-4 sm:p-5">
+  <div ref={boxRef} aria-live="polite" className="mt-5 scroll-mb-4 card p-4 sm:p-5">
     {children}
   </div>
 );
