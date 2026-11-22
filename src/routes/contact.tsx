@@ -5,6 +5,6 @@ import { SUPPORT, stubHead } from "@/lib/site";
 const page = SUPPORT.contact;
 
 export const Route = createFileRoute("/contact")({
-  head: () => stubHead(page.h1, page.path),
+  head: () => stubHead(page.title, page.path),
   component: () => <StubPage h1={page.h1} />,
 });

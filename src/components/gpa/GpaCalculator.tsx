@@ -30,7 +30,8 @@ const gradeLabel = (g: string) => (g === "P" ? "P (not counted)" : g === "W" ? "
 export const EXAMPLE_RESULT = calculateGpa(exampleRows()) as GpaResult;
 
 export function GpaCalculator({ onResult }: { onResult?: (r: GpaResult | null) => void }) {
-  const [rows, setRows] = useState<Row[]>(threeEmpty);
+  // Fixed ids for the first render so server and client HTML match.
+  const [rows, setRows] = useState<Row[]>(() => [1, 2, 3].map((id) => ({ id: -id, name: "", grade: "", credits: "" })));
   const [equal, setEqual] = useState(false);
   const [scale, setScale] = useState<GradeScale>({ ...EXAMPLE_SCALE });
   const [outcome, setOutcome] = useState<GpaOutcome | null>(null);

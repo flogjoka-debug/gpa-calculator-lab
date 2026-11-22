@@ -17,6 +17,25 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+// Brief: canonical URLs end in a slash. Redirect page paths without one permanently (308),
+// keeping the query string. Files (anything with a dot) and internal paths are left alone.
+const trailingSlashMiddleware = createMiddleware().server(async ({ next, request }) => {
+  const url = new URL(request.url);
+  const p = url.pathname;
+  const last = p.split("/").pop() ?? "";
+  if (
+    (request.method === "GET" || request.method === "HEAD") &&
+    p !== "/" &&
+    !p.endsWith("/") &&
+    !last.includes(".") &&
+    !/^\/(_|@|api\/|src\/|node_modules\/)/.test(p)
+  ) {
+    url.pathname = `${p}/`;
+    return new Response(null, { status: 308, headers: { location: url.pathname + url.search } });
+  }
+  return next();
+});
+
 // Start installs this automatically when src/start.ts is absent; defining the
 // file opts out, so re-add it explicitly to keep server functions protected
 // from cross-site requests.
@@ -31,5 +50,5 @@ const csrfMiddleware = createCsrfMiddleware({
 // user-managed Supabase project is connected, no middleware here sets Authorization, and the
 // project did not intentionally replace it.
 export const startInstance = createStart(() => ({
-  requestMiddleware: [errorMiddleware, csrfMiddleware],
+  requestMiddleware: [errorMiddleware, trailingSlashMiddleware, csrfMiddleware],
 }));

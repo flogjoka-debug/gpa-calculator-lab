@@ -5,6 +5,6 @@ import { SUPPORT, stubHead } from "@/lib/site";
 const page = SUPPORT.privacy;
 
 export const Route = createFileRoute("/privacy")({
-  head: () => stubHead(page.h1, page.path),
+  head: () => stubHead(page.title, page.path),
   component: () => <StubPage h1={page.h1} />,
 });

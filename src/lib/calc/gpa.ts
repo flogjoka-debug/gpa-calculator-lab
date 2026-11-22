@@ -1,17 +1,27 @@
 // Pure GPA engine (brief section 4). No UI imports. Full precision internally; format at display.
 
-export type LetterGrade = "A" | "A−" | "B+" | "B" | "B−" | "C+" | "C" | "C−" | "D+" | "D" | "D−" | "F";
-export type GradeOption = LetterGrade | "P" | "W";
-export type GradeScale = Record<LetterGrade, number>;
+export type LetterGrade = "A+" | "A" | "A−" | "B+" | "B" | "B−" | "C+" | "C" | "C−" | "D+" | "D" | "D−" | "F";
+export type NonGpaGrade = "P" | "NP" | "W";
+export type GradeOption = LetterGrade | NonGpaGrade;
+/** Points per letter grade. Missing letters are treated as not on the scale. */
+export type GradeScale = Partial<Record<LetterGrade, number>>;
 
+/** Homepage letters (no A+). */
 export const LETTER_GRADES: LetterGrade[] = ["A", "A−", "B+", "B", "B−", "C+", "C", "C−", "D+", "D", "D−", "F"];
 export const GRADE_OPTIONS: GradeOption[] = [...LETTER_GRADES, "P", "W"];
+/** College / high school letters (with A+). */
+export const PLUS_LETTER_GRADES: LetterGrade[] = ["A+", ...LETTER_GRADES];
+export const COLLEGE_GRADE_OPTIONS: GradeOption[] = [...PLUS_LETTER_GRADES, "P", "NP", "W"];
 
 /** Default example scale (editable, labeled "example"). */
 export const EXAMPLE_SCALE: GradeScale = {
   A: 4.0, "A−": 3.7, "B+": 3.3, B: 3.0, "B−": 2.7, "C+": 2.3,
   C: 2.0, "C−": 1.7, "D+": 1.3, D: 1.0, "D−": 0.7, F: 0.0,
 };
+/** Example scale with A+ = 4.0 (college and high school pages). */
+export const PLUS_EXAMPLE_SCALE: GradeScale = { "A+": 4.0, ...EXAMPLE_SCALE };
+
+export const isNonGpa = (g: string): g is NonGpaGrade => g === "P" || g === "NP" || g === "W";
 
 export interface ClassRow {
   name?: string;
@@ -20,18 +30,22 @@ export interface ClassRow {
   credits: string;
 }
 
-export interface IncludedRow {
-  index: number; // 1-based class number
+/** Where a row lives: class number (1-based) and optional semester number. */
+export interface RowRef {
+  index: number;
+  semester?: number;
+}
+
+export interface IncludedRow extends RowRef {
   grade: LetterGrade;
   points: number;
   credits: number;
   qualityPoints: number;
 }
 
-export type ExcludeReason = "pass" | "withdrawal";
-export interface ExcludedRow {
-  index: number;
-  grade: "P" | "W";
+export type ExcludeReason = "pass" | "nopass" | "withdrawal" | "replaced";
+export interface ExcludedRow extends RowRef {
+  grade: GradeOption;
   credits: number;
   reason: ExcludeReason;
 }
@@ -44,12 +58,12 @@ export interface GpaResult {
   included: IncludedRow[];
   excluded: ExcludedRow[];
   warnings: string[];
-  /** Credits entered on all non-blank rows (counted + not counted). */
+  /** Credits on all non-blank rows (counted + not counted). */
   totalCredits: number;
 }
 export interface GpaEmpty { kind: "empty" }
 export type RowErrorCode = "credits" | "grade";
-export interface RowError { index: number; code: RowErrorCode; message: string }
+export interface RowError extends RowRef { code: RowErrorCode; message: string }
 export interface GpaError { kind: "error"; errors: RowError[] }
 export type GpaOutcome = GpaResult | GpaEmpty | GpaError;
 
@@ -58,65 +72,84 @@ export interface GpaOptions {
   equalWeight?: boolean;
 }
 
-export function parseCredits(raw: string): number | null {
+/** A row plus its reference and an optional forced exclusion (e.g. replaced retake). */
+export interface CalcItem extends ClassRow, RowRef {
+  forceExclude?: ExcludeReason;
+}
+
+export function parseNumber(raw: string): number | null {
   const t = raw.trim();
-  if (t === "" || !/^-?\d*\.?\d+$|^-?\d+\.$/.test(t)) return null;
+  if (t === "" || !/^-?(\d+\.?\d*|\.\d+)$/.test(t)) return null;
   const n = Number(t);
   return Number.isFinite(n) ? n : null;
 }
+export const parseCredits = parseNumber;
 
-export function calculateGpa(rows: ClassRow[], opts: GpaOptions = {}): GpaOutcome {
+const NON_GPA_REASON: Record<NonGpaGrade, ExcludeReason> = { P: "pass", NP: "nopass", W: "withdrawal" };
+
+type ValidItem =
+  | { kind: "skip" }
+  | { kind: "error"; error: RowError }
+  | { kind: "ok"; item: CalcItem; credits: number };
+
+/** Validate one row. Blank rows are skipped. */
+export function validateItem(item: CalcItem, equal: boolean): ValidItem {
+  const ref: RowRef = item.semester === undefined ? { index: item.index } : { index: item.index, semester: item.semester };
+  const hasGrade = item.grade !== "";
+  const hasCredits = item.credits.trim() !== "";
+  if (!hasGrade && (equal || !hasCredits)) return { kind: "skip" };
+  if (!hasGrade) return { kind: "error", error: { ...ref, code: "grade", message: `Class ${item.index}: choose a grade.` } };
+  if (equal) return { kind: "ok", item, credits: 1 };
+  const c = parseNumber(item.credits);
+  if (c === null || c <= 0) {
+    return { kind: "error", error: { ...ref, code: "credits", message: `Class ${item.index}: enter credits greater than 0.` } };
+  }
+  return { kind: "ok", item, credits: c };
+}
+
+/** Core: compute a GPA result from referenced items. */
+export function calculateItems(items: CalcItem[], opts: GpaOptions = {}): GpaOutcome {
   const scale = opts.scale ?? EXAMPLE_SCALE;
   const equal = opts.equalWeight ?? false;
   const included: IncludedRow[] = [];
   const excluded: ExcludedRow[] = [];
   const errors: RowError[] = [];
 
-  rows.forEach((row, i) => {
-    const index = i + 1;
-    const hasGrade = row.grade !== "";
-    const hasCredits = row.credits.trim() !== "";
-    if (!hasGrade && (equal || !hasCredits)) return; // blank row: skipped
-    if (!hasGrade) {
-      errors.push({ index, code: "grade", message: `Class ${index}: choose a grade.` });
-      return;
+  for (const it of items) {
+    const v = validateItem(it, equal);
+    if (v.kind === "skip") continue;
+    if (v.kind === "error") {
+      errors.push(v.error);
+      continue;
     }
-    let credits: number;
-    if (equal) credits = 1;
-    else {
-      const c = parseCredits(row.credits);
-      if (c === null || c <= 0) {
-        errors.push({ index, code: "credits", message: `Class ${index}: enter credits greater than 0.` });
-        return;
-      }
-      credits = c;
+    const ref: RowRef = it.semester === undefined ? { index: it.index } : { index: it.index, semester: it.semester };
+    const g = it.grade as GradeOption;
+    if (it.forceExclude) {
+      excluded.push({ ...ref, grade: g, credits: v.credits, reason: it.forceExclude });
+      continue;
     }
-    const g = row.grade as GradeOption;
-    if (g === "P" || g === "W") {
-      excluded.push({ index, grade: g, credits, reason: g === "P" ? "pass" : "withdrawal" });
-      return;
+    if (isNonGpa(g)) {
+      excluded.push({ ...ref, grade: g, credits: v.credits, reason: NON_GPA_REASON[g] });
+      continue;
     }
-    const points = scale[g];
-    included.push({ index, grade: g, points, credits, qualityPoints: points * credits });
-  });
+    const points = scale[g] ?? 0;
+    included.push({ ...ref, grade: g, points, credits: v.credits, qualityPoints: points * v.credits });
+  }
 
   if (errors.length) return { kind: "error", errors };
-  if (included.length === 0 && excluded.length === 0) return { kind: "empty" };
+  return buildResult(included, excluded);
+}
 
+export function buildResult(included: IncludedRow[], excluded: ExcludedRow[]): GpaResult | GpaEmpty {
   const numerator = included.reduce((s, r) => s + r.qualityPoints, 0);
   const denominator = included.reduce((s, r) => s + r.credits, 0);
-  const totalCredits = denominator + excluded.reduce((s, r) => s + r.credits, 0);
   if (denominator === 0) return { kind: "empty" };
-  return {
-    kind: "result",
-    value: numerator / denominator,
-    numerator,
-    denominator,
-    included,
-    excluded,
-    warnings: [],
-    totalCredits,
-  };
+  const totalCredits = denominator + excluded.reduce((s, r) => s + r.credits, 0);
+  return { kind: "result", value: numerator / denominator, numerator, denominator, included, excluded, warnings: [], totalCredits };
+}
+
+export function calculateGpa(rows: ClassRow[], opts: GpaOptions = {}): GpaOutcome {
+  return calculateItems(rows.map((r, i) => ({ ...r, index: i + 1 })), opts);
 }
 
 /** Display helpers */

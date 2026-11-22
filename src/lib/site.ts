@@ -16,12 +16,12 @@ export const PAGES = {
   law: { path: "/law-school-gpa-calculator/", h1: "Law School GPA Calculator", title: "Law School GPA Calculator – LSAC GPA by Application Cycle", description: "Estimate your LSAC undergraduate GPA with A+ at 4.33 and every attempt counted. Pick your application cycle to see how dual-enrollment grades are treated." },
 } satisfies Record<string, PageInfo>;
 
-/** Support pages: the brief gives no title/description copy yet, so the H1 doubles as the title. */
+/** Support pages (titles approved in phase 2). */
 export const SUPPORT = {
-  about: { path: "/about/", h1: "About" },
-  methodology: { path: "/methodology/", h1: "Methodology" },
-  privacy: { path: "/privacy/", h1: "Privacy" },
-  contact: { path: "/contact/", h1: "Contact" },
+  about: { path: "/about/", h1: "About", title: "About GPA Calculator Lab" },
+  methodology: { path: "/methodology/", h1: "Methodology", title: "Methodology – GPA Calculator Lab" },
+  privacy: { path: "/privacy/", h1: "Privacy", title: "Privacy – GPA Calculator Lab" },
+  contact: { path: "/contact/", h1: "Contact", title: "Contact GPA Calculator Lab" },
 } as const;
 
 export const TOOL_GROUPS: { label: string; items: PageInfo[] }[] = [
@@ -43,5 +43,31 @@ export function stubHead(title: string, path: string, description?: string) {
       { name: "robots", content: "noindex" },
     ],
     links: [{ rel: "canonical", href: canonical(path) }],
+  };
+}
+
+/** Full, indexable head for a built tool page. */
+export function toolHead(page: PageInfo, ogFile: string, ogAlt: string) {
+  const img = `${SITE_URL}/og/${ogFile}`;
+  return {
+    meta: [
+      { title: page.title },
+      { name: "description", content: page.description },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: page.title },
+      { property: "og:description", content: page.description },
+      { property: "og:url", content: canonical(page.path) },
+      { property: "og:image", content: img },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:type", content: "image/png" },
+      { property: "og:image:alt", content: ogAlt },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: page.title },
+      { name: "twitter:description", content: page.description },
+      { name: "twitter:image", content: img },
+      { name: "twitter:image:alt", content: ogAlt },
+    ],
+    links: [{ rel: "canonical", href: canonical(page.path) }],
   };
 }
