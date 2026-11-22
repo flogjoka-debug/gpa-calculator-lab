@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 import { parseNumber } from "@/lib/calc/gpa";
-import { fmtNum } from "@/lib/calc/format";
+import { MAX_PERCENT, PERCENT_RANGE_MESSAGE, fmtNum } from "@/lib/calc/format";
 import { COMMON_SCALE, TEN_POINT_SCALE, customFrom, letterFor, upperOf, validateScale, type LetterResult, type ScaleProfile } from "@/lib/calc/scale";
 import { FieldError, ResultBox, SaveBar, scrollIntoViewSoon, useDeviceStorage, useLoadExampleEvent, useReplaceConfirm } from "./shared";
 import { useHandoffArrival } from "./handoff";
@@ -39,6 +39,7 @@ export function PercentageTool() {
     if (m === "percent") {
       const v = parseNumber(pc);
       if (v === null || v < 0) { setError({ field: "percent", message: "Percentage: enter 0 or more." }); document.getElementById("pct")?.focus(); setOut(null); return; }
+      if (v > MAX_PERCENT) { setError({ field: "percent", message: PERCENT_RANGE_MESSAGE }); document.getElementById("pct")?.focus(); setOut(null); return; }
       value = v;
     } else {
       const ev = parseNumber(e);
@@ -46,6 +47,7 @@ export function PercentageTool() {
       if (ev === null || ev < 0) { setError({ field: "earned", message: "Points earned: enter 0 or more." }); document.getElementById("earned")?.focus(); setOut(null); return; }
       if (pv === null || pv <= 0) { setError({ field: "possible", message: "Points possible: enter a number greater than 0." }); document.getElementById("possible")?.focus(); setOut(null); return; }
       value = (100 * ev) / pv;
+      if (value > MAX_PERCENT) { setError({ field: "earned", message: PERCENT_RANGE_MESSAGE }); document.getElementById("earned")?.focus(); setOut(null); return; }
     }
     if (validateScale(prof)) { setOut(null); return; }
     setError(null);
@@ -134,7 +136,7 @@ export function PercentageTool() {
           <div className="space-y-2">
             <p className="tabular text-6xl leading-none font-semibold">{live.letter}</p>
             <p className="text-lg font-semibold">{fmtNum(fresh.percent)}% is {/^[AEF]/.test(live.letter) ? "an" : "a"} {live.letter} on this scale.</p>
-            <p>{live.letter} runs from {live.rangeText}.</p>
+            <p>{live.overTop ? live.rangeText : `${live.letter} runs from ${live.rangeText}.`}</p>
             {live.next ? <p>You're {fmtNum(live.next.away)} points from {/^[AEF]/.test(live.next.letter) ? "an" : "a"} {live.next.letter}.</p> : null}
             <p className="tabular">Grade points: {live.points.toFixed(1)}</p>
           </div>

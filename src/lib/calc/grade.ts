@@ -1,3 +1,4 @@
+import { MAX_PERCENT, PERCENT_RANGE_MESSAGE } from "./format";
 import { parseNumber } from "./gpa";
 
 export interface PointsRow { name?: string; earned: string; possible: string }
@@ -81,6 +82,10 @@ export function calculateCategories(rows: CategoryRow[]): GradeOutcome {
     const a = parseNumber(r.average);
     if (a === null || a < 0) {
       errors.push({ index, field: "average", message: `Category ${index}: enter an average of 0 or more.` });
+      return;
+    }
+    if (a > MAX_PERCENT) {
+      errors.push({ index, field: "average", message: PERCENT_RANGE_MESSAGE });
       return;
     }
     included.push({ index, a, b: w });

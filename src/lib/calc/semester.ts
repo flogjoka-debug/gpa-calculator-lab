@@ -1,5 +1,5 @@
 import { parseNumber } from "./gpa";
-import { ceil1 } from "./format";
+import { MAX_PERCENT, PERCENT_RANGE_MESSAGE, ceil1 } from "./format";
 import type { ScaleProfile } from "./scale";
 
 export interface PeriodRow { name: string; grade: string; weight: string }
@@ -36,6 +36,10 @@ export function calculateSemester(rows: PeriodRow[], examIndex: number | null, p
     const g = parseNumber(r.grade);
     if (g === null || g < 0) {
       errors.push({ index, field: "grade", message: `${label}: enter a grade of 0 or more.` });
+      return;
+    }
+    if (g > MAX_PERCENT) {
+      errors.push({ index, field: "grade", message: PERCENT_RANGE_MESSAGE });
       return;
     }
     items.push({ index, grade: g, weight: w });

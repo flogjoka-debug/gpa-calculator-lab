@@ -1,3 +1,6 @@
+/** Percentages may go up to 150 (extra credit). */
+export const MAX_PERCENT = 150;
+export const PERCENT_RANGE_MESSAGE = "Enter a percentage from 0 to 150.";
 /** Round to at most `max` decimals and drop trailing zeros: 87 → "87", 89.5 → "89.5". */
 export function fmtNum(n: number, max = 2): string {
   const f = 10 ** max;

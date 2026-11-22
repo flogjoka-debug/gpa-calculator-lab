@@ -1,5 +1,5 @@
 import { parseNumber } from "./gpa";
-import { ceil1 } from "./format";
+import { MAX_PERCENT, PERCENT_RANGE_MESSAGE, ceil1 } from "./format";
 
 export type FinalField = "current" | "target" | "weight";
 export interface FinalError { field: FinalField; message: string }
@@ -26,7 +26,9 @@ export function calculateFinal(currentRaw: string, targetRaw: string, weightRaw:
   const target = parseNumber(targetRaw);
   const weight = parseNumber(weightRaw);
   if (current === null || current < 0) errors.push({ field: "current", message: "Current grade: enter 0 or more." });
+  else if (current > MAX_PERCENT) errors.push({ field: "current", message: PERCENT_RANGE_MESSAGE });
   if (target === null || target < 0) errors.push({ field: "target", message: "Grade you want: enter 0 or more." });
+  else if (target > MAX_PERCENT) errors.push({ field: "target", message: PERCENT_RANGE_MESSAGE });
   if (weight === null || weight < 0 || weight > 100) errors.push({ field: "weight", message: "Final exam weight: enter a number from 0 to 100." });
   if (errors.length || current === null || target === null || weight === null) return { kind: "error", errors };
 

@@ -82,6 +82,8 @@ export interface LetterResult {
   min: number;
   upper: number;
   isTop: boolean;
+  /** Above 100: top letter, shown as "covers N and above". */
+  overTop: boolean;
   rangeText: string;
   next: { letter: string; min: number; away: number } | null;
 }
@@ -101,7 +103,10 @@ export function letterFor(percent: number, profile: ScaleProfile): LetterResult 
     min: r.min,
     upper,
     isTop: i === 0,
-    rangeText: i === 0 ? `${fmtNum(r.min)} to ${fmtNum(upper)}` : `${fmtNum(r.min)} to under ${fmtNum(upper)}`,
+    overTop: i === 0 && percent > 100,
+    rangeText: i === 0 && percent > 100
+      ? `${r.letter} covers ${fmtNum(r.min)} and above. Scores over 100 usually mean extra credit.`
+      : i === 0 ? `${fmtNum(r.min)} to ${fmtNum(upper)}` : `${fmtNum(r.min)} to under ${fmtNum(upper)}`,
     next: above ? { letter: above.letter, min: above.min, away: above.min - percent } : null,
   };
 }
