@@ -25,6 +25,8 @@ const TOC: (readonly [string, string])[] = [
   ["quarter-hours-converted", "Quarter hours, converted"],
   ["example-why-your-lsac-gpa-can-be-lower-than-your-college-gpa", "Example: why your LSAC GPA can be lower than your college GPA"],
   ["how-to-check-your-transcripts-before-you-apply", "How to check your transcripts before you apply"],
+  ["how-to-estimate-your-lsac-gpa-step-by-step", "How to estimate your LSAC GPA step by step"],
+  ["example-two-schools-one-lsac-gpa", "Example: two schools, one LSAC GPA"],
   ["faq", "FAQ"],
 ];
 

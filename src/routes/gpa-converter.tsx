@@ -23,6 +23,9 @@ const TOC: (readonly [string, string])[] = [
   ["common-gpa-scales", "Common GPA scales"],
   ["the-same-gpa-on-different-scales", "The same GPA on different scales"],
   ["when-the-converter-can-mislead-you", "When the converter can mislead you"],
+  ["converting-a-gpa-from-a-4-33-scale", "Converting a GPA from a 4.33 scale"],
+  ["converting-a-percentage-average-to-a-4-0-gpa", "Converting a percentage average to a 4.0 GPA"],
+  ["transcripts-from-outside-the-u-s", "Transcripts from outside the U.S."],
   ["faq", "FAQ"],
 ];
 

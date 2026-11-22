@@ -18,7 +18,9 @@ export const CONVERTER_FAQ: FaqItem[] = [
   {"question": "How do I convert a 10-point CGPA to a 4.0 GPA?", "answer": ["Multiply by 4 and divide by 10, so an 8.0 becomes 3.20. Treat it as an estimate: universities that admit students from 10-point systems usually ask for the transcript or an evaluation and convert it themselves."]},
   {"question": "Is a converted GPA official?", "answer": ["No. It's a proportional estimate. The official number is the one your school, or the receiving school's evaluator, calculates."]},
   {"question": "How do I convert a GPA from a 4.5 scale?", "answer": ["Multiply by 4 and divide by 4.5. A 4.1 on a 4.5 scale is 3.64 on a 4.0 scale. If the 4.5 scale is a weighted high school scale, recalculate from your grades instead."]},
-  {"question": "Can I convert a percentage average to a 4.0 GPA?", "answer": ["Not with this formula. Find the letter first with the ", {"text": "percentage to letter grade calculator", "to": "/percentage-to-letter-grade/"}, ", then use that letter's grade points."]}
+  {"question": "Can I convert a percentage average to a 4.0 GPA?", "answer": ["Not with this formula. Find the letter first with the ", {"text": "percentage to letter grade calculator", "to": "/percentage-to-letter-grade/"}, ", then use that letter's grade points."]},
+  {"question": "What is a 9.0 CGPA on a 4.0 scale?", "answer": ["A proportional conversion gives 9.0 × 4 ÷ 10 = 3.60. Treat it as an estimate; the school you apply to may use a credential evaluation instead."]},
+  {"question": "How do I convert a GPA on a 4.33 scale?", "answer": ["Don't scale it down. Only an A+ is worth more than 4.0 on that scale, so count each A+ as 4.0 and recalculate, or use the GPA your school reports."]}
 ];
 
 export const faqAnswerText = (item: FaqItem) => item.answer.map((part) => typeof part === "string" ? part : part.text).join("");
@@ -276,7 +278,8 @@ export const PERCENTAGE_FAQ: FaqItem[] = [
   },
   {"question": "What percentage is a B?", "answer": ["On the common scale, a B is 83 to under 87, a B+ is 87 to under 90 and a B− is 80 to under 83. On a straight 10-point scale, any score from 80 to 89.99 is a B."]},
   {"question": "What percentage is an A?", "answer": ["On the common scale, an A is 93 and above and an A− is 90 to under 93. On a 10-point scale, 90 and above is an A."]},
-  {"question": "What letter grade is an 87?", "answer": ["A B+ on the common scale and a B on a 10-point scale."]}
+  {"question": "What letter grade is an 87?", "answer": ["A B+ on the common scale and a B on a 10-point scale."]},
+
 ];
 
 export const UC_FAQ: FaqItem[] = [
@@ -312,7 +315,8 @@ export const UC_FAQ: FaqItem[] = [
   },
   {"question": "Does UC count 12th grade?", "answer": ["Not in the GPA. UC's GPA covers A-G courses from the summer after 9th grade through the summer after 11th grade. Your senior-year courses still matter in the rest of your application."]},
   {"question": "How many honors points can count in the UC GPA?", "answer": ["Up to 8 in total, with no more than 4 from 10th grade. Each semester of an honors course UC accepts, with an A, B or C, earns one point."]},
-  {"question": "Is a 4.0 UC GPA good?", "answer": ["It clears the 3.0 minimum for California residents and the 3.4 for nonresidents. Admission is competitive at many campuses, so treat the minimum as the starting line, not the target."]}
+  {"question": "Is a 4.0 UC GPA good?", "answer": ["It clears the 3.0 minimum for California residents and the 3.4 for nonresidents. Admission is competitive at many campuses, so treat the minimum as the starting line, not the target."]},
+
 ];
 
 export const LAW_FAQ: FaqItem[] = [
@@ -348,7 +352,9 @@ export const LAW_FAQ: FaqItem[] = [
   },
   {"question": "Does an A+ help my LSAC GPA?", "answer": ["Yes. LSAC counts an A+ as 4.33, even if your college caps it at 4.0, so each A+ raises the LSAC GPA a little above your college GPA."]},
   {"question": "Do retaken classes count twice for LSAC?", "answer": ["Each graded attempt counts once, so a class you took twice adds two grades. LSAC counts the earlier grade even when your college replaced it."]},
-  {"question": "Do AP credits count in the LSAC GPA?", "answer": ["No. AP test credit has no grade, so LSAC leaves it out."]}
+  {"question": "Do AP credits count in the LSAC GPA?", "answer": ["No. AP test credit has no grade, so LSAC leaves it out."]},
+  {"question": "Does LSAC use my school's plus and minus values?", "answer": ["LSAC applies its own chart to every school instead, so an A− is 3.67 and a B+ is 3.33 even if your college uses 3.7 and 3.3."]},
+  {"question": "Do community college grades raise or lower my LSAC GPA?", "answer": ["Either, depending on the grades. LSAC averages every undergraduate school by credits, so strong community college grades can lift your LSAC GPA above your university GPA."]}
 ];
 
 export const PAGE_FAQS: Record<string, FaqItem[]> = {

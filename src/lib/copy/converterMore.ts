@@ -73,6 +73,76 @@ const blocks: GuideBlock[] = [
     "caption": "Bonus points don't scale away, so recalculate a weighted GPA from your grades.",
     "width": 1200,
     "height": 675
+  },
+  {
+    "t": "h2",
+    "text": "Converting a GPA from a 4.33 scale",
+    "id": "converting-a-gpa-from-a-4-33-scale"
+  },
+  {
+    "t": "p",
+    "text": "A 4.33 scale only differs from a 4.0 scale at the top: an A+ is worth 4.33 instead of 4.0, and every other grade keeps its usual value. That makes a proportional conversion misleading. A student with straight A's has a 4.00 on both scales, but 4.0 × 4 ÷ 4.33 = 3.70. For a 4.33 scale, count each A+ as 4.0 and recalculate instead, or simply use the GPA your school reports, which is usually close."
+  },
+  {
+    "t": "img",
+    "src": "/diagrams/converter-433-trap.webp",
+    "alt": "Comparison for straight A's on a 4.33 scale: a proportional conversion gives 3.70, while the real 4.0-scale GPA is 4.00 because an A is worth 4.0 on both scales",
+    "caption": "On a 4.33 scale only the A+ changes, so don't scale the whole GPA down.",
+    "width": 1200,
+    "height": 675
+  },
+  {
+    "t": "h2",
+    "text": "Converting a percentage average to a 4.0 GPA",
+    "id": "converting-a-percentage-average-to-a-4-0-gpa"
+  },
+  {
+    "t": "p",
+    "text": "Dividing a percentage by 25 is a common shortcut, but it isn't how U.S. schools calculate GPA. They turn each class grade into a letter and each letter into grade points. Take three classes with final grades of 92, 85 and 78:"
+  },
+  {
+    "t": "table",
+    "caption": "Converting a percentage average to a 4.0 GPA",
+    "columns": [
+      "Class grade",
+      "Letter on the common scale",
+      "Grade points"
+    ],
+    "rows": [
+      [
+        "92%",
+        "A−",
+        "3.7"
+      ],
+      [
+        "85%",
+        "B",
+        "3.0"
+      ],
+      [
+        "78%",
+        "C+",
+        "2.3"
+      ],
+      [
+        "GPA",
+        "",
+        "(3.7 + 3.0 + 2.3) ÷ 3 = 3.00"
+      ]
+    ]
+  },
+  {
+    "t": "p",
+    "text": "The percentage average is 85%, and 85 ÷ 25 = 3.40, well above the 3.00 the letters give. Use the [percentage to letter grade calculator](/percentage-to-letter-grade/) for each class first, then the [GPA calculator](/) for the average."
+  },
+  {
+    "t": "h2",
+    "text": "Transcripts from outside the U.S.",
+    "id": "transcripts-from-outside-the-u-s"
+  },
+  {
+    "t": "p",
+    "text": "Universities in many countries report grades on scales that don't map neatly onto 4.0: a 10-point CGPA, a 20-point scale, percentages, or a scale where the lowest number is the best grade. U.S. colleges and graduate schools often ask applicants with these transcripts for an evaluation from a credential evaluation service, such as World Education Services (WES) or Educational Credential Evaluators (ECE), and use that result instead of a GPA you converted yourself. Check what each school asks for before you pay for an evaluation, because some programs name the service they accept."
   }
 ];
 export default blocks;

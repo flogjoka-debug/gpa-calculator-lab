@@ -311,6 +311,21 @@ const diagrams: Record<string, string> = {
       + box(616, 190, 520, 220, "Recalculate from your grades", "Unweighted GPA", true)
       + t(644, 290, "Take each class at its base value", 22, C.text) + t(644, 322, "(A = 4.0) and leave out the bonus.", 22, C.text),
     "For a weighted GPA, use the high school GPA calculator instead of the converter."),
+  "calc-law-two-schools": frame(
+    "Every undergraduate school counts",
+    "Community college and university credits combined",
+    t(64, 236, "Community college", 24, C.text, 650) + `<rect x="330" y="204" width="${30 * 8.2}" height="52" rx="10" fill="${C.soft}"/>` + t(350, 238, "30 credits · 3.80", 22, C.text, 650)
+      + t(64, 316, "University", 24, C.text, 650) + `<rect x="330" y="284" width="${90 * 8.2}" height="52" rx="10" fill="${C.primary}"/>` + t(350, 318, "90 credits · 3.40", 22, "#FFFFFF", 650)
+      + box(64, 400, 520, 110, "University transcript GPA", "3.40") + box(616, 400, 520, 110, "LSAC GPA, both schools", "420 ÷ 120 = 3.50", true),
+    "LSAC weights each school's grades by credits."),
+  "calc-converter-433-trap": frame(
+    "Don't scale down a 4.33 GPA",
+    "Straight A's, no A+, on a 4.33 scale",
+    box(64, 190, 520, 220, "Proportional conversion", "4.0 × 4 ÷ 4.33 = 3.70")
+      + t(92, 290, "Treats the whole scale as stretched,", 22, C.text) + t(92, 322, "so an A looks like less than 4.0.", 22, C.text)
+      + box(616, 190, 520, 220, "What it really is on 4.0", "4.00", true)
+      + t(644, 290, "An A is 4.0 on both scales.", 22, C.text) + t(644, 322, "Only an A+ is worth more.", 22, C.text),
+    "For a 4.33 scale, count each A+ as 4.0 and recalculate."),
 };
 
 for (const [name, svg] of Object.entries(diagrams)) {

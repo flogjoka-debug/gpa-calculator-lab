@@ -84,6 +84,76 @@ const blocks: GuideBlock[] = [
     "caption": "LSAC uses the same 4.33 scale for every applicant, whatever their college uses.",
     "width": 1200,
     "height": 675
+  },
+  {
+    "t": "h2",
+    "text": "How to estimate your LSAC GPA step by step",
+    "id": "how-to-estimate-your-lsac-gpa-step-by-step"
+  },
+  {
+    "t": "ol",
+    "items": [
+      "Gather a transcript from every school where you took undergraduate classes before your first bachelor's degree, including community colleges.",
+      "Convert each grade with LSAC's chart: an A+ is 4.33, an A− is 3.67 and a B+ is 3.33, whatever your school uses.",
+      "Turn quarter hours into semester hours by multiplying by 0.67.",
+      "Keep every graded attempt of a repeated class, and any withdrawal your school treats as failing, at 0.00. Leave out pass/fail passes, nonpunitive withdrawals, AP credit and work after your first bachelor's degree.",
+      "Multiply each grade by its semester hours, add everything up and divide by the total hours."
+    ]
+  },
+  {
+    "t": "p",
+    "text": "The calculator does all five steps once you've entered your classes."
+  },
+  {
+    "t": "h2",
+    "text": "Example: two schools, one LSAC GPA",
+    "id": "example-two-schools-one-lsac-gpa"
+  },
+  {
+    "t": "p",
+    "text": "A student took 30 credits at a community college with a 3.8 GPA, then 90 credits at a university with a 3.4 GPA. The university's transcript shows a 3.40, because it counts only its own classes. LSAC combines both schools:"
+  },
+  {
+    "t": "table",
+    "caption": "Example: two schools, one LSAC GPA",
+    "columns": [
+      "School",
+      "Credits",
+      "GPA",
+      "Quality points"
+    ],
+    "rows": [
+      [
+        "Community college",
+        "30",
+        "3.80",
+        "114"
+      ],
+      [
+        "University",
+        "90",
+        "3.40",
+        "306"
+      ],
+      [
+        "LSAC GPA",
+        "120",
+        "3.50",
+        "420"
+      ]
+    ]
+  },
+  {
+    "t": "p",
+    "text": "Strong grades from an earlier school can raise the LSAC GPA above your university GPA, and weak ones can pull it down. Either way, every school's grades are in."
+  },
+  {
+    "t": "img",
+    "src": "/diagrams/law-two-schools.webp",
+    "alt": "Bar comparison of 30 community college credits at 3.80 and 90 university credits at 3.40, combining into an LSAC GPA of 3.50 over 120 credits",
+    "caption": "LSAC averages every undergraduate school by credits, not just the one you graduate from.",
+    "width": 1200,
+    "height": 675
   }
 ];
 export default blocks;
