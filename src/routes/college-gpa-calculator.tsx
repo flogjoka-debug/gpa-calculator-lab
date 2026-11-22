@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CollegeCalculator } from "@/components/gpa/CollegeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.college;
 
 export const Route = createFileRoute("/college-gpa-calculator")({
-  head: () => toolHead(page, "college.png", "College GPA calculator comparing a 2.50 and a 4.00 GPA for a retaken class"),
+  head: () => pageHead(page),
   component: Page,
 });
 

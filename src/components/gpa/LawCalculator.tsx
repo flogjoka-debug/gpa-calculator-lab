@@ -179,8 +179,8 @@ export function LawCalculator() {
               </ul>
             ) : null}
             <p className="text-sm text-text-muted">
-              <a href={LSAC_SOURCE} rel="noopener">{LSAC_SOURCE}</a><br />
-              {showDualSource ? <><a href={LSAC_DUAL_SOURCE} rel="noopener">{LSAC_DUAL_SOURCE}</a><br /></> : null}
+              <a href={LSAC_SOURCE} rel="noopener">LSAC: Transcript summarization</a><br />
+              {showDualSource ? <><a href={LSAC_DUAL_SOURCE} rel="noopener">LSAC: Dual enrollment change (Aug 18, 2026)</a><br /></> : null}
               Rules checked November 22, 2026
             </p>
           </div>

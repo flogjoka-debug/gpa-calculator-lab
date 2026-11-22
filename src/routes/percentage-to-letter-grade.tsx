@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PercentageTool } from "@/components/gpa/PercentageTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.percentage;
 
 export const Route = createFileRoute("/percentage-to-letter-grade")({
-  head: () => toolHead(page, "percentage.png", "Percentage to letter grade calculator converting 89.99% to a B+"),
+  head: () => pageHead(page),
   component: Page,
 });
 

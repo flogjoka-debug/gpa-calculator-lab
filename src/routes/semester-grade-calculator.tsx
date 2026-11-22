@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SemesterTool } from "@/components/gpa/SemesterTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.semester;
 
 export const Route = createFileRoute("/semester-grade-calculator")({
-  head: () => toolHead(page, "semester.png", "Semester grade calculator showing 82% from quarter grades of 90 and 80 and a 70 on the exam"),
+  head: () => pageHead(page),
   component: Page,
 });
 

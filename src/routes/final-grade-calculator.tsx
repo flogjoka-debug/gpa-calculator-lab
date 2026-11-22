@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FinalTool } from "@/components/gpa/FinalTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.finalGrade;
 
 export const Route = createFileRoute("/final-grade-calculator")({
-  head: () => toolHead(page, "final.png", "Final grade calculator showing a 97.5% score needed on the final to reach 90%"),
+  head: () => pageHead(page),
   component: Page,
 });
 

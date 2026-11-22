@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { HighSchoolCalculator } from "@/components/gpa/HighSchoolCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.highSchool;
 
 export const Route = createFileRoute("/high-school-gpa-calculator")({
-  head: () => toolHead(page, "high-school.png", "High school GPA calculator showing a 3.50 unweighted and 4.00 weighted GPA"),
+  head: () => pageHead(page),
   component: Page,
 });
 

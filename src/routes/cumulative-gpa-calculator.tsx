@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CumulativeCalculator } from "@/components/gpa/CumulativeCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.cumulative;
 
 export const Route = createFileRoute("/cumulative-gpa-calculator")({
-  head: () => toolHead(page, "cumulative.png", "Cumulative GPA calculator showing 78 quality points over 24 credits and a 3.25 GPA"),
+  head: () => pageHead(page),
   component: Page,
 });
 

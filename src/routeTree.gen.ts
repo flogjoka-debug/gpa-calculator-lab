@@ -21,7 +21,9 @@ import { Route as LawSchoolGpaCalculatorRouteImport } from './routes/law-school-
 import { Route as MethodologyRouteImport } from './routes/methodology'
 import { Route as PercentageToLetterGradeRouteImport } from './routes/percentage-to-letter-grade'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as SemesterGradeCalculatorRouteImport } from './routes/semester-grade-calculator'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as UcGpaCalculatorRouteImport } from './routes/uc-gpa-calculator'
 
 const IndexRoute = IndexRouteImport.update({
@@ -84,9 +86,19 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SemesterGradeCalculatorRoute = SemesterGradeCalculatorRouteImport.update({
   id: '/semester-grade-calculator',
   path: '/semester-grade-calculator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const UcGpaCalculatorRoute = UcGpaCalculatorRouteImport.update({
@@ -108,7 +120,9 @@ export interface FileRoutesByFullPath {
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRoutesByTo {
@@ -124,7 +138,9 @@ export interface FileRoutesByTo {
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRoutesById {
@@ -141,7 +157,9 @@ export interface FileRoutesById {
   '/methodology': typeof MethodologyRoute
   '/percentage-to-letter-grade': typeof PercentageToLetterGradeRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/semester-grade-calculator': typeof SemesterGradeCalculatorRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/uc-gpa-calculator': typeof UcGpaCalculatorRoute
 }
 export interface FileRouteTypes {
@@ -159,7 +177,9 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
+    | '/robots.txt'
     | '/semester-grade-calculator'
+    | '/sitemap.xml'
     | '/uc-gpa-calculator'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -175,7 +195,9 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
+    | '/robots.txt'
     | '/semester-grade-calculator'
+    | '/sitemap.xml'
     | '/uc-gpa-calculator'
   id:
     | '__root__'
@@ -191,7 +213,9 @@ export interface FileRouteTypes {
     | '/methodology'
     | '/percentage-to-letter-grade'
     | '/privacy'
+    | '/robots.txt'
     | '/semester-grade-calculator'
+    | '/sitemap.xml'
     | '/uc-gpa-calculator'
   fileRoutesById: FileRoutesById
 }
@@ -208,7 +232,9 @@ export interface RootRouteChildren {
   MethodologyRoute: typeof MethodologyRoute
   PercentageToLetterGradeRoute: typeof PercentageToLetterGradeRoute
   PrivacyRoute: typeof PrivacyRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SemesterGradeCalculatorRoute: typeof SemesterGradeCalculatorRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   UcGpaCalculatorRoute: typeof UcGpaCalculatorRoute
 }
 
@@ -298,11 +324,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/semester-grade-calculator': {
       id: '/semester-grade-calculator'
       path: '/semester-grade-calculator'
       fullPath: '/semester-grade-calculator'
       preLoaderRoute: typeof SemesterGradeCalculatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/uc-gpa-calculator': {
@@ -328,7 +368,9 @@ const rootRouteChildren: RootRouteChildren = {
   MethodologyRoute: MethodologyRoute,
   PercentageToLetterGradeRoute: PercentageToLetterGradeRoute,
   PrivacyRoute: PrivacyRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SemesterGradeCalculatorRoute: SemesterGradeCalculatorRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   UcGpaCalculatorRoute: UcGpaCalculatorRoute,
 }
 export const routeTree = rootRouteImport

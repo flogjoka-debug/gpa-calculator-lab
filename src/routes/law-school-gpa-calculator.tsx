@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LawCalculator } from "@/components/gpa/LawCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.law;
 
 export const Route = createFileRoute("/law-school-gpa-calculator")({
-  head: () => toolHead(page, "law.png", "Law school GPA calculator showing a 3.50 LSAC GPA for the 2026–2027 cycle"),
+  head: () => pageHead(page),
   component: Page,
 });
 

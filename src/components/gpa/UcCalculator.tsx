@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { X } from "lucide-react";
 import {
-  UC_HONORS, UC_LEVELS, UC_SOURCE, calculateUc, formatUc, normalizeUcGrade,
+  UC_GRADE_OPTIONS, UC_HONORS, UC_LEVELS, UC_SOURCE, calculateUc, formatUc, normalizeUcGrade,
   type Residency, type UcGradeLevel, type UcHonorsType, type UcOutput,
 } from "@/lib/calc/uc";
 import { FieldError, ResultBox, SaveBar, scrollIntoViewSoon, useDeviceStorage, useLoadExampleEvent, usePendingFocus, useReplaceConfirm } from "./shared";
@@ -63,7 +63,6 @@ export function UcCalculator() {
   useLoadExampleEvent(() => confirm.ask(rows.some(rowHasData) || residency !== "", loadExample));
   const clearAll = () => { setRows([mk(), mk(), mk()]); setResidency(""); setResult(null); setStale(false); setResErr(false); setGradeErr(null); storage.clearNote(); };
   const fresh = result && !stale ? result : null;
-  const mappedRows = fresh?.rows.filter((r) => r.mapped) ?? [];
 
   return (
     <>
@@ -86,7 +85,6 @@ export function UcCalculator() {
           {resErr ? <FieldError id="uc-res-err">Choose your residency.</FieldError> : null}
         </fieldset>
         <p className="mt-3 text-sm text-text-muted">Enter one row per semester. A year-long class is two rows.</p>
-        <datalist id="uc-grades">{["A", "B", "C", "D", "F"].map((g) => <option key={g} value={g} />)}</datalist>
         <ol className="mt-2 space-y-3">
           {rows.map((row, i) => {
             const err = gradeErr?.id === row.id;
@@ -106,9 +104,12 @@ export function UcCalculator() {
                   </div>
                   <div>
                     <label htmlFor={`grade-${row.id}`} className="mb-1 block text-sm">Semester grade</label>
-                    <input id={`grade-${row.id}`} className="field" type="text" list="uc-grades" autoComplete="off" placeholder="—" value={row.grade}
+                    <select id={`grade-${row.id}`} className="field" value={row.grade}
                       aria-invalid={err || undefined} aria-describedby={err ? `err-${row.id}` : undefined}
-                      onChange={(e) => update(row.id, { grade: e.target.value })} />
+                      onChange={(e) => update(row.id, { grade: e.target.value })}>
+                      <option value="">—</option>
+                      {UC_GRADE_OPTIONS.map((g) => <option key={g} value={g}>{g}</option>)}
+                      </select>
                   </div>
                   <div className="hidden items-end justify-end sm:flex">
                     <button type="button" className="btn w-11 px-0" aria-label={`Remove class ${i + 1}`} onClick={() => removeRow(row.id)}><X aria-hidden="true" size={20} /></button>
@@ -127,6 +128,7 @@ export function UcCalculator() {
                     <button type="button" className="btn w-11 px-0" aria-label={`Remove class ${i + 1}`} onClick={() => removeRow(row.id)}><X aria-hidden="true" size={20} /></button>
                   </div>
                 </div>
+                {(() => { const n = normalizeUcGrade(row.grade); return n?.mapped ? <p className="mt-2 text-sm">Counted as {n.grade}. UC drops pluses and minuses.</p> : null; })()}
                 {err ? <FieldError id={`err-${row.id}`}>Class {i + 1}: choose a grade.</FieldError> : null}
               </li>
             );
@@ -149,11 +151,10 @@ export function UcCalculator() {
               <div>
                 <p className="text-sm text-text-muted">Minimum for you: {fresh.minimum.toFixed(1)}</p>
                 <p className={`mt-2 font-semibold ${fresh.meetsMinimum ? "text-success" : "text-error"}`}>
-                  {fresh.meetsMinimum ? `✓ Above the ${fresh.minimum.toFixed(1)} minimum` : `✕ Below the ${fresh.minimum.toFixed(1)} minimum`}
+                  {fresh.minimumStatus === "above" ? `✓ Above the ${fresh.minimum.toFixed(1)} minimum` : fresh.minimumStatus === "meets" ? `✓ Meets the ${fresh.minimum.toFixed(1)} minimum` : `✕ Below the ${fresh.minimum.toFixed(1)} minimum`}
                 </p>
               </div>
             </div>
-            {mappedRows.map((r) => <p key={r.index} className="text-sm">Class {r.index}: counted as {r.grade}. UC drops pluses and minuses.</p>)}
             {fresh.hasF ? <p className="text-sm">UC's page lists values for A to D only. We count an F as 0 points.</p> : null}
             {fresh.repeated ? <p className="text-sm font-semibold">Repeated class: check how UC treats it before relying on this result.</p> : null}
             <div className="overflow-x-auto">
@@ -174,7 +175,7 @@ export function UcCalculator() {
               </table>
             </div>
             <p className="tabular font-semibold">({fresh.gradePoints} grade points + {fresh.honorsPoints} honors points) ÷ {fresh.count} grades = {formatUc(fresh.weighted)}</p>
-            <p className="text-sm text-text-muted"><a href={UC_SOURCE} rel="noopener">{UC_SOURCE}</a><br />Rules checked November 22, 2026</p>
+            <p className="text-sm text-text-muted"><a href={UC_SOURCE} rel="noopener">UC Admissions: GPA requirement</a><br />Rules checked November 22, 2026</p>
           </div>
         ) : stale ? <p>Your classes changed. Calculate again.</p> : <p>Add a semester grade to see your UC GPA.</p>}
       </ResultBox>

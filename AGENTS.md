@@ -1,5 +1,8 @@
 Read docs/PROJECT_BRIEF.md before changing anything. All user-facing copy comes from the phase prompt. Never invent copy, ratings or sources.
 
+- Public pages come from the single route registry in src/lib/site.ts (ROUTES); sitemap, robots, canonicals and OG tags are generated from it so they never drift.
+- Preview-host noindex and 404 noindex are applied at runtime in src/server.ts by request host, so production is never affected.
+
 <!-- LOVABLE:BEGIN -->
 > [!IMPORTANT]
 > This project is connected to [Lovable](https://lovable.dev). Avoid rewriting

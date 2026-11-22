@@ -2,6 +2,8 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import { isNoindexHost } from "./lib/seo-files";
+import { NOT_FOUND_TITLE, notFoundHead } from "./lib/site";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -44,6 +46,30 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+/** Host of the incoming request. x-forwarded-host is trusted only behind the sandbox's localhost proxy. */
+function requestHost(request: Request) {
+  const url = new URL(request.url);
+  return (url.hostname === "localhost" ? request.headers.get("x-forwarded-host") : null) ?? url.host;
+}
+
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+
+/** Runtime indexing rules: preview hosts send noindex; 404 pages get noindex and the home social image. */
+async function applyIndexingRules(request: Request, response: Response): Promise<Response> {
+  const isHtml = (response.headers.get("content-type") ?? "").includes("text/html");
+  const preview = isNoindexHost(requestHost(request));
+  if (!preview && !(response.status === 404 && isHtml)) return response;
+  const headers = new Headers(response.headers);
+  if (preview || response.status === 404) headers.set("x-robots-tag", "noindex");
+  if (response.status === 404 && isHtml) {
+    const tags = notFoundHead().meta.map((m) => ("title" in m ? "" : `<meta ${"name" in m ? `name="${m.name}"` : `property="${m.property}"`} content="${esc(m.content)}">`)).join("");
+    const html = (await response.text()).replace(/<title>[^<]*<\/title>/, `<title>${esc(NOT_FOUND_TITLE)}</title>`).replace("</head>", `${tags}</head>`);
+    headers.delete("content-length");
+    return new Response(html, { status: 404, headers });
+  }
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
+
 // Hosting compresses every response at the edge. Never compress a body (gzip, brotli,
 // CompressionStream) or set content-encoding here or in a server route: the body gets encoded
 // twice and renders garbled.
@@ -52,7 +78,7 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return await applyIndexingRules(request, await normalizeCatastrophicSsrResponse(response));
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {

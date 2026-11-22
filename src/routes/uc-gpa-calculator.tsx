@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { UcCalculator } from "@/components/gpa/UcCalculator";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.uc;
 
 export const Route = createFileRoute("/uc-gpa-calculator")({
-  head: () => toolHead(page, "uc.png", "UC GPA calculator showing a 4.66 capped GPA with 8 of 12 honors points counted"),
+  head: () => pageHead(page),
   component: Page,
 });
 

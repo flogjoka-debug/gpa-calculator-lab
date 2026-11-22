@@ -3,33 +3,13 @@ import { useCallback, useState } from "react";
 import { EXAMPLE_RESULT, GpaCalculator } from "@/components/gpa/GpaCalculator";
 import { FormulaLine, LedgerTable } from "@/components/gpa/Ledger";
 import type { GpaResult } from "@/lib/calc/gpa";
-import { PAGES, SITE_NAME, SITE_URL, TOOL_GROUPS, canonical } from "@/lib/site";
+import { PAGES, SITE_NAME, SITE_URL, TOOL_GROUPS, pageHead } from "@/lib/site";
 
 const page = PAGES.home;
-const OG_IMAGE = `${SITE_URL}/og/home.png`;
-const OG_ALT = "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: page.title },
-      { name: "description", content: page.description },
-      { property: "og:type", content: "website" },
-      { property: "og:title", content: page.title },
-      { property: "og:description", content: page.description },
-      { property: "og:url", content: canonical("/") },
-      { property: "og:image", content: OG_IMAGE },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
-      { property: "og:image:type", content: "image/png" },
-      { property: "og:image:alt", content: OG_ALT },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: page.title },
-      { name: "twitter:description", content: page.description },
-      { name: "twitter:image", content: OG_IMAGE },
-      { name: "twitter:image:alt", content: OG_ALT },
-    ],
-    links: [{ rel: "canonical", href: canonical("/") }],
+    ...pageHead(page),
     scripts: [
       {
         type: "application/ld+json",

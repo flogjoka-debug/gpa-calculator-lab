@@ -6,6 +6,7 @@ export type UcGradeLevel = 10 | 11 | "summer-after-9" | "summer-after-10" | "sum
 export type UcHonorsType = "none" | "AP" | "IB-HL" | "IB-SL-designated" | "college" | "UC-honors" | "school-honors";
 export type Residency = "resident" | "nonresident";
 
+export const UC_GRADE_OPTIONS = ["A+", "A", "A−", "B+", "B", "B−", "C+", "C", "C−", "D+", "D", "D−", "F"] as const;
 export const UC_POINTS: Record<UcGrade, number> = { A: 4, B: 3, C: 2, D: 1, F: 0 };
 export const UC_LEVELS: { value: UcGradeLevel; label: string }[] = [
   { value: 10, label: "10th grade" },
@@ -28,6 +29,7 @@ export const UC_MINIMUM: Record<Residency, number> = { resident: 3.0, nonresiden
 export type LostReason =
   | "Grade below C"
   | "Not eligible for nonresidents"
+  | "Not UC-certified honors"
   | "Not an A-G course"
   | "10th-grade limit of 4 reached"
   | "8-point limit reached";
@@ -83,6 +85,7 @@ export type UcOutput =
       repeated: boolean;
       minimum: number;
       meetsMinimum: boolean;
+      minimumStatus: "above" | "meets" | "below";
     };
 
 export function calculateUc(input: UcRow[], residency: Residency | ""): UcOutput {
@@ -105,8 +108,8 @@ export function calculateUc(input: UcRow[], residency: Residency | ""): UcOutput
     if (r.honorsType === "none") continue;
     if (!r.counted) { r.honors = "lost"; r.reason = "Not an A-G course"; continue; }
     if (!eligible.includes(r.honorsType)) {
-      if (residency === "nonresident") { r.honors = "lost"; r.reason = "Not eligible for nonresidents"; }
-      continue; // resident school honors: not a UC honors course
+      if (residency === "nonresident") { r.honors = "lost"; r.reason = "Not eligible for nonresidents"; continue; }
+      r.honors = "lost"; r.reason = "Not UC-certified honors"; continue;
     }
     if (r.points < 2) { r.honors = "lost"; r.reason = "Grade below C"; continue; }
     candidates.push(r);
@@ -140,5 +143,6 @@ export function calculateUc(input: UcRow[], residency: Residency | ""): UcOutput
     awarded: rows.filter((r) => r.honors === "awarded"), lost: rows.filter((r) => r.honors === "lost"),
     hasF: counted.some((r) => r.grade === "F"), repeated,
     minimum: UC_MINIMUM[residency], meetsMinimum: truncate2(weighted) >= UC_MINIMUM[residency],
+    minimumStatus: truncate2(weighted) > UC_MINIMUM[residency] ? "above" : truncate2(weighted) === UC_MINIMUM[residency] ? "meets" : "below",
   };
 }

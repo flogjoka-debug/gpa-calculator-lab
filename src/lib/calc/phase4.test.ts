@@ -83,3 +83,17 @@ describe("LSAC GPA", () => {
     expect(r).toEqual({ kind: "no-cycle", message: "Choose your application cycle." });
   });
 });
+
+describe("UC phase 5 decisions", () => {
+  it("resident school honors → Not UC-certified honors", () => {
+    const r = res(calculateUc([A(11, "school-honors")], "resident"));
+    expect(r.honorsPoints).toBe(0);
+    expect(r.lost[0]?.reason).toBe("Not UC-certified honors");
+  });
+  it("GPA exactly at the minimum → meets; higher → above; lower → below", () => {
+    const g = (grade: string): UcRow => ({ grade, gradeLevel: 11, honorsType: "none", ag: true });
+    expect(res(calculateUc([g("B")], "resident")).minimumStatus).toBe("meets");
+    expect(res(calculateUc([g("A")], "resident")).minimumStatus).toBe("above");
+    expect(res(calculateUc([g("B")], "nonresident")).minimumStatus).toBe("below");
+  });
+});

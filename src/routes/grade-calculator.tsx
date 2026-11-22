@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GradeTool } from "@/components/gpa/GradeTool";
 import { LoadExampleButton } from "@/components/gpa/shared";
-import { PAGES, toolHead } from "@/lib/site";
+import { PAGES, pageHead } from "@/lib/site";
 
 const page = PAGES.grade;
 
 export const Route = createFileRoute("/grade-calculator")({
-  head: () => toolHead(page, "grade.png", "Grade calculator showing an 86% grade from two weighted categories"),
+  head: () => pageHead(page),
   component: Page,
 });
 
