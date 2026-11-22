@@ -2,7 +2,8 @@ Read docs/PROJECT_BRIEF.md before changing anything. All user-facing copy comes 
 
 - Public pages come from the single route registry in src/lib/site.ts (ROUTES); sitemap, robots, canonicals and OG tags are generated from it so they never drift.
 - Preview-host noindex and 404 noindex are applied at runtime in src/server.ts by request host, so production is never affected.
-- Shared FAQ data renders visible answers and their FAQPage schema; pageHead generates breadcrumbs and homepage identity schemas so metadata cannot drift from page content.
+- Shared FAQ data is selected by canonical path and renders visible answers and their FAQPage schema; pageHead generates breadcrumbs and homepage identity schemas so metadata cannot drift from page content.
+- Shared content tables use semantic captions, header cells and a local horizontal scroll container so narrow screens retain readable columns without page overflow.
 - Shared PageSeo components render breadcrumbs and calculator end blocks from registry entries; navigation panels remain mounted when closed so SSR exposes every destination.
 
 <!-- LOVABLE:BEGIN -->

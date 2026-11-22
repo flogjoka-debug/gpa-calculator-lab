@@ -1,4 +1,4 @@
-import { HOME_FAQ, breadcrumbSchema, faqSchema } from "./seo-content";
+import { HOME_FAQ, PAGE_FAQS, breadcrumbSchema, faqSchema } from "./seo-content";
 
 export const SITE_URL = "https://gpacalculatorlab.com";
 export const SITE_NAME = "GPA Calculator Lab";
@@ -44,6 +44,7 @@ export const canonical = (path: string) => `${SITE_URL}${path}`;
 export function pageHead(page: PageInfo) {
   const img = `${SITE_URL}/og/${page.og}`;
   const ogAlt = page.ogAlt;
+  const faq = PAGE_FAQS[page.path];
   return {
     meta: [
       { title: page.title },
@@ -69,7 +70,7 @@ export function pageHead(page: PageInfo) {
       { "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: `${SITE_URL}/` },
       { "@context": "https://schema.org", "@type": "Organization", name: SITE_NAME, url: `${SITE_URL}/`, logo: `${SITE_URL}/icon-512.png`, email: "info@gpacalculatorlab.com" },
       faqSchema(HOME_FAQ),
-    ] : [breadcrumbSchema(page, SITE_URL)]).map((schema) => ({ type: "application/ld+json", children: JSON.stringify(schema) })),
+    ] : [breadcrumbSchema(page, SITE_URL), ...(faq ? [faqSchema(faq)] : [])]).map((schema) => ({ type: "application/ld+json", children: JSON.stringify(schema) })),
   };
 }
 

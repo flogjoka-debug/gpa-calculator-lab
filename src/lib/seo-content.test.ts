@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { breadcrumbSchema, faqSchema } from "./seo-content";
+import { PAGE_FAQS, breadcrumbSchema, faqSchema } from "./seo-content";
 import { PAGES, ROUTES, SITE_URL, pageHead } from "./site";
 
 describe("SEO structured data rules", () => {
@@ -16,10 +16,10 @@ describe("SEO structured data rules", () => {
     const schema = faqSchema([{ question: "q", answer: ["one ", { text: "two", to: "/" }, " three"] }]);
     expect(schema.mainEntity).toEqual([{ "@type": "Question", name: "q", acceptedAnswer: { "@type": "Answer", text: "one two three" } }]);
   });
-  it("puts WebSite, Organization and FAQPage only on home, and breadcrumbs only on other pages", () => {
+  it("scopes identity schemas to home and FAQPage to pages with visible FAQs", () => {
     for (const page of ROUTES) {
       const types = pageHead(page).scripts.map((script) => (JSON.parse(script.children) as Record<string, unknown>)["@type"]);
-      expect(types).toEqual(page.path === "/" ? ["WebSite", "Organization", "FAQPage"] : ["BreadcrumbList"]);
+      expect(types).toEqual(page.path === "/" ? ["WebSite", "Organization", "FAQPage"] : ["BreadcrumbList", ...(PAGE_FAQS[page.path] ? ["FAQPage"] : [])]);
     }
   });
   it("uses the approved organization URL, logo and contact email", () => {
