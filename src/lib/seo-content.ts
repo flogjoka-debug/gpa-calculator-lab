@@ -244,8 +244,77 @@ export const PERCENTAGE_FAQ: FaqItem[] = [
   }
 ];
 
+export const UC_FAQ: FaqItem[] = [
+  {
+    "question": "Does UC count 9th grade?",
+    "answer": [
+      "No. UC's GPA starts with the summer after 9th grade, and a class taken that summer counts as 10th grade. Classes taken during 9th grade still count for meeting A-G subject requirements, but not toward the GPA."
+    ]
+  },
+  {
+    "question": "Does UC count plus and minus grades?",
+    "answer": [
+      "No. A B+ and a B− both count as a B, worth 3 points."
+    ]
+  },
+  {
+    "question": "What's the difference between a capped and an uncapped UC GPA?",
+    "answer": [
+      "The capped GPA limits honors points to 8, with no more than 4 from 10th grade. Some counselors and websites also mention an uncapped or fully weighted GPA that counts every honors point. UC's GPA requirement page describes the capped calculation, so that's what this calculator shows."
+    ]
+  },
+  {
+    "question": "Do summer classes count toward the UC GPA?",
+    "answer": [
+      "Yes, if they're A-G courses. A class in the summer after 9th or 10th grade counts as 10th grade, and a class in the summer after 11th grade counts as 11th grade."
+    ]
+  },
+  {
+    "question": "Does a D count in the UC GPA?",
+    "answer": [
+      "Yes. A D is worth 1 point, but a D in an honors course doesn't earn an honors point."
+    ]
+  }
+];
+
+export const LAW_FAQ: FaqItem[] = [
+  {
+    "question": "Does LSAC count community college grades?",
+    "answer": [
+      "Yes. LSAC includes undergraduate work from every school you attended before your first bachelor's degree, each with its own transcript."
+    ]
+  },
+  {
+    "question": "Does a W affect my LSAC GPA?",
+    "answer": [
+      "Not if your school treats it as nonpunitive. A withdrawal your school treats as failing counts as 0.00."
+    ]
+  },
+  {
+    "question": "Do graduate school grades count in the LSAC GPA?",
+    "answer": [
+      "No. Anything after your first bachelor's degree is left out, although law schools still receive those transcripts."
+    ]
+  },
+  {
+    "question": "How does LSAC convert quarter hours?",
+    "answer": [
+      "It multiplies quarter hours by 0.67 to get semester hours. A 4-unit quarter class counts as 2.68 semester hours."
+    ]
+  },
+  {
+    "question": "Is this my official LSAC GPA?",
+    "answer": [
+      "No. LSAC calculates the official number from your transcripts after you register for the Credential Assembly Service. Use this estimate to check your math before you apply."
+    ]
+  }
+];
+
 export const PAGE_FAQS: Record<string, FaqItem[]> = {
   "/": HOME_FAQ,
+  "/uc-gpa-calculator/": UC_FAQ,
+  "/law-school-gpa-calculator/": LAW_FAQ,
+
   "/grade-calculator/": GRADE_FAQ,
   "/final-grade-calculator/": FINAL_FAQ,
   "/semester-grade-calculator/": SEMESTER_FAQ,

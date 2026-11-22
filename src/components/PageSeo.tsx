@@ -63,7 +63,7 @@ export function ContentTable({ caption, columns, rows }: { caption: string; colu
     <div className="mt-4 overflow-x-auto rounded-[12px] border border-divider bg-surface">
       <table className="w-full min-w-[420px] text-left tabular">
         <caption className="sr-only">{caption}</caption>
-        <thead><tr>{columns.map((column) => <th key={column} scope="col" className="border-b border-divider px-4 py-3">{column}</th>)}</tr></thead>
+        <thead><tr>{columns.map((column, i) => <th key={i} scope="col" className="border-b border-divider px-4 py-3">{column}</th>)}</tr></thead>
         <tbody>{rows.map((row) => <tr key={row[0]}>{row.map((cell, i) => i === 0 ? <th key={i} scope="row" className="border-b border-divider px-4 py-3 font-medium">{cell}</th> : <td key={i} className="border-b border-divider px-4 py-3">{cell}</td>)}</tr>)}</tbody>
       </table>
     </div>
