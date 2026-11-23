@@ -43,7 +43,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "If the final is worth little, the grade you have now decides almost everything. That's why the calculator also shows the highest grade you can still reach."
+    "text": "If the final is worth little, the grade you have now decides almost everything. That's why the calculator also shows the highest grade you can still reach. Not sure what your current grade is? Rebuild it from your scores with the [grade calculator](/grade-calculator/)."
   },
   {
     "t": "h2",

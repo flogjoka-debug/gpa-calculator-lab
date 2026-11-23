@@ -31,7 +31,7 @@ export const PAGE_META = {
     "lead": "Effective November 23, 2026. This policy explains what GPA Calculator Lab collects, what it doesn't, and the choices you have."
   },
   "contact": {
-    "title": "Contact GPA Calculator Lab – Report an Error or Ask a Question",
+    "title": "Contact GPA Calculator Lab – Report an Error",
     "meta": "Report a wrong result or an outdated rule, or ask a question about GPA Calculator Lab. Email us with the calculator name and the numbers you entered.",
     "lead": "Spotted a wrong result or a rule that's out of date? Email [info@gpacalculatorlab.com](mailto:info@gpacalculatorlab.com). Every message is read by the FloPixels team that builds and maintains the calculators."
   },
@@ -48,7 +48,7 @@ export const PAGE_META = {
     "lead": "Use this GPA converter to move a GPA from any scale to the 4.0 scale, or from 4.0 to another one. Enter your GPA and the top of your school's scale, and you'll get the converted GPA with the math shown."
   },
   "forSchools": {
-    "title": "Free GPA Calculator for Your School Website – GPA Calculator Lab",
+    "title": "Free GPA Calculator Widget for Schools – GPA Calculator Lab",
     "meta": "Add our free GPA calculator to your school, counseling or advising page with one block of code. No sign-up, no ads, and students' grades stay in their browser.",
     "lead": "Counselors, advisors and teachers can put our GPA calculator on their own page for free. Copy the code below into your site, or link to the calculator that fits your students."
   },

@@ -83,7 +83,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "It depends on what the GPA is for. Federal financial aid rules require students in programs longer than two years to have at least a C average, or its equivalent, by the end of their second academic year ([34 CFR 668.34](https://www.law.cornell.edu/cfr/text/34/668.34)). Majors, honors programs, scholarships and graduate schools set their own minimums, often higher. Our guide to [what counts as a good GPA](/guides/what-is-a-good-gpa/) has examples with sources."
+    "text": "It depends on what the GPA is for. Federal financial aid rules require students in programs longer than two years to have at least a C average, or its equivalent, by the end of their second academic year ([34 CFR 668.34](https://www.law.cornell.edu/cfr/text/34/668.34)). Majors, honors programs, scholarships and graduate schools set their own minimums, often higher. Our guide to [what counts as a good GPA](/guides/what-is-a-good-gpa/) has examples with sources. Coming from a school that grades on a 10-point, 20-point or percentage scale? The [GPA converter](/gpa-converter/) shows roughly where your GPA lands on the 4.0 scale."
   },
   {
     "t": "h2",

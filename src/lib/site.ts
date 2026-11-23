@@ -9,7 +9,7 @@ export interface PageInfo { path: string; h1: string; title: string; description
 
 export const PAGES = {
   home: { path: "/", h1: "GPA Calculator", title: "GPA Calculator – Semester, Cumulative & Weighted GPA", description: "Free GPA calculator for high school and college. Add semesters, your GPA so far and Honors or AP classes to get your semester, cumulative and weighted GPA.", og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true, updated: "2026-11-23" },
-  college: { path: "/college-gpa-calculator/", h1: "College GPA Calculator", title: "College GPA Calculator – Semester GPA, Plus/Minus & Retakes", description: "Free college GPA calculator: enter credit hours and plus/minus grades to get your semester GPA, and compare counting both attempts of a retake with replacement.", og: "college.png", ogAlt: "College GPA calculator comparing a 2.50 and a 4.00 GPA for a retaken class", indexable: true , updated: "2026-11-23" },
+  college: { path: "/college-gpa-calculator/", h1: "College GPA Calculator", title: "College GPA Calculator – Semester GPA, Plus/Minus & Retakes", description: "Free college GPA calculator: enter credit hours and plus/minus grades for your semester GPA, and compare counting both attempts of a retake with replacement.", og: "college.png", ogAlt: "College GPA calculator comparing a 2.50 and a 4.00 GPA for a retaken class", indexable: true , updated: "2026-11-23" },
   highSchool: { path: "/high-school-gpa-calculator/", h1: "High School GPA Calculator", title: "High School GPA Calculator – Weighted & Unweighted GPA", description: "Free high school GPA calculator. See your weighted and unweighted GPA side by side, set Honors, AP and IB bonus points, and see what each class adds.", og: "high-school.png", ogAlt: "High school GPA calculator showing a 3.50 unweighted and 4.00 weighted GPA", indexable: true , updated: "2026-11-23" },
   cumulative: { path: "/cumulative-gpa-calculator/", h1: "Cumulative GPA Calculator", title: "Cumulative GPA Calculator – How to Calculate Cumulative GPA", description: "Free cumulative GPA calculator: add new semesters to the GPA credits and quality points on your transcript for an exact cumulative GPA, or start from your GPA.", og: "cumulative.png", ogAlt: "Cumulative GPA calculator showing 78 quality points over 24 credits and a 3.25 GPA", indexable: true , updated: "2026-11-23" },
   grade: { path: "/grade-calculator/", h1: "Grade Calculator", title: "Grade Calculator – Weighted Grades, Points or Categories", description: "Free grade calculator: work out your class grade from assignment points or weighted categories like tests and homework. Blank scores stay out; zeros count.", og: "grade.png", ogAlt: "Grade calculator showing an 86% grade from two weighted categories", indexable: true , updated: "2026-11-23" },
@@ -25,15 +25,15 @@ export const PAGES = {
 const SUPPORT_OG = { og: "home.png", ogAlt: "GPA calculator result showing a 3.43 GPA from 24 quality points and 7 credits", indexable: true };
 export const SUPPORT = {
   about: { path: "/about/", h1: "About GPA Calculator Lab", title: PAGE_META.about.title, description: PAGE_META.about.meta, ...SUPPORT_OG, og: "about.png", ogAlt: "About GPA Calculator Lab: free GPA tools that show their math" },
-  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" , updated: "2026-11-23" },
+  methodology: { path: "/methodology/", h1: "How our calculators work", title: "How Our Calculators Work – GPA Calculator Lab", description: "The formulas, grade scales and policy sources, including UC and LSAC rules, behind every GPA Calculator Lab calculator, with the date each rule was checked.", ...SUPPORT_OG, og: "methodology.png", ogAlt: "How our calculators work: a UC capped GPA of 4.66 from (48 + 8) ÷ 12" , updated: "2026-11-23" },
   privacy: { path: "/privacy/", h1: "Privacy Policy", title: PAGE_META.privacy.title, description: PAGE_META.privacy.meta, ...SUPPORT_OG, og: "privacy.png", ogAlt: "GPA Calculator Lab privacy policy: your grades stay in your browser" , updated: "2026-11-23" },
-  forSchools: { path: "/for-schools/", h1: "Free GPA Calculator for Your School Website", title: PAGE_META.forSchools.title, description: PAGE_META.forSchools.meta, ...SUPPORT_OG, og: "for-schools.png", ogAlt: "Embed the free GPA Calculator Lab calculator on your school website" },
-  terms: { path: "/terms/", h1: "Terms of Use", title: PAGE_META.terms.title, description: PAGE_META.terms.meta, ...SUPPORT_OG, og: "terms.png", ogAlt: "GPA Calculator Lab terms of use: free calculators that give estimates" },
-  contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_META.contact.title, description: PAGE_META.contact.meta, ...SUPPORT_OG, og: "contact.png", ogAlt: "Contact GPA Calculator Lab to report an error or an outdated rule" },
+  forSchools: { path: "/for-schools/", h1: "Free GPA Calculator for Your School Website", title: PAGE_META.forSchools.title, description: PAGE_META.forSchools.meta, ...SUPPORT_OG, og: "for-schools.png", ogAlt: "Embed the free GPA Calculator Lab calculator on your school website", updated: "2026-11-23" },
+  terms: { path: "/terms/", h1: "Terms of Use", title: PAGE_META.terms.title, description: PAGE_META.terms.meta, ...SUPPORT_OG, og: "terms.png", ogAlt: "GPA Calculator Lab terms of use: free calculators that give estimates", updated: "2026-11-22" },
+  contact: { path: "/contact/", h1: "Contact GPA Calculator Lab", title: PAGE_META.contact.title, description: PAGE_META.contact.meta, ...SUPPORT_OG, og: "contact.png", ogAlt: "Contact GPA Calculator Lab to report an error or an outdated rule", updated: "2026-11-23" },
 } satisfies Record<string, PageInfo>;
 
 /** Guides: long-form answers to common GPA questions, each linked to the matching calculators. */
-const GUIDE_DATES = { published: "2026-11-22", updated: "2026-11-22" };
+const GUIDE_DATES = { published: "2026-11-22", updated: "2026-11-23" };
 const GUIDES_HUB = { path: "/guides/", h1: "GPA Guides" };
 const guide = (key: keyof typeof GUIDE_CONTENT, og: string, ogAlt: string): PageInfo => {
   const c = GUIDE_CONTENT[key];
@@ -114,6 +114,12 @@ function pageTypeSchema(page: PageInfo): Record<string, unknown>[] {
   }
   if (page.path === SUPPORT.about.path) return [ld({ "@type": "AboutPage", name: page.h1, url: canonical(page.path), mainEntity: { ...ORGANIZATION, creator: FLOPIXELS } })];
   if (page.path === SUPPORT.contact.path) return [ld({ "@type": "ContactPage", name: page.h1, url: canonical(page.path), mainEntity: ORGANIZATION })];
+  if ([SUPPORT.privacy.path, SUPPORT.terms.path, SUPPORT.forSchools.path].includes(page.path)) {
+    return [ld({
+      "@type": "WebPage", "@id": `${canonical(page.path)}#webpage`, url: canonical(page.path), name: page.title, description: page.description,
+      inLanguage: "en-US", isPartOf: { "@id": WEBSITE_ID }, publisher: ORG_REF, dateModified: lastModified(page),
+    })];
+  }
   if (page.path === SUPPORT.methodology.path) {
     return [ld({
       "@type": "TechArticle", headline: page.h1, description: page.description, url: canonical(page.path), dateModified: lastModified(page),

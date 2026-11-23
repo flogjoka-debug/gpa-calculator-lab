@@ -33,6 +33,8 @@ Header always set Content-Security-Policy "frame-ancestors *" env=GCL_EMBED
 Header always set X-Robots-Tag "noindex, follow" env=GCL_EMBED
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+# Content Security Policy for every page except /embed/ (which sets its own frame-ancestors). GA4 hosts per Google's CSP guide.
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests" env=!GCL_EMBED
 <FilesMatch "\.(html|xml|txt)$">
 Header set Cache-Control "public, max-age=0, must-revalidate"
 </FilesMatch>

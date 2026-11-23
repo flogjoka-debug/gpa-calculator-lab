@@ -115,7 +115,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "With those four things, the calculator gives the same grade your teacher will."
+    "text": "With those four things, the calculator gives the same grade your teacher will. To combine two quarter grades and an exam into a semester grade, use the [semester grade calculator](/semester-grade-calculator/)."
   }
 ];
 export default blocks;

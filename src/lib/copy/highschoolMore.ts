@@ -124,7 +124,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "Enter the grades your transcript shows. If it lists a grade for each semester, enter each semester as its own row, usually worth half a credit. If it lists one grade for the whole year, enter that grade once with the year's credit. Mixing the two counts some classes twice."
+    "text": "Enter the grades your transcript shows. If it lists a grade for each semester, enter each semester as its own row, usually worth half a credit. If it lists one grade for the whole year, enter that grade once with the year's credit. Mixing the two counts some classes twice. Not sure what a semester grade will be yet? Work it out first with the [semester grade calculator](/semester-grade-calculator/)."
   },
   {
     "t": "h2",

@@ -109,6 +109,15 @@ const body: GuideBody = {
     },
     {
       "t": "h2",
+      "text": "Weighted GPA when classes have different credits",
+      "id": "weighted-gpa-when-classes-have-different-credits"
+    },
+    {
+      "t": "p",
+      "text": "Many high schools give a yearlong class 1 credit and a semester class 0.5. Then you multiply each class's weighted points by its credits before you divide. Example: an A in AP Chemistry (1 credit, 5.0), a B in Honors English (1 credit, 3.5) and an A in a semester of Health (0.5 credit, 4.0). The weighted quality points are 5.0 + 3.5 + 2.0 = 10.5 over 2.5 credits, a weighted GPA of 4.20. Without the bonuses it's (4 + 3 + 2) ÷ 2.5 = 3.60."
+    },
+    {
+      "t": "h2",
       "text": "Which one do colleges use?",
       "id": "which-one-do-colleges-use"
     },
@@ -124,6 +133,24 @@ const body: GuideBody = {
     {
       "t": "p",
       "text": "Neither is better. They answer different questions. The unweighted number shows how well you did in your classes. The weighted number also reflects how hard those classes were. When a form or application asks for one of them, give exactly that one."
+    },
+    {
+      "t": "h2",
+      "text": "How much does one AP class raise a weighted GPA?",
+      "id": "how-much-does-one-ap-class-raise-a-weighted-gpa"
+    },
+    {
+      "t": "p",
+      "text": "Each bonus is spread across all your classes. With six one-credit classes in a year, one AP class at +1.0 lifts that year's weighted GPA by about 0.17 (1 ÷ 6), and three AP classes lift it by 0.50. Across four years and 24 classes, a single AP class adds about 0.04 to your cumulative weighted GPA. The bonus matters most in the years when you take several advanced classes at once."
+    },
+    {
+      "t": "h2",
+      "text": "Can a weighted GPA be lower than an unweighted GPA?",
+      "id": "can-a-weighted-gpa-be-lower-than-an-unweighted-gpa"
+    },
+    {
+      "t": "p",
+      "text": "Not when your school only adds bonus points, because every class keeps at least its base value. If your weighted number is lower, the two GPAs probably don't include the same classes. Ask your counselor which courses each one counts before you compare them."
     },
     {
       "t": "h2",

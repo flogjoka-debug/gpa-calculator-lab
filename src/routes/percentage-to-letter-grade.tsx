@@ -21,7 +21,7 @@ const TOC: (readonly [string, string])[] = [
   ["example", "Example: 42 out of 50"],
   ["scales", "Common scale vs. 10-point scale"],
   ["does-89-5-round-up-to-an-a", "Does 89.5% round up to an A?"],
-  ["letter-grade-cutoffs-vary-by-school", "Letter grade cutoffs vary by school"],
+  ["letter-grade-calculator-for-your-school-s-cutoffs", "Letter grade calculator for your school's cutoffs"],
   ["from-letter-grade-to-gpa", "From letter grade to GPA"],
   ["common-test-scores-as-percentages-and-letters", "Common test scores as percentages and letters"],
   ["how-plus-and-minus-grades-work", "How plus and minus grades work"],

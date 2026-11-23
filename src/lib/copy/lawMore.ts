@@ -75,7 +75,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "LSAC calculates the official number after you register for the Credential Assembly Service, but this estimate tells you early what it's likely to be."
+    "text": "LSAC calculates the official number after you register for the Credential Assembly Service, but this estimate tells you early what it's likely to be. Grades from schools outside the U.S. and Canada usually aren't part of the LSAC GPA; LSAC sends law schools a separate foreign credential evaluation instead. For your own planning, the [GPA converter](/gpa-converter/) gives a rough 4.0 equivalent."
   },
   {
     "t": "img",

@@ -80,7 +80,7 @@ const body: GuideBody = {
     },
     {
       "t": "p",
-      "text": "A class's weight in your GPA depends on its credits. An A in a 4-credit class adds 16 quality points, while an A in a 1-credit class adds 4. When you're short on time, the bigger classes deserve it first. Inside each class, the [final grade calculator](/final-grade-calculator/) tells you what you need on the final to reach the next letter grade."
+      "text": "A class's weight in your GPA depends on its credits. An A in a 4-credit class adds 16 quality points, while an A in a 1-credit class adds 4. When you're short on time, the bigger classes deserve it first. Inside each class, the [final grade calculator](/final-grade-calculator/) tells you what you need on the final to reach the next letter grade. To see where each class stands before the final, check it in the [grade calculator](/grade-calculator/)."
     },
     {
       "t": "h2",
@@ -152,7 +152,7 @@ const body: GuideBody = {
     },
     {
       "t": "p",
-      "text": "At the University of Utah, a W is recorded on your transcript but isn't used to calculate your GPA. At USC Union, a University of South Carolina campus, a W isn't calculated either, but a WF after the deadline is treated as an F. Know your last day to withdraw before you decide. Sources: [University of Utah Registrar: Withdrawal policy](https://registrar.utah.edu/handbook/withdrawal.php), [USC Union Registrar: Withdrawal](https://www.union.sc.edu/about/offices_and_divisions/registrar/registration/withdrawal/index.php)."
+      "text": "At the University of Utah, a W is recorded on your transcript but isn't used to calculate your GPA. At the University of South Carolina, a W isn't calculated either, but a WF after the deadline is treated as an F. Know your last day to withdraw before you decide. Sources: [University of Utah Registrar: Withdrawal policy](https://registrar.utah.edu/handbook/withdrawal.php), [University of South Carolina Registrar: Withdrawal](https://sc.edu/about/offices_and_divisions/registrar/registration/withdrawal/index.php)."
     },
     {
       "t": "h2",

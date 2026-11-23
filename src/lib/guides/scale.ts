@@ -103,6 +103,19 @@ const body: GuideBody = {
     },
     {
       "t": "h2",
+      "text": "How plus and minus grades change your GPA",
+      "id": "how-plus-and-minus-grades-change-your-gpa"
+    },
+    {
+      "t": "p",
+      "text": "On the standard 4.0 scale, a plus adds 0.3 and a minus takes 0.3 away: a B+ is 3.3, a B is 3.0 and a B− is 2.7. Some colleges use 3.67 and 3.33 instead of 3.7 and 3.3. Some high schools don't record plus or minus grades at all, so every B counts as 3.0."
+    },
+    {
+      "t": "p",
+      "text": "That choice can move your GPA. Take four equal-credit classes with B+, B+, B+ and A−. With plus and minus grades the GPA is (3.3 + 3.3 + 3.3 + 3.7) ÷ 4 = 3.40. At a school that records only letters, the same work shows up as B, B, B and A, and the GPA is (3 + 3 + 3 + 4) ÷ 4 = 3.25. Plus and minus grades reward scores near the top of a letter and cost you points near the bottom."
+    },
+    {
+      "t": "h2",
       "text": "How to convert a percentage to GPA",
       "id": "how-to-convert-a-percentage-to-gpa"
     },
@@ -197,6 +210,66 @@ const body: GuideBody = {
         "Weighted 5.0 scale: high schools add up to one point for AP and IB classes.",
         "4.33 scale: some colleges give an A+ 4.33. LSAC uses it for every law school applicant, which you can try in the [law school GPA calculator](/law-school-gpa-calculator/).",
         "100-point scale: some schools report averages as percentages and never convert them."
+      ]
+    },
+    {
+      "t": "h2",
+      "text": "Grades that don't count on the scale",
+      "id": "grades-that-dont-count-on-the-scale"
+    },
+    {
+      "t": "p",
+      "text": "Some marks on a transcript carry no grade points and stay out of the average. A pass (P or S) earns credit but usually isn't part of the GPA. A W, for a class you dropped before the withdrawal deadline, is usually left out too. Other marks can count against you: at many colleges a WF is averaged in as an F. An incomplete usually waits until the final grade is posted. Your registrar's rules decide each one, and [how to raise your GPA](/guides/how-to-raise-your-gpa/) compares two real W and WF policies."
+    },
+    {
+      "t": "h2",
+      "text": "Turning a GPA back into a letter grade",
+      "id": "turning-a-gpa-back-into-a-letter-grade"
+    },
+    {
+      "t": "p",
+      "text": "Because a GPA is an average, it rarely lands exactly on a letter. Read it against the nearest grade points instead: a 3.2 sits between a B (3.0) and a B+ (3.3), closer to the B+. Schools don't assign a letter to your overall GPA, so on forms and resumes give the number and its scale, such as 3.2 out of 4.0."
+    },
+    {
+      "t": "table",
+      "caption": "What common GPAs mean on the 4.0 scale",
+      "columns": [
+        "GPA",
+        "What it means"
+      ],
+      "rows": [
+        [
+          "4.0",
+          "An A in every class"
+        ],
+        [
+          "3.7",
+          "An A− average"
+        ],
+        [
+          "3.5",
+          "Between a B+ and an A−"
+        ],
+        [
+          "3.3",
+          "A B+ average"
+        ],
+        [
+          "3.0",
+          "A B average"
+        ],
+        [
+          "2.5",
+          "Between a C+ and a B−"
+        ],
+        [
+          "2.0",
+          "A C average"
+        ],
+        [
+          "1.0",
+          "A D average"
+        ]
       ]
     },
     {

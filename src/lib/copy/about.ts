@@ -18,7 +18,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "We built the site for four kinds of visitors: high school students comparing their weighted and unweighted GPA before applications, college students planning a semester or a retake, applicants checking the UC or LSAC number before they submit, and parents or counselors who want to double-check a figure. If you're none of these and the site still helped, we'd like to hear what you used it for."
+    "text": "We built the site for four kinds of visitors: high school students comparing their weighted and unweighted GPA before applications, college students planning a semester or a retake, applicants checking the UC or LSAC number before they submit, and parents or counselors who want to double-check a figure. If you're none of these and the site still helped, we'd like to hear what you used it for. Counselors and teachers can also [add a calculator to their school website](/for-schools/) for free."
   },
   {
     "t": "h2",

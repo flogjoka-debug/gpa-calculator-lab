@@ -189,7 +189,7 @@ const body: GuideBody = {
     },
     {
       "t": "p",
-      "text": "Most colleges publish a Common Data Set each year. Section C11 shows what share of the incoming class had GPAs in each band, and C12 gives their average high school GPA. These are the best numbers to compare yourself with, but read them carefully. Colleges don't all report the same kind of GPA: Auburn University's 2024 Common Data Set lists an average of 4.09, which can only be a weighted figure. Source: [Auburn University Common Data Set 2024, Section C](https://auburn.edu/administration/ir/common-data-set/2024/section-c.html)."
+      "text": "Most colleges publish a Common Data Set each year. Section C11 shows what share of the incoming class had GPAs in each band, and C12 gives their average high school GPA. These are the best numbers to compare yourself with, but read them carefully. Colleges don't all report the same kind of GPA: Auburn University's 2024 Common Data Set lists an average of 4.09, which can only be a weighted figure. Source: [Auburn University Common Data Set 2024, Section C](https://ir.auburn.edu/common-data-set/2024/section-c.php)."
     },
     {
       "t": "p",

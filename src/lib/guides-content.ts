@@ -69,6 +69,18 @@ export const GUIDE_CONTENT = {
         "answer": [
           "It usually means straight A's in classes that all earned a full one-point bonus, on a weighted 5.0 scale. Schools that weight differently can top out higher or lower."
         ]
+      },
+      {
+        "question": "Do colleges prefer a weighted or an unweighted GPA?",
+        "answer": [
+          "Neither by default. Admissions readers look at the GPA your school reports and at the courses behind it, and some colleges, such as the University of California and the University of Michigan, recalculate a GPA with their own rules."
+        ]
+      },
+      {
+        "question": "How do I know if my GPA is weighted?",
+        "answer": [
+          "Check your transcript or report card. A GPA above 4.0, or one labeled weighted, includes bonus points. If it isn't labeled, your school's course catalog or your counselor can tell you."
+        ]
       }
     ]
   },
@@ -94,6 +106,18 @@ export const GUIDE_CONTENT = {
         "question": "What is a 3.0 GPA in percentage?",
         "answer": [
           "A 3.0 is a B, which is 83 to 86 percent on the chart above and 80 to 89 percent on a 90/80/70/60 scale."
+        ]
+      },
+      {
+        "question": "Is the 4.0 scale the same in high school and college?",
+        "answer": [
+          "The letter values are usually the same, from A = 4.0 down to F = 0. The differences are weighting, which many high schools use and colleges usually don't, and whether plus and minus grades are recorded."
+        ]
+      },
+      {
+        "question": "Do pass/fail classes count in your GPA?",
+        "answer": [
+          "Usually not. A pass earns credit without grade points, so it stays out of the average. Some schools do count a failing grade in a pass/fail class as an F, so check your registrar's policy."
         ]
       }
     ]

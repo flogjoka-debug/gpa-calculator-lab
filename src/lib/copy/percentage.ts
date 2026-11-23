@@ -13,8 +13,8 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "h2",
-    "text": "Letter grade cutoffs vary by school",
-    "id": "letter-grade-cutoffs-vary-by-school"
+    "text": "Letter grade calculator for your school's cutoffs",
+    "id": "letter-grade-calculator-for-your-school-s-cutoffs"
   },
   {
     "t": "p",
@@ -27,7 +27,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "Once you have the letter, the 4.0 scale gives its grade points: A 4.0, B 3.0, C 2.0, D 1.0, F 0, with plus and minus grades in between. The full chart is in [the 4.0 GPA scale guide](/guides/gpa-scale/). To combine several letter grades into a GPA, use the [college GPA calculator](/college-gpa-calculator/)."
+    "text": "Once you have the letter, the 4.0 scale gives its grade points: A 4.0, B 3.0, C 2.0, D 1.0, F 0, with plus and minus grades in between. The full chart is in [the 4.0 GPA scale guide](/guides/gpa-scale/). To combine several letter grades into a GPA, use the [college GPA calculator](/college-gpa-calculator/). If all you have is a percentage average for the year, the [GPA converter](/gpa-converter/) explains why dividing it by 25 overstates your GPA."
   }
 ];
 export default blocks;

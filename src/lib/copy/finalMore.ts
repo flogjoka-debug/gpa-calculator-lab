@@ -44,7 +44,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "Run your own numbers above to see the same breakdown for your class and your school's cutoffs."
+    "text": "Run your own numbers above to see the same breakdown for your class and your school's cutoffs. If your school builds the semester grade from two quarters and an exam, the [semester grade calculator](/semester-grade-calculator/) handles that split for you."
   },
   {
     "t": "img",

@@ -4,8 +4,8 @@ import type { GuideBlock } from "../guides-content";
 const blocks: GuideBlock[] = [
   {
     "t": "h2",
-    "text": "Weighted and unweighted GPA on one screen",
-    "id": "weighted-and-unweighted-gpa-on-one-screen"
+    "text": "A weighted GPA calculator that also shows your unweighted GPA",
+    "id": "weighted-gpa-calculator"
   },
   {
     "t": "p",

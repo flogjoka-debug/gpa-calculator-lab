@@ -16,7 +16,7 @@ const page = PAGES.highSchool;
 const TOC: (readonly [string, string])[] = [
   ["what-is-a-high-school-gpa", "What is a high school GPA?"],
   ["how-to-use-the-high-school-gpa-calculator", "How to use the high school GPA calculator"],
-  ["weighted-and-unweighted-gpa-on-one-screen", "Weighted and unweighted GPA on one screen"],
+  ["weighted-gpa-calculator", "A weighted GPA calculator that also shows your unweighted GPA"],
   ["how", "How we calculated this"],
   ["how-to-calculate-a-weighted-gpa", "How to calculate a weighted GPA"],
   ["weighted-gpa-scale", "Weighted GPA scale"],
