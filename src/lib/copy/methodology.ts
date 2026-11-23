@@ -308,6 +308,35 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "h2",
+    "text": "GPA converter",
+    "id": "gpa-converter"
+  },
+  {
+    "t": "h3",
+    "text": "Formula"
+  },
+  {
+    "t": "p",
+    "text": "Converted GPA = your GPA × the top of the new scale ÷ the top of your scale. The conversion keeps your position on the scale; it doesn't recalculate your grades."
+  },
+  {
+    "t": "h3",
+    "text": "Example"
+  },
+  {
+    "t": "p",
+    "text": "A 4.1 on a 4.5 scale: 4.1 × 4 ÷ 4.5 = 3.64. A 3.2 on a 4.0 scale becomes 3.2 × 10 ÷ 4 = 8.0 on a 10-point scale."
+  },
+  {
+    "t": "h3",
+    "text": "Source"
+  },
+  {
+    "t": "p",
+    "text": "The proportional formula published by the University of Texas at Arlington and the University of Arizona Graduate College, both of which call it an estimate. [Open the GPA converter](/gpa-converter/)."
+  },
+  {
+    "t": "h2",
     "text": "Changelog",
     "id": "changelog"
   },

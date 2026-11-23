@@ -38,6 +38,18 @@ export const GUIDE_CONTENT = {
         "answer": [
           "It depends on the college. Many read the GPA your school reports and also look at which classes you took. Some, including the University of California, recalculate your GPA with their own rules."
         ]
+      },
+      {
+        "question": "Is a 3.3 GPA good?",
+        "answer": [
+          "A 3.3 is a B+ average, above the 3.11 national average for 2019 graduates. Like a 3.2, it meets UC's minimum for residents but falls short of the 3.4 asked of nonresidents."
+        ]
+      },
+      {
+        "question": "What GPA do you need to stay in good standing in college?",
+        "answer": [
+          "Many colleges set 2.0 as the minimum, and federal aid rules require a C average by the end of the second year in programs longer than two years. Your college's catalog has the exact rule."
+        ]
       }
     ]
   },
@@ -144,6 +156,18 @@ export const GUIDE_CONTENT = {
         "question": "Does a W hurt your GPA?",
         "answer": [
           "Usually not. Most schools don't count a W in GPA, though it stays on your transcript. A withdrawal your school treats as failing counts like an F."
+        ]
+      },
+      {
+        "question": "How long does it take to raise a GPA from 2.5 to 3.0?",
+        "answer": [
+          "It depends on how many credits you already have. With 30 credits at 2.5, one 15-credit semester of straight A's reaches exactly 3.0: (75 + 60) ÷ 45. With 60 credits, you'd need 30 credits of A's, about two full semesters."
+        ]
+      },
+      {
+        "question": "Does summer school raise your GPA?",
+        "answer": [
+          "Only if your school records the grade. Summer classes at your own college usually count like any other term. Classes taken elsewhere often transfer as credit only and leave your GPA unchanged."
         ]
       }
     ]

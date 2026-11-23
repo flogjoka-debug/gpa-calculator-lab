@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Breadcrumbs, ContentTable, FaqSection, LinkCardGrid } from "@/components/PageSeo";
+import { Breadcrumbs, ContentTable, FaqSection, LinkCardGrid, PageToc } from "@/components/PageSeo";
 import { GUIDE_LIST, SUPPORT, type PageInfo } from "@/lib/site";
 import type { GuideBlock, GuideContent } from "@/lib/guides-content";
 
@@ -64,6 +64,10 @@ const formatDate = (iso?: string) =>
 
 export function GuideArticle({ page, content }: { page: PageInfo; content: GuideContent }) {
   const others = GUIDE_LIST.filter((g) => g.path !== page.path);
+  const toc = [
+    ...content.blocks.flatMap((b) => (b.t === "h2" && b.id ? [[b.id, b.text] as const] : [])),
+    ...(content.faq.length ? [["faq", "Frequently asked questions"] as const] : []),
+  ];
   return (
     <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
@@ -73,6 +77,7 @@ export function GuideArticle({ page, content }: { page: PageInfo; content: Guide
           By <a href="https://flopixels.net/" rel="noopener" className="underline">FloPixels</a> · Updated <time dateTime={page.article?.updated}>{formatDate(page.article?.updated)}</time>
         </p>
         <p className="mt-4 text-text-muted sm:text-lg">{content.lead}</p>
+        <PageToc items={toc} />
         {content.blocks.map((block, i) => <Block key={i} block={block} />)}
         <FaqSection items={content.faq} />
       </article>

@@ -131,6 +131,24 @@ const body: GuideBody = {
       "text": "A 2.5 sits between a C+ and a B− average. It is above the 2.0 floor for federal aid and good standing at many colleges, but below UC's 3.0 minimum and below many scholarship cutoffs. The good news is that a 2.5 early on moves quickly: see [how to raise your GPA](/guides/how-to-raise-your-gpa/) for the math."
     },
     {
+    "t": "h2",
+    "text": "Is a 3.2 GPA good?",
+    "id": "is-a-3-2-gpa-good"
+  },
+  {
+    "t": "p",
+    "text": "A 3.2 is a B average with a few B+ grades mixed in, and it sits a little above the 3.11 national average. It clears UC's 3.0 minimum for California residents but not the 3.4 asked of nonresidents. In college, it also meets the 3.0 floor many graduate programs list."
+  },
+  {
+    "t": "h2",
+    "text": "What is a good GPA in college?",
+    "id": "what-is-a-good-gpa-in-college"
+  },
+  {
+    "t": "p",
+    "text": "In college, the numbers that matter are set by your school and your plans. Many colleges require a 2.0 for good academic standing, graduate programs often start at 3.0, and honors programs and Latin honors usually ask for more. Your registrar's site lists the exact cutoffs for probation and graduation honors. If your grades come from a school abroad, the [GPA converter](/gpa-converter/) gives a rough 4.0 equivalent before you compare."
+  },
+  {
       "t": "h2",
       "text": "Minimums that actually matter",
       "id": "minimums-that-actually-matter"

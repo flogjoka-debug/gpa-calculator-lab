@@ -121,7 +121,7 @@ const body: GuideBody = {
     },
     {
       "t": "p",
-      "text": "Don't put the percentage straight onto the 4.0 scale. Convert it to a letter grade first, using your school's cutoffs, then look up the points."
+      "text": "Don't put the percentage straight onto the 4.0 scale. Convert it to a letter grade first, using your school's cutoffs, then look up the points. If you only have scores, the [grade calculator](/grade-calculator/) turns them into each class's percentage first."
     },
     {
       "t": "ol",

@@ -103,6 +103,24 @@ const body: GuideBody = {
       "text": "Check your college's policy before you register, and compare both outcomes in the [college GPA calculator](/college-gpa-calculator/). If you're headed to law school, LSAC counts every attempt either way."
     },
     {
+    "t": "h2",
+    "text": "Summer and community college classes",
+    "id": "summer-and-community-college-classes"
+  },
+  {
+    "t": "p",
+    "text": "A summer class at your own college usually counts like any other term. Classes taken somewhere else are different: many colleges transfer them as credit only, without the grade, so they add credits toward your degree but leave your GPA where it was. Check your college's transfer credit policy before you count on a summer class to raise your GPA."
+  },
+  {
+    "t": "h2",
+    "text": "Raising a high school GPA",
+    "id": "raising-a-high-school-gpa"
+  },
+  {
+    "t": "p",
+    "text": "In high school, each class usually counts as one credit or half a credit, so every class pulls about the same weight. Your transcript records semester grades, and the [semester grade calculator](/semester-grade-calculator/) shows how much the exam can still move each one. Senior grades matter too: many colleges ask your counselor for a mid-year report after you apply."
+  },
+  {
       "t": "h2",
       "text": "What doesn't change your GPA",
       "id": "what-doesn-t-change-your-gpa"

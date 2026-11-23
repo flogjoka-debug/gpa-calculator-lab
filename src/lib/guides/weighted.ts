@@ -114,7 +114,7 @@ const body: GuideBody = {
     },
     {
       "t": "p",
-      "text": "Many high schools give a yearlong class 1 credit and a semester class 0.5. Then you multiply each class's weighted points by its credits before you divide. Example: an A in AP Chemistry (1 credit, 5.0), a B in Honors English (1 credit, 3.5) and an A in a semester of Health (0.5 credit, 4.0). The weighted quality points are 5.0 + 3.5 + 2.0 = 10.5 over 2.5 credits, a weighted GPA of 4.20. Without the bonuses it's (4 + 3 + 2) ÷ 2.5 = 3.60."
+      "text": "Many high schools give a yearlong class 1 credit and a semester class 0.5. Then you multiply each class's weighted points by its credits before you divide. Example: an A in AP Chemistry (1 credit, 5.0), a B in Honors English (1 credit, 3.5) and an A in a semester of Health (0.5 credit, 4.0). The weighted quality points are 5.0 + 3.5 + 2.0 = 10.5 over 2.5 credits, a weighted GPA of 4.20. Without the bonuses it's (4 + 3 + 2) ÷ 2.5 = 3.60. If you still need the semester grade itself, the [semester grade calculator](/semester-grade-calculator/) combines your quarters and the exam."
     },
     {
       "t": "h2",

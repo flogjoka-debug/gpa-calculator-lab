@@ -357,7 +357,40 @@ export const LAW_FAQ: FaqItem[] = [
   {"question": "Do community college grades raise or lower my LSAC GPA?", "answer": ["Either, depending on the grades. LSAC averages every undergraduate school by credits, so strong community college grades can lift your LSAC GPA above your university GPA."]}
 ];
 
+export const FOR_SCHOOLS_FAQ: FaqItem[] = [
+  {
+    "question": "Is the GPA calculator widget really free?",
+    "answer": [
+      "Yes. There's no sign-up, no fee and no ads. Keep the credit link under the calculator so students know where the tool comes from."
+    ]
+  },
+  {
+    "question": "Does the embedded calculator collect student data?",
+    "answer": [
+      "No. Grades are calculated in the student's browser and aren't sent to us or to your school, and the embedded version doesn't load analytics."
+    ]
+  },
+  {
+    "question": "Will it match our school's weighting?",
+    "answer": [
+      "Students can set the Honors, AP and IB bonus points your school uses. If your school uses a scale or rule the calculator doesn't cover, ",
+      {
+        "text": "tell us",
+        "to": "/contact/"
+      },
+      " and we'll look at adding it."
+    ]
+  },
+  {
+    "question": "Can we link to a calculator instead of embedding it?",
+    "answer": [
+      "Of course. You can link to any page on the site without asking, including the calculator that fits your students best."
+    ]
+  }
+];
+
 export const PAGE_FAQS: Record<string, FaqItem[]> = {
+  "/for-schools/": FOR_SCHOOLS_FAQ,
   "/": HOME_FAQ,
   "/gpa-converter/": CONVERTER_FAQ,
   ...Object.fromEntries(Object.values(GUIDE_CONTENT).map((g) => [g.path, g.faq as FaqItem[]])),

@@ -49,7 +49,7 @@ export const PAGE_META = {
   },
   "forSchools": {
     "title": "Free GPA Calculator Widget for Schools – GPA Calculator Lab",
-    "meta": "Add our free GPA calculator to your school, counseling or advising page with one block of code. No sign-up, no ads, and students' grades stay in their browser.",
+    "meta": "Add our free GPA calculator to your school or counseling page with one block of code. No sign-up, no ads, and students' grades stay in their browser.",
     "lead": "Counselors, advisors and teachers can put our GPA calculator on their own page for free. Copy the code below into your site, or link to the calculator that fits your students."
   },
   "terms": {

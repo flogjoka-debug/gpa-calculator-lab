@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Check, Copy } from "lucide-react";
-import { Breadcrumbs } from "@/components/PageSeo";
+import { Breadcrumbs, FaqSection, UpdatedLine } from "@/components/PageSeo";
+import { FOR_SCHOOLS_FAQ } from "@/lib/seo-content";
 import { CopyBlocks, InlineText } from "@/components/Guide";
 import copyForSchools from "@/lib/copy/forSchools";
 import { PAGE_META } from "@/lib/page-meta";
@@ -48,12 +49,14 @@ function Page() {
     <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 pt-5 pb-4 sm:pt-8">
       <Breadcrumbs page={page} />
       <h1 className="text-[2rem] leading-tight sm:text-4xl">{page.h1}</h1>
+      <UpdatedLine page={page} />
       <p className="mt-2 text-text-muted sm:text-lg"><InlineText text={copy.lead} /></p>
       <CopyBlocks blocks={blocks.slice(0, split)} />
       <EmbedCode />
       <h2 className="mt-12 text-2xl">Preview</h2>
       <iframe src="/embed/gpa-calculator/" title="GPA calculator preview" width="100%" height="1100" loading="lazy" className="mt-4 card w-full" />
       <CopyBlocks blocks={blocks.slice(split)} />
+      <FaqSection items={FOR_SCHOOLS_FAQ} />
     </main>
   );
 }

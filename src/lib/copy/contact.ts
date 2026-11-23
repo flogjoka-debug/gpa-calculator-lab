@@ -51,7 +51,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "We check reported errors against the calculator's tests and the official source. When we fix something, we update the calculator and add the change to the changelog on the methodology page."
+    "text": "We check reported errors against the calculator's tests and the official source. When we fix something, we update the calculator and add the change to the changelog on the methodology page. You can read more [about who builds the site](/about/)."
   }
 ];
 export default blocks;

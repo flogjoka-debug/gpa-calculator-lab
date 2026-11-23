@@ -61,7 +61,7 @@ const blocks: GuideBlock[] = [
   },
   {
     "t": "p",
-    "text": "Every guide is written and maintained by FloPixels, the studio that builds GPA Calculator Lab. We take rules from the organizations that set them, link the source next to the rule, and date each check. When a policy changes, such as LSAC's dual enrollment rule, we update the guide and the matching calculator together. Found something out of date? [Tell us](/contact/)."
+    "text": "Every guide is written and maintained by FloPixels, the studio that builds GPA Calculator Lab. We take rules from the organizations that set them, link the source next to the rule, and date each check. When a policy changes, such as LSAC's dual enrollment rule, we update the guide and the matching calculator together. Found something out of date? [Tell us](/contact/). Read more [about GPA Calculator Lab](/about/)."
   }
 ];
 export default blocks;
