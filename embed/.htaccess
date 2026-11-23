@@ -1,0 +1,8 @@
+# /embed/: calculators that school websites may frame. Runs after the root .htaccess,
+# so it removes the site-wide X-Frame-Options and allows framing from any site.
+<IfModule mod_headers.c>
+  Header always unset X-Frame-Options
+  Header unset X-Frame-Options
+  Header always set Content-Security-Policy "frame-ancestors *"
+  Header always set X-Robots-Tag "noindex, follow"
+</IfModule>

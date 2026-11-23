@@ -1,0 +1,31 @@
+# GPA Calculator Lab
+
+> Free GPA and grade calculators for U.S. high school and college students and applicants. Every result shows the math, the classes that counted and the policy source. Calculations run in the browser.
+
+## Calculators
+- [GPA Calculator](https://gpacalculatorlab.com/): Free GPA calculator for high school and college. Add semesters, your GPA so far and Honors or AP classes to get your semester, cumulative and weighted GPA.
+- [College GPA Calculator](https://gpacalculatorlab.com/college-gpa-calculator/): Free college GPA calculator: enter credit hours and plus/minus grades for your semester GPA, and compare counting both attempts of a retake with replacement.
+- [High School GPA Calculator](https://gpacalculatorlab.com/high-school-gpa-calculator/): Free high school GPA calculator. See your weighted and unweighted GPA side by side, set Honors, AP and IB bonus points, and see what each class adds.
+- [Cumulative GPA Calculator](https://gpacalculatorlab.com/cumulative-gpa-calculator/): Free cumulative GPA calculator: add new semesters to the credits and quality points on your transcript for an exact cumulative GPA, or start from your GPA.
+- [Grade Calculator](https://gpacalculatorlab.com/grade-calculator/): Free grade calculator: work out your class grade from assignment points or weighted categories like tests and homework. Blank scores stay out; zeros count.
+- [Final Grade Calculator](https://gpacalculatorlab.com/final-grade-calculator/): Free final grade calculator: find the score you need on your final exam for an A, B or C from your current grade and the exam's weight, with the math shown.
+- [Semester Grade Calculator](https://gpacalculatorlab.com/semester-grade-calculator/): Free semester grade calculator: combine two quarter grades and your exam with 40/40/20, 45/45/10 or custom weights, and see the exam score you need.
+- [Percentage to Letter Grade Calculator](https://gpacalculatorlab.com/percentage-to-letter-grade/): Free percentage to letter grade calculator: convert any percentage to a letter grade, even 89.5, with the A–F chart and your distance to the next letter.
+- [UC GPA Calculator](https://gpacalculatorlab.com/uc-gpa-calculator/): Free UC GPA calculator: estimate your capped and unweighted UC GPA from 10th and 11th grade A-G courses and see which honors points count toward the cap.
+- [Law School GPA Calculator (LSAC GPA)](https://gpacalculatorlab.com/law-school-gpa-calculator/): Free law school GPA calculator: estimate your LSAC GPA with A+ at 4.33 and every retake counted. Pick your cycle to see how dual-enrollment grades count.
+- [GPA Converter](https://gpacalculatorlab.com/gpa-converter/): Free GPA converter: turn a GPA on a 4.5, 5.0, 10 or 20-point scale into a 4.0 GPA, or back, with the formula, worked examples and when it's only an estimate.
+- [Free GPA Calculator for Your School Website](https://gpacalculatorlab.com/for-schools/): Add our free GPA calculator to your school or counseling page with one block of code. No sign-up, no ads, and students' grades stay in their browser.
+- [Terms of Use](https://gpacalculatorlab.com/terms/): The terms for using GPA Calculator Lab: free calculators that give estimates, how you may embed or link to them, and the limits of our responsibility.
+
+## Guides
+- [GPA Guides](https://gpacalculatorlab.com/guides/): Short, sourced guides to GPA: what counts as a good GPA, weighted vs unweighted, the 4.0 scale with percentages, and how to raise your GPA, with examples.
+- [What Is a Good GPA?](https://gpacalculatorlab.com/guides/what-is-a-good-gpa/): A 3.0 is a B average, and the typical U.S. high school graduate finished with a 3.11 in 2019. See what your GPA means and when it counts as good.
+- [Weighted vs Unweighted GPA](https://gpacalculatorlab.com/guides/weighted-vs-unweighted-gpa/): An unweighted GPA treats every class the same on a 4.0 scale. A weighted GPA adds points for Honors, AP and IB. See how to calculate both, with examples.
+- [The 4.0 GPA Scale](https://gpacalculatorlab.com/guides/gpa-scale/): The 4.0 GPA scale with every letter grade, its grade points and the usual percentage range. Plus how to turn a percentage into GPA and what a 3.5 GPA means.
+- [How to Raise Your GPA](https://gpacalculatorlab.com/guides/how-to-raise-your-gpa/): GPA moves by credits, not effort alone. See how much a semester of A's can raise a 2.8, when a retake helps, and what doesn't change your GPA at all.
+
+## About
+- [About GPA Calculator Lab](https://gpacalculatorlab.com/about/): GPA Calculator Lab is built and maintained by FloPixels. Free GPA and grade calculators that show their math and cite the official rules they follow.
+- [How our calculators work](https://gpacalculatorlab.com/methodology/): The formulas, grade scales and policy sources, including UC and LSAC rules, behind every GPA Calculator Lab calculator, with the date each rule was checked.
+- [Privacy Policy](https://gpacalculatorlab.com/privacy/): How GPA Calculator Lab handles your data: calculators run in your browser, grades are never sent, and Google Analytics loads only if you accept.
+- [Contact GPA Calculator Lab](https://gpacalculatorlab.com/contact/): Report a wrong result or an outdated rule, or ask a question about GPA Calculator Lab. Email us with the calculator name and the numbers you entered.
